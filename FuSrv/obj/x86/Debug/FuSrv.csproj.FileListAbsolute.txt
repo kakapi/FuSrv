@@ -1,0 +1,11 @@
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\FuSrv.exe
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\FuSrv.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\FuSrv.ProjectInstaller.resources
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\FuSrv.exe
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\FuSrv.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\log4net.dll
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\log4net.xml
+F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\FuSrv.exe.config

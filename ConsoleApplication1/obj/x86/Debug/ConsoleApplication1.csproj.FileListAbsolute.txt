@@ -1,0 +1,6 @@
+F:\PhireeCode\AutoUploader\FuSrv\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+F:\PhireeCode\AutoUploader\FuSrv\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+F:\PhireeCode\AutoUploader\FuSrv\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+F:\PhireeCode\AutoUploader\FuSrv\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\PhireeCode\AutoUploader\FuSrv\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+F:\PhireeCode\AutoUploader\FuSrv\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb

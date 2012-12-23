@@ -1,0 +1,5 @@
+F:\PhireeCode\AutoUploader\FuSrv\FuService\bin\Debug\FuService.exe
+F:\PhireeCode\AutoUploader\FuSrv\FuService\bin\Debug\FuService.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuService\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\PhireeCode\AutoUploader\FuSrv\FuService\obj\x86\Debug\FuService.exe
+F:\PhireeCode\AutoUploader\FuSrv\FuService\obj\x86\Debug\FuService.pdb

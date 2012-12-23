@@ -1,0 +1,14 @@
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuTest.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuSrv.exe
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\nunit.framework.dll
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\xunit.dll
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuSrv.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\nunit.framework.xml
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\xunit.xml
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\obj\Debug\ResolveAssemblyReference.cache
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\obj\Debug\FuTest.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\log4net.dll
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\log4net.xml
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuTest.dll.config
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuTest.dll
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\obj\Debug\FuTest.dll
