@@ -11,10 +11,7 @@ namespace FuSrv
     /// </summary>
     public class Uploader
     {
-        /// <summary>
-        /// 本地文件存储路径
-        /// </summary>
-
+       
 
         /// <summary>
         /// 确定需要上传的文件
@@ -23,15 +20,13 @@ namespace FuSrv
         public static string[] GetUploadedFile()
         {
             List<string> tobeUploaded = new List<string>();
-            DateTime? _lastUploaded = new UploadLogger().GetLastUploadedFileTime();
-            if (_lastUploaded == null)
-            { return new string[] { }; }
-            DateTime lastUploaded = _lastUploaded.Value;
-
+            long lastUploaded = new UploadLogger().GetLastUploadedFileTime();
+           
+           
             string[] result = Directory.GetFiles(SiteVariables.LocalStoragePath, "*.wav", SearchOption.AllDirectories);
             foreach (string s in result)
             {
-                DateTime dt = File.GetCreationTime(s);
+                long dt = File.GetCreationTime(s).Ticks;
                 if (dt > lastUploaded)
                 {
                     tobeUploaded.Add(s);
@@ -49,7 +44,6 @@ namespace FuSrv
         /// <param name="sourceFile">需要上传的文件</param>
         public Uploader()
         {
-
 
         }
         public static void UploadFiles()
@@ -75,13 +69,30 @@ namespace FuSrv
             if (uploadResult == true)
             {
                 Logger.MyLogger.Info(msg);
-                new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded));
+                new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded).Ticks);
+                string deviceNo=string.Empty, duration=string.Empty;
+                ExtractInfo(fileNametouploaded, out deviceNo, out duration);
+                UpdateRemoteDB.Update(deviceNo,duration);
             }
             else
             {
                 Logger.MyLogger.Error(msg);
             }
             return uploadResult;
+        }
+        private static bool ExtractInfo(string fileFullName,out string deviceno,out string duration)
+        {
+            bool result = false;
+            deviceno = string.Empty;
+            duration = string.Empty;
+           string fileName = Path.GetFileName(fileFullName);
+
+           NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(fileFullName);
+            TimeSpan tp= wf.TotalTime;
+            duration = tp.TotalSeconds.ToString();
+            string[] arr = fileName.Split('_');
+            deviceno = arr[0];
+            return result;
         }
 
     }

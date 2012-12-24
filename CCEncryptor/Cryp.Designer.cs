@@ -38,6 +38,8 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.tbxCode = new System.Windows.Forms.TextBox();
+            this.lblSavedPath = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbxFileName
@@ -50,17 +52,17 @@
             // 
             // btnSelFld
             // 
-            this.btnSelFld.Location = new System.Drawing.Point(3, 126);
+            this.btnSelFld.Location = new System.Drawing.Point(102, 106);
             this.btnSelFld.Name = "btnSelFld";
             this.btnSelFld.Size = new System.Drawing.Size(75, 23);
             this.btnSelFld.TabIndex = 1;
-            this.btnSelFld.Text = "保存位置";
+            this.btnSelFld.Text = "....";
             this.btnSelFld.UseVisualStyleBackColor = true;
             this.btnSelFld.Click += new System.EventHandler(this.btnSelFld_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(130, 126);
+            this.btnSave.Location = new System.Drawing.Point(92, 151);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
@@ -74,6 +76,7 @@
             this.tbxStr.Name = "tbxStr";
             this.tbxStr.Size = new System.Drawing.Size(346, 21);
             this.tbxStr.TabIndex = 0;
+            this.tbxStr.Text = "Server|Database|UserId|Password";
             // 
             // label1
             // 
@@ -112,11 +115,30 @@
             this.tbxCode.Text = "P@ssw0rd";
             this.tbxCode.Visible = false;
             // 
+            // lblSavedPath
+            // 
+            this.lblSavedPath.AutoSize = true;
+            this.lblSavedPath.Location = new System.Drawing.Point(203, 106);
+            this.lblSavedPath.Name = "lblSavedPath";
+            this.lblSavedPath.Size = new System.Drawing.Size(0, 12);
+            this.lblSavedPath.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 111);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 12);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "ChooseSavePath";
+            // 
             // Cryp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 262);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblSavedPath);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbxCode);
             this.Controls.Add(this.label2);
@@ -146,6 +168,8 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbxCode;
+        private System.Windows.Forms.Label lblSavedPath;
+        private System.Windows.Forms.Label label5;
     }
 }
 

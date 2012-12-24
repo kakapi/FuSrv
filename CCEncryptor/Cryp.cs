@@ -25,6 +25,7 @@ namespace CCEncryptor
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 savepath = folderBrowserDialog1.SelectedPath;
+                lblSavedPath.Text = savepath;
             }
         }
 

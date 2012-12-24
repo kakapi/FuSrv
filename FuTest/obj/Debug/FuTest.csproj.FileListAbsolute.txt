@@ -9,7 +9,6 @@ F:\PhireeCode\AutoUploader\FuSrv\FuTest\obj\Debug\ResolveAssemblyReference.cache
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\obj\Debug\FuTest.pdb
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\log4net.dll
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\log4net.xml
-F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuTest.dll.config
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuTest.dll
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\obj\Debug\FuTest.dll
 E:\workspace\FuSrv\FuTest\bin\Debug\FuTest.dll.config
@@ -28,3 +27,8 @@ E:\workspace\FuSrv\FuTest\obj\Debug\FuTest.dll
 E:\workspace\FuSrv\FuTest\obj\Debug\FuTest.pdb
 E:\workspace\FuSrv\FuTest\bin\Debug\FuLib.dll
 E:\workspace\FuSrv\FuTest\bin\Debug\FuLib.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuLib.dll
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\NAudio.dll
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuLib.pdb
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\NAudio.xml
+F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuTest.dll.config

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using System.IO;
+
 namespace FuTest
 {
    
@@ -12,6 +13,10 @@ namespace FuTest
         [Fact]
         public void uploaderTest()
         {
+
+         
+
+          
             Console.Write(System.Configuration.ConfigurationManager.AppSettings.Count);
         string targetPath = @"D:\test\autouploader\ftpsite\in_combat.wav";
            

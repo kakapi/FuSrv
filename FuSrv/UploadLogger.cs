@@ -19,7 +19,7 @@ namespace FuSrv
                 Logger.MyLogger.Error("本地路径不存在,请检查配置文件的LocalStoragePath");
                 return;
             }
-            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LocalStoragePath)
                 + SiteVariables.LastUploadFileName;
             if (!File.Exists(uploadLogFile))
             {
@@ -29,32 +29,29 @@ namespace FuSrv
             }
             LocalPathExists = true;
         }
-        public  DateTime? GetLastUploadedFileTime()
+        public  long GetLastUploadedFileTime()
         {
             if (!LocalPathExists)
             {
-                return null;
+                return 0;
             }
-            DateTime TimeOflastUploadedFile = DateTime.MinValue;
+            long TimeOflastUploadedFile = 0;
             string s = File.ReadAllText(GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LocalStoragePath)
                   + SiteVariables.LastUploadFileName);
-            if (string.IsNullOrEmpty(s))
+            if (!string.IsNullOrEmpty(s))
             {
-                TimeOflastUploadedFile = DateTime.MinValue;
-            }
-            else
-            {
-                TimeOflastUploadedFile = Convert.ToDateTime(s);
+           
+                TimeOflastUploadedFile = Convert.ToInt64(s);
             }
             return TimeOflastUploadedFile;
         }
-        public  void WriteLastUploadFileTime(DateTime dt)
+        public  void WriteLastUploadFileTime(long tickets)
         {
-            DateTime last = GetLastUploadedFileTime().Value;
-            if (dt <= last) return;
+            long last = GetLastUploadedFileTime();
+            if (tickets <= last) return;
 
             File.WriteAllText(GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LocalStoragePath)
-                  + SiteVariables.LastUploadFileName, dt.ToString());
+                  + SiteVariables.LastUploadFileName, tickets.ToString());
         }
     }
 }

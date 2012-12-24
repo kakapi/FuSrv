@@ -33,7 +33,7 @@ namespace FuSrv
             fileAppender.AppendToFile = true;
             fileAppender.LockingModel = new FileAppender.MinimalLock();
             fileAppender.RollingStyle = RollingFileAppender.RollingMode.Date;
-            fileAppender.File =GlobalHelper.EnsurePathEndWithSlash( Environment.CurrentDirectory )+"logs/" +
+            fileAppender.File =GlobalHelper.EnsurePathEndWithSlash( SiteVariables.LocalStoragePath )+"fusrvlogs/" +
                 SiteVariables.LoggerFileName;
             PatternLayout pl = new PatternLayout();
             pl.ConversionPattern = "%d [%2%t] %-5p [%-10c] %m%n%n";
