@@ -9,3 +9,16 @@ F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\FuSrv.pdb
 F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\log4net.dll
 F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\log4net.xml
 F:\PhireeCode\AutoUploader\FuSrv\FuSrv\bin\Debug\FuSrv.exe.config
+E:\workspace\FuSrv\FuSrv\bin\Debug\FuSrv.exe
+E:\workspace\FuSrv\FuSrv\bin\Debug\FuSrv.pdb
+E:\workspace\FuSrv\FuSrv\bin\Debug\log4net.dll
+E:\workspace\FuSrv\FuSrv\bin\Debug\log4net.xml
+E:\workspace\FuSrv\FuSrv\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\workspace\FuSrv\FuSrv\obj\x86\Debug\FuSrv.ProjectInstaller.resources
+E:\workspace\FuSrv\FuSrv\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+E:\workspace\FuSrv\FuSrv\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\workspace\FuSrv\FuSrv\obj\x86\Debug\FuSrv.exe
+E:\workspace\FuSrv\FuSrv\obj\x86\Debug\FuSrv.pdb
+E:\workspace\FuSrv\FuSrv\bin\Debug\FuLib.dll
+E:\workspace\FuSrv\FuSrv\bin\Debug\FuLib.pdb
+E:\workspace\FuSrv\FuSrv\bin\Debug\FuSrv.exe.config

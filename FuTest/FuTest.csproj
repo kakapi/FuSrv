@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FuLibTest\CryptoTest.cs" />
     <Compile Include="FuSrvUploaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FuLib\FuLib.csproj">
+      <Project>{68C87139-A65C-466F-99AC-6271FE078AF0}</Project>
+      <Name>FuLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FuSrv\FuSrv.csproj">
       <Project>{985FF692-96D8-4178-8D52-6302FFAFBE71}</Project>
       <Name>FuSrv</Name>

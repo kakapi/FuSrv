@@ -27,16 +27,14 @@ namespace FuSrv
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
 
-            System.IO.File.WriteAllText(@"d:\test\autoupload\file1.txt", System.Configuration.ConfigurationManager.AppSettings.Count + "____"
-                + Properties.Settings.Default.LocalStoragePath);
-    
+            Uploader.UploadFiles();
            // System.IO.File.Create("d:\\start" + DateTime.Now.ToString("hhmmss") + ".txt");
 
         }
 
         protected override void OnStop()
         {
-            System.IO.File.Create("d:\\Stop" + DateTime.Now.ToString("hhmmss") + ".txt");
+          //  System.IO.File.Create("d:\\Stop" + DateTime.Now.ToString("hhmmss") + ".txt");
 
         }
 

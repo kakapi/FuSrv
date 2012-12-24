@@ -1,0 +1,5 @@
+E:\workspace\FuSrv\FuLib\obj\Debug\ResolveAssemblyReference.cache
+E:\workspace\FuSrv\FuLib\bin\Debug\FuLib.dll
+E:\workspace\FuSrv\FuLib\bin\Debug\FuLib.pdb
+E:\workspace\FuSrv\FuLib\obj\Debug\FuLib.dll
+E:\workspace\FuSrv\FuLib\obj\Debug\FuLib.pdb

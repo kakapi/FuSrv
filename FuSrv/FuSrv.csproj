@@ -78,6 +78,7 @@
     <Compile Include="SiteVariables.cs" />
     <Compile Include="Uploader.cs" />
     <Compile Include="UploadLogger.cs" />
+    <Compile Include="UpdateRemoteDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
@@ -85,12 +86,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FuLib\FuLib.csproj">
+      <Project>{68C87139-A65C-466F-99AC-6271FE078AF0}</Project>
+      <Name>FuLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

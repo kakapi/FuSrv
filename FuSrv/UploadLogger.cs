@@ -19,7 +19,7 @@ namespace FuSrv
                 Logger.MyLogger.Error("本地路径不存在,请检查配置文件的LocalStoragePath");
                 return;
             }
-            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LocalStoragePath)
+            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
                 + SiteVariables.LastUploadFileName;
             if (!File.Exists(uploadLogFile))
             {

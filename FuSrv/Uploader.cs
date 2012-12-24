@@ -14,7 +14,7 @@ namespace FuSrv
         /// <summary>
         /// 本地文件存储路径
         /// </summary>
-       
+
 
         /// <summary>
         /// 确定需要上传的文件
@@ -50,52 +50,38 @@ namespace FuSrv
         public Uploader()
         {
 
-            
+
         }
         public static void UploadFiles()
         {
             foreach (string filename in GetUploadedFile())
             {
-                UploadSingleFile(filename);
+               bool result=  UploadSingleFile(filename);
+               if (result == true)
+               { 
+                //写入远程数据库
+               }
             }
         }
         public static bool UploadSingleFile(string fileNametouploaded)
         {
-           
-            bool result = false;
-            Logger.MyLogger.Info("Begin Upload");
             string fileName = Path.GetFileName(fileNametouploaded);
-            string remoteFileName =GlobalHelper.EnsurePathEndWithSlash(SiteVariables.FtpServerPath) + fileName;
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileName);//"ftp://www.contoso.com/test.htm");
-            request.Method = WebRequestMethods.Ftp.UploadFile;
-
-            if (!string.IsNullOrEmpty(SiteVariables.FtpUserId))
+            string remoteFileName = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.FtpServerPath) + fileName;
+            string uid = SiteVariables.FtpUserId;
+            string pwd = SiteVariables.FtpPassword;
+            string msg;
+            Logger.MyLogger.Info("Begin Upload:" + fileNametouploaded);
+            bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, remoteFileName, uid, pwd, out msg);
+            if (uploadResult == true)
             {
-                request.Credentials = new NetworkCredential(SiteVariables.FtpUserId, SiteVariables.FtpPassword);
-            }
-            try
-            {
-                StreamReader sourceStream = new StreamReader(fileNametouploaded);
-                byte[] fileContents = Encoding.Default.GetBytes(sourceStream.ReadToEnd());
-                sourceStream.Close();
-                request.ContentLength = fileContents.Length;
-
-                Stream requestStream = request.GetRequestStream();
-                requestStream.Write(fileContents, 0, fileContents.Length);
-                requestStream.Close();
-
-                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-                response.Close();
-                Logger.MyLogger.Info(response.StatusDescription);
+                Logger.MyLogger.Info(msg);
                 new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded));
-                result = true;
             }
-            catch (Exception ex)
+            else
             {
-                Logger.MyLogger.Error(ex.Message);
+                Logger.MyLogger.Error(msg);
             }
-            return result;
+            return uploadResult;
         }
 
     }

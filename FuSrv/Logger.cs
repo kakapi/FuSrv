@@ -27,10 +27,13 @@ namespace FuSrv
             Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
             hierarchy.Root.RemoveAllAppenders(); /*Remove any other appenders*/
 
-            FileAppender fileAppender = new FileAppender();
+
+
+            RollingFileAppender fileAppender = new RollingFileAppender();
             fileAppender.AppendToFile = true;
             fileAppender.LockingModel = new FileAppender.MinimalLock();
-            fileAppender.File = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LocalStoragePath) +
+            fileAppender.RollingStyle = RollingFileAppender.RollingMode.Date;
+            fileAppender.File =GlobalHelper.EnsurePathEndWithSlash( Environment.CurrentDirectory )+"logs/" +
                 SiteVariables.LoggerFileName;
             PatternLayout pl = new PatternLayout();
             pl.ConversionPattern = "%d [%2%t] %-5p [%-10c] %m%n%n";
