@@ -43,6 +43,7 @@
     <Compile Include="Crypto.cs" />
     <Compile Include="FtpUnit.cs" />
     <Compile Include="GlobalHelper.cs" />
+    <Compile Include="IOHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

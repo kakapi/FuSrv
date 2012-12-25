@@ -6,23 +6,32 @@ using System.IO;
 
 namespace FuTest
 {
-   
+
     public class FuSrvUploaderTest
-    
     {
         [Fact]
         public void uploaderTest()
         {
-
-         
-
-          
             Console.Write(System.Configuration.ConfigurationManager.AppSettings.Count);
-        string targetPath = @"D:\test\autouploader\ftpsite\in_combat.wav";
-           
-          FuSrv.Uploader.UploadFiles();
-           
+            string targetPath = @"D:\test\autouploader\ftpsite\in_combat.wav";
+
+            FuSrv.Uploader.UploadFiles();
+
             Assert.True(File.Exists(targetPath));
+        }
+        [Fact]
+        public void GetFilesToBeUploadedTest()
+        {
+            string[] files = FuSrv.Uploader.GetFilesToBeUploaded(@"D:\test\autouploader\localrecordedfiles\2012-12-25",0);
+            Assert.Equal(2, files.Length);
+        }
+        [Fact]
+        public void ExtractInfoTest()
+        {
+            string deviceno, duration;
+            FuSrv.Uploader.ExtractInfo(@"D:\test\autouploader\localrecordedfiles\2012-12-25\CC1002_alarm1.wav",
+              out deviceno,out duration   );
+          Console.Write(duration);
         }
     }
 }
