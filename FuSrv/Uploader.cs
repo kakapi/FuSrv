@@ -16,10 +16,6 @@ namespace FuSrv
             foreach (string filename in GetUploadedFile())
             {
                 bool result = UploadSingleFile(filename);
-                if (result == true)
-                {
-                    //写入远程数据库
-                }
             }
         }
         public static string[] GetUploadedFile()

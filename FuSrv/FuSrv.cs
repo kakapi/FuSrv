@@ -22,6 +22,7 @@ namespace FuSrv
             FileSystemWatcher fsw = new FileSystemWatcher(SiteVariables.LocalStoragePath, "*.wav");
             Logger.MyLogger.Info("Service Started "+SiteVariables.LocalStoragePath);
             fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+            fsw.IncludeSubdirectories = true;
             fsw.EnableRaisingEvents = true;
             //Timer timer = new Timer();
             //timer.Interval = 10 * 1000;
