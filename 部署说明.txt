@@ -1,0 +1,18 @@
+
+----------系统准备--------------
+
+系统需求:
+ 1) windows,.net2.0及以上
+ 2) sqlserver
+ 3) ftp服务器
+
+程序配置:
+ 
+ 1) sqlserver: 相关表的名称为:calllog; 其中两列:jh1,jh8 代表设备编号 和 通话时长
+ 2) 用文本查看工具打开安装目录下的 fusrv.exe.config,按照提示填写相应配置
+ 3) 打开系统服务,启动 "FileUploadService" 服务
+
+
+
+
+    

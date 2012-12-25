@@ -26,3 +26,5 @@ F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\GenerateResource-ResGen.rea
 F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
 F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\FuSrv.exe
 F:\PhireeCode\AutoUploader\FuSrv\FuSrv\obj\x86\Debug\FuSrv.pdb
+E:\workspace\FuSrv\FuSrv\bin\Debug\NAudio.dll
+E:\workspace\FuSrv\FuSrv\bin\Debug\NAudio.xml

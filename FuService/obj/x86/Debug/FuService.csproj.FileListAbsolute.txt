@@ -3,3 +3,8 @@ F:\PhireeCode\AutoUploader\FuSrv\FuService\bin\Debug\FuService.pdb
 F:\PhireeCode\AutoUploader\FuSrv\FuService\obj\x86\Debug\ResolveAssemblyReference.cache
 F:\PhireeCode\AutoUploader\FuSrv\FuService\obj\x86\Debug\FuService.exe
 F:\PhireeCode\AutoUploader\FuSrv\FuService\obj\x86\Debug\FuService.pdb
+E:\workspace\FuSrv\FuService\bin\Debug\FuService.exe
+E:\workspace\FuSrv\FuService\bin\Debug\FuService.pdb
+E:\workspace\FuSrv\FuService\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\workspace\FuSrv\FuService\obj\x86\Debug\FuService.exe
+E:\workspace\FuSrv\FuService\obj\x86\Debug\FuService.pdb

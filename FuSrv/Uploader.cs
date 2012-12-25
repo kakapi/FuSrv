@@ -26,6 +26,8 @@ namespace FuSrv
             string[] result = Directory.GetFiles(SiteVariables.LocalStoragePath, "*.wav", SearchOption.AllDirectories);
             foreach (string s in result)
             {
+                FileInfo fi = new FileInfo(s);
+                
                 long dt = File.GetCreationTime(s).Ticks;
                 if (dt > lastUploaded)
                 {

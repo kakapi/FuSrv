@@ -32,3 +32,5 @@ F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\NAudio.dll
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuLib.pdb
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\NAudio.xml
 F:\PhireeCode\AutoUploader\FuSrv\FuTest\bin\Debug\FuTest.dll.config
+E:\workspace\FuSrv\FuTest\bin\Debug\NAudio.dll
+E:\workspace\FuSrv\FuTest\bin\Debug\NAudio.xml

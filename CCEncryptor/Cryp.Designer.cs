@@ -44,15 +44,15 @@
             // 
             // tbxFileName
             // 
-            this.tbxFileName.Location = new System.Drawing.Point(92, 44);
+            this.tbxFileName.Location = new System.Drawing.Point(242, 42);
             this.tbxFileName.Name = "tbxFileName";
-            this.tbxFileName.Size = new System.Drawing.Size(274, 21);
+            this.tbxFileName.Size = new System.Drawing.Size(124, 21);
             this.tbxFileName.TabIndex = 0;
             this.tbxFileName.Text = "dbstr";
             // 
             // btnSelFld
             // 
-            this.btnSelFld.Location = new System.Drawing.Point(102, 106);
+            this.btnSelFld.Location = new System.Drawing.Point(80, 142);
             this.btnSelFld.Name = "btnSelFld";
             this.btnSelFld.Size = new System.Drawing.Size(75, 23);
             this.btnSelFld.TabIndex = 1;
@@ -62,9 +62,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(92, 151);
+            this.btnSave.Location = new System.Drawing.Point(24, 171);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(158, 55);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -72,7 +72,7 @@
             // 
             // tbxStr
             // 
-            this.tbxStr.Location = new System.Drawing.Point(88, 71);
+            this.tbxStr.Location = new System.Drawing.Point(17, 103);
             this.tbxStr.Name = "tbxStr";
             this.tbxStr.Size = new System.Drawing.Size(346, 21);
             this.tbxStr.TabIndex = 0;
@@ -83,18 +83,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(15, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.Size = new System.Drawing.Size(221, 12);
             this.label1.TabIndex = 3;
-            this.label1.Text = "wenjianming";
+            this.label1.Text = "保存 加密字符串 的文件名(请不要修改)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 80);
+            this.label2.Location = new System.Drawing.Point(15, 80);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 12);
+            this.label2.Size = new System.Drawing.Size(167, 12);
             this.label2.TabIndex = 3;
-            this.label2.Text = "zifuchuan";
+            this.label2.Text = "需要加密的字符串:按格式填写";
             // 
             // label3
             // 
@@ -126,17 +126,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 111);
+            this.label5.Location = new System.Drawing.Point(15, 147);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 12);
+            this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 6;
-            this.label5.Text = "ChooseSavePath";
+            this.label5.Text = "保存路径:";
             // 
             // Cryp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 262);
+            this.ClientSize = new System.Drawing.Size(446, 237);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblSavedPath);
             this.Controls.Add(this.label3);

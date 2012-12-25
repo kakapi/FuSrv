@@ -22,3 +22,4 @@ F:\PhireeCode\AutoUploader\FuSrv\CCEncryptor\obj\x86\Debug\GenerateResource-ResG
 F:\PhireeCode\AutoUploader\FuSrv\CCEncryptor\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
 F:\PhireeCode\AutoUploader\FuSrv\CCEncryptor\obj\x86\Debug\CCEncryptor.exe
 F:\PhireeCode\AutoUploader\FuSrv\CCEncryptor\obj\x86\Debug\CCEncryptor.pdb
+E:\workspace\FuSrv\CCEncryptor\obj\x86\Debug\CCEncryptor.CryWin.resources
