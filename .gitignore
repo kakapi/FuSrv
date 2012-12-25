@@ -10,8 +10,9 @@
 *.suo
 *.user
 *.sln.docstates
-
+FuSrv/bin
 # Build results
+[Bb]in
 [Dd]ebug/
 [Rr]elease/
 *_i.c
