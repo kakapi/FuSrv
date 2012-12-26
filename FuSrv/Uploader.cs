@@ -15,11 +15,7 @@ namespace FuSrv
         {
             foreach (string filename in GetUploadedFile())
             {
-               bool result=  UploadSingleFile(filename);
-               if (result == true)
-               { 
-                //写入远程数据库
-               }
+                bool result = UploadSingleFile(filename);
             }
         }
         public static string[] GetUploadedFile()
@@ -33,13 +29,13 @@ namespace FuSrv
             return UploadSingleFile(fileNametouploaded, SiteVariables.FtpServerPath
                 , SiteVariables.FtpUserId, SiteVariables.FtpPassword);
         }
-      
+
         #region Services
 
         public static string[] GetFilesToBeUploaded(string localStoragePath, long lastUploaded)
         {
             List<string> tobeUploaded = new List<string>();
-           
+
 
 
             string[] result = Directory.GetFiles(localStoragePath, "*.wav", SearchOption.AllDirectories);
@@ -60,13 +56,35 @@ namespace FuSrv
             return tobeUploaded.ToArray();
         }
 
-        
+
         public static bool UploadSingleFile(string fileNametouploaded
             , string ftpServer
             , string uid, string pwd)
         {
+            
+            string deviceNo = string.Empty, duration = string.Empty,errMsg;
+            if (!ExtractInfo(fileNametouploaded, out deviceNo, out duration))
+            {
+                return false;
+            }
             string fileName = Path.GetFileName(fileNametouploaded);
-            string remoteFileName = GlobalHelper.EnsurePathEndWithSlash(ftpServer) + fileName;
+
+            string targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer) + deviceNo + "/";
+            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+                uid,pwd,out errMsg))
+           {
+               Logger.MyLogger.Error("Can't Create Directory"+deviceNo+",ErrorCode:"+errMsg);
+               return false;
+           }
+           targetPath +=  DateTime.Now.ToString("yyyyMMdd") + "/";
+           if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+               uid, pwd, out errMsg))
+           {
+               Logger.MyLogger.Error("Can't Create Directory" + targetPath + ",ErrorCode:" + errMsg);
+               return false;
+           }
+
+           string remoteFileName = targetPath + fileName;
             string msg;
             Logger.MyLogger.Info("Begin Upload:" + fileNametouploaded);
             bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, remoteFileName, uid, pwd, out msg);
@@ -74,9 +92,9 @@ namespace FuSrv
             {
                 Logger.MyLogger.Info(msg);
                 new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded).Ticks);
-                string deviceNo=string.Empty, duration=string.Empty;
-                ExtractInfo(fileNametouploaded, out deviceNo, out duration);
-                UpdateRemoteDB.Update(deviceNo,duration);
+             
+
+                UpdateRemoteDB.Update(deviceNo, duration);
             }
             else
             {
@@ -84,19 +102,28 @@ namespace FuSrv
             }
             return uploadResult;
         }
-        public static bool ExtractInfo(string fileFullName,out string deviceno,out string duration)
+        public static bool ExtractInfo(string fileFullName, out string deviceno, out string duration)
         {
-            bool result = false;
             deviceno = string.Empty;
             duration = string.Empty;
-           string fileName = Path.GetFileName(fileFullName);
-           NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(fileFullName);
-            TimeSpan tp= wf.TotalTime;
-            duration = tp.TotalSeconds.ToString();
+            string fileName = Path.GetFileName(fileFullName);
             string[] arr = fileName.Split('_');
+            if (arr.Length != 2)
+            {
+                Logger.MyLogger.Info("文件名不符合规范,Skip." + fileName);
+                return false;
+            }
             deviceno = arr[0];
-            return result;
+
+            NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(fileFullName);
+            TimeSpan tp = wf.TotalTime;
+            duration = tp.TotalSeconds.ToString();  
+            return true;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
 
     }
         #endregion

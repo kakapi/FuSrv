@@ -9,3 +9,4 @@ release
 *.pdb
 packages/
 
+/FuSrvSetup/FuSrvSetup.vdproj
