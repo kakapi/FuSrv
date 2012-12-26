@@ -13,7 +13,7 @@ namespace FuTest
         public void uploaderTest()
         {
             Console.Write(System.Configuration.ConfigurationManager.AppSettings.Count);
-            string targetPath = @"D:\test\autouploader\ftpsite\IC001\20121225\IC001_alarm1.wav";
+            string targetPath = @"D:\test\autouploader\ftpsite\callservice\IC001\20121225\IC001_alarm1.wav";
 
             FuSrv.Uploader.UploadFiles();
 

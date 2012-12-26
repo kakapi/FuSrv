@@ -20,20 +20,18 @@ namespace CCEncryptor
         {
             if (DialogResult.OK == saveFileDialog1.ShowDialog())
             {
-                
-             string file=   saveFileDialog1.FileName;
-             if (!File.Exists(file))
-             {
-                 Stream s = File.Create(file);
-                 s.Close();
-             }
-             string crypted = CreateCode();
-                File.WriteAllText(file
-              , crypted);
+                string file = saveFileDialog1.FileName;
+                if (!File.Exists(file))
+                {
+                    Stream s = File.Create(file);
+                    s.Close();
+                }
+                string crypted = CreateCode();
+                File.WriteAllText(file, crypted);
                 MessageBox.Show("保存成功");
             }
         }
-        
+
         private string CreateCode()
         {
             string server = tbxServer.Text.Trim();
@@ -43,17 +41,15 @@ namespace CCEncryptor
 
             string sharedsecret = "P@ssw0rd";
 
-            string original = server+"|"+database+"|"+uid+"|"+pwd;
+            string original = server + "|" + database + "|" + uid + "|" + pwd + ";" + ftpIP.Text + "|" + ftpPort.Text + "|" + ftpUser.Text + "|" + ftpPwd.Text;
 
             string crypted = Crypto.EncryptStringAES(original, sharedsecret);
             return crypted;
-          
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
     }
 }

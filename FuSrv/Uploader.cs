@@ -13,9 +13,16 @@ namespace FuSrv
     {
         public static void UploadFiles()
         {
-            foreach (string filename in GetUploadedFile())
+            try
             {
-                bool result = UploadSingleFile(filename);
+                foreach (string filename in GetUploadedFile())
+                {
+                    bool result = UploadSingleFile(filename);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.MyLogger.Fatal("*******ERROR**" + ex.Message+ex.StackTrace);
             }
         }
         public static string[] GetUploadedFile()
@@ -76,7 +83,8 @@ namespace FuSrv
                Logger.MyLogger.Error("Can't Create Directory"+deviceNo+",ErrorCode:"+errMsg);
                return false;
            }
-           targetPath +=  DateTime.Now.ToString("yyyyMMdd") + "/";
+            string nowString=DateTime.Now.ToString("yyyyMMdd");
+           targetPath +=  nowString+"/";
            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
                uid, pwd, out errMsg))
            {
@@ -88,13 +96,14 @@ namespace FuSrv
             string msg;
             Logger.MyLogger.Info("Begin Upload:" + fileNametouploaded);
             bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, remoteFileName, uid, pwd, out msg);
+            Logger.MyLogger.Info("Upload Result:" + uploadResult);
             if (uploadResult == true)
             {
                 Logger.MyLogger.Info(msg);
                 new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded).Ticks);
-             
+           
 
-                UpdateRemoteDB.Update(deviceNo, duration);
+                UpdateRemoteDB.Update(deviceNo, duration,deviceNo+"/"+nowString+"/"+fileName);
             }
             else
             {

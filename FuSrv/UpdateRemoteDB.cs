@@ -13,75 +13,87 @@ namespace FuSrv
     {
 
         public UpdateRemoteDB()
-        { 
-            
-        }
-        public static List<string> GetRemoteDb()
         {
-            //地址,用户名,密码
-            string msg;
-            List<string> result = new List<string>();
-            string remoteinf = FuLib.FtpUnit.DownloadAndRead(SiteVariables.DbStrAddr,
-                SiteVariables.FtpUserId,SiteVariables.FtpPassword,out msg);
-            Logger.MyLogger.Info("remoteInfo:"+remoteinf);
-            if (string.IsNullOrEmpty(msg))
-            {
-                string s = FuLib.Crypto.DecryptStringAES(remoteinf, "P@ssw0rd");
-                string[] sss = s.Split('|');
-                foreach (string ss in sss)
-                {
-                    if (string.IsNullOrEmpty(ss)) { continue; }
-                    result.Add(ss);
-                }
-            }
-            else
-            { 
-             Logger.MyLogger.Error("Can't get db server info");
-            }
-           
-            return result;
+
         }
-        public static void Update(string deviceno,string duration)
+        //public static List<string> GetRemoteDb()
+        //{
+        //    //地址,用户名,密码
+        //    string msg;
+        //    List<string> result = new List<string>();
+        //    string remoteinf = FuLib.FtpUnit.DownloadAndRead(SiteVariables.DbStrAddr,
+        //        SiteVariables.FtpUserId,SiteVariables.FtpPassword,out msg);
+        //    Logger.MyLogger.Info("remoteInfo:"+remoteinf);
+
+        //    if (string.IsNullOrEmpty(msg))
+        //    {
+        //        string s = FuLib.Crypto.DecryptStringAES(remoteinf, "P@ssw0rd");
+        //        string[] sss = s.Split('|');
+        //        foreach (string ss in sss)
+        //        {
+        //            if (string.IsNullOrEmpty(ss)) { continue; }
+        //            result.Add(ss);
+        //        }
+        //    }
+        //    else
+        //    { 
+        //     Logger.MyLogger.Error("Can't get db server info");
+        //    }
+
+        //    return result;
+        //}
+
+        public static void Update(string deviceno, string duration,string savePath)
         {
-            string sql = string.Format("insert into {0}({1},{2}) values('{3}','{4}')",
+            string sql = string.Format("insert into {0}({1},{2},{3},{4}) values('{5}','{6}','{7}','{8}')",
                 SiteVariables.TableName
-                ,SiteVariables.col1
-                ,SiteVariables.col2
-                ,deviceno
-                ,duration
+                , SiteVariables.col1
+                , SiteVariables.col2
+                ,SiteVariables.col3,
+                SiteVariables.col4
+                
+                    , deviceno
+                , duration
+                ,savePath
+                ,DateTime.Now.ToString("yyyy-MM-dd:HH:mm:ss")
                 );
             Logger.MyLogger.Info(sql);
             ExcuteSql(sql);
         }
         public static void ExcuteSql(string sql)
         {
-            List<string> serverInfo = GetRemoteDb();
+            // List<string> serverInfo = GetRemoteDb();
             string connstr = string.Empty;
-            if (serverInfo.Count == 4)
+            Logger.MyLogger.Info("ConnStr:" + sql);
+            if (!string.IsNullOrEmpty(SiteVariables.DBServiceIP))
             {
-                connstr = string.Format("server={0};database={1};uid={2};pwd={3};", serverInfo[0], serverInfo[1], serverInfo[2],serverInfo[3]);
+                connstr = string.Format("server={0};database={1};uid={2};pwd={3};", 
+                    SiteVariables.DBServiceIP,
+                    SiteVariables.DBDataBase,
+                    SiteVariables.DBUser, SiteVariables.DBPwd);
                 Logger.MyLogger.Info("ConnStr:" + connstr);
                 ExcuteSql(sql, connstr);
             }
             else
             {
-              Logger.MyLogger.Error("DataBase Info Error:info count must be 4 but "+serverInfo.Count);
+                Logger.MyLogger.Error("DataBase Info Connect Failed");
             }
         }
-        public static void ExcuteSql( string sql,string connstr)
+        public static void ExcuteSql(string sql, string connstr)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(connstr);
-               
-                SqlCommand comm = new SqlCommand(sql,conn);
+
+                SqlCommand comm = new SqlCommand(sql, conn);
                 if (conn.State != System.Data.ConnectionState.Open)
                 { conn.Open(); }
 
                 comm.ExecuteNonQuery();
                 conn.Close();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Logger.MyLogger.Error(ex.Message);
             }
         }

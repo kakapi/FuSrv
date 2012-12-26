@@ -58,6 +58,7 @@
     <Compile Include="FuLibTest\FTPUnitTest.cs" />
     <Compile Include="FuSrvUploaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteVarialblesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
