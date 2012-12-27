@@ -16,7 +16,7 @@ namespace FuSrvOC
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 
-				new Service1() 
+				new FuSrvOC() 
 			};
             ServiceBase.Run(ServicesToRun);
         }

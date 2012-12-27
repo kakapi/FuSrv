@@ -1,6 +1,6 @@
 ﻿namespace FuSrvOC
 {
-    partial class Service1
+    partial class FuSrvOC
     {
         /// <summary> 
         /// 必需的设计器变量。

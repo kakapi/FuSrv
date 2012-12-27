@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
+using System.Data.OleDb;
 namespace FuSrv
 {
     /// <summary>
@@ -15,32 +17,12 @@ namespace FuSrv
         {
 
         }
-        //public static List<string> GetRemoteDb()
-        //{
-        //    //地址,用户名,密码
-        //    string msg;
-        //    List<string> result = new List<string>();
-        //    string remoteinf = FuLib.FtpUnit.DownloadAndRead(SiteVariables.DbStrAddr,
-        //        SiteVariables.FtpUserId,SiteVariables.FtpPassword,out msg);
-        //    Logger.MyLogger.Info("remoteInfo:"+remoteinf);
-
-        //    if (string.IsNullOrEmpty(msg))
-        //    {
-        //        string s = FuLib.Crypto.DecryptStringAES(remoteinf, "P@ssw0rd");
-        //        string[] sss = s.Split('|');
-        //        foreach (string ss in sss)
-        //        {
-        //            if (string.IsNullOrEmpty(ss)) { continue; }
-        //            result.Add(ss);
-        //        }
-        //    }
-        //    else
-        //    { 
-        //     Logger.MyLogger.Error("Can't get db server info");
-        //    }
-
-        //    return result;
-        //}
+        public static void GetIndexsToBeUpload(int lastUploadIndex)
+        {
+            string sql = string.Format("select * from {0} where {1}>{2}"
+                ,SiteVariables.LocalTableName,SiteVariables.LocalTableNameIndexCol, new UploadLogger().GetLastUploadedFileIndex());
+            //todo
+        }
 
         public static void Update(string deviceno, string duration,string savePath)
         {
@@ -57,13 +39,13 @@ namespace FuSrv
                 ,DateTime.Now.ToString("yyyy-MM-dd:HH:mm:ss")
                 );
             Logger.MyLogger.Info(sql);
-            ExcuteSql(sql);
+            ExecuteRemoteSql(sql);
         }
-        public static void ExcuteSql(string sql)
+        public static void ExecuteRemoteSql(string sql)
         {
             // List<string> serverInfo = GetRemoteDb();
             string connstr = string.Empty;
-            Logger.MyLogger.Info("ConnStr:" + sql);
+            Logger.MyLogger.Info("RemoteSql:" + sql);
             if (!string.IsNullOrEmpty(SiteVariables.DBServiceIP))
             {
                 connstr = string.Format("server={0};database={1};uid={2};pwd={3};", 
@@ -71,20 +53,39 @@ namespace FuSrv
                     SiteVariables.DBDataBase,
                     SiteVariables.DBUser, SiteVariables.DBPwd);
                 Logger.MyLogger.Info("ConnStr:" + connstr);
-                ExcuteSql(sql, connstr);
+                ExecuteSql(new SqlConnection(connstr),new SqlCommand( sql));
             }
             else
             {
                 Logger.MyLogger.Error("DataBase Info Connect Failed");
             }
         }
-        public static void ExcuteSql(string sql, string connstr)
+        public static void ExecuteLocalSql(string sql)
+        {
+            // List<string> serverInfo = GetRemoteDb();
+            string connstr = string.Empty;
+            Logger.MyLogger.Info("LocalSql:" + sql);
+            if (!string.IsNullOrEmpty(SiteVariables.DBServiceIP))
+            {
+                connstr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};",
+                    SiteVariables.DbFilePath);
+                if (!string.IsNullOrEmpty(SiteVariables.AccessPwd))
+                {
+                    connstr += " Jet OLEDB:Database Password="+SiteVariables.AccessPwd;
+                }
+                Logger.MyLogger.Info("ConnStr:" + connstr);
+                ExecuteSql(new OleDbConnection(connstr), new OleDbCommand(sql));
+            }
+            else
+            {
+                Logger.MyLogger.Error("DataBase Info Connect Failed");
+            }
+        }
+        public static void ExecuteSql(IDbConnection conn,IDbCommand comm)
         {
             try
             {
-                SqlConnection conn = new SqlConnection(connstr);
-
-                SqlCommand comm = new SqlCommand(sql, conn);
+               
                 if (conn.State != System.Data.ConnectionState.Open)
                 { conn.Open(); }
 
@@ -94,6 +95,10 @@ namespace FuSrv
             catch (Exception ex)
             {
                 Logger.MyLogger.Error(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }

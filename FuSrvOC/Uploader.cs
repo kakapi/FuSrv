@@ -28,8 +28,8 @@ namespace FuSrv
         }
         public static string[] GetUploadedFile()
         {
-            return GetFilesToBeUploaded(FuLib.GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LocalStoragePath)
-                , new UploadLogger().GetLastUploadedFileTime()
+            return GetFilesToBeUploaded(FuLib.GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+                , new UploadLogger().GetLastUploadedFileIndex()
                 );
         }
         public static bool UploadSingleFile(string fileNametouploaded)
@@ -101,7 +101,7 @@ namespace FuSrv
             if (uploadResult == true)
             {
                 Logger.MyLogger.Info(msg);
-                new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded).Ticks);
+                new UploadLogger().WriteLastUploadFileIndex(File.GetCreationTime(fileNametouploaded).Ticks);
            
 
                 UpdateRemoteDB.Update(deviceNo, duration,deviceNo+"/"+nowString+"/"+fileName);

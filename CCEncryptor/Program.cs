@@ -15,7 +15,7 @@ namespace CCEncryptor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CryWin());
+            Application.Run(new Main());
         }
     }
 }

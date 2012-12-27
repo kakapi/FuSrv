@@ -19,25 +19,24 @@ namespace CCEncryptor
             InitializeComponent();
         }
         string savepath = string.Empty;
-        
-        private void btnSelFld_Click(object sender, EventArgs e)
+      
+       
+
+        private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            string pwd = tbxPwd.Text.Trim();
+            if (string.IsNullOrEmpty(pwd))
             {
-                savepath = folderBrowserDialog1.SelectedPath;
-                lblSavedPath.Text = savepath;
+                MessageBox.Show("不能为空");
+                return;
             }
+            tbxEncrypted.Text = FuLib.Crypto.EncryptStringAES(pwd, "P@ssw0rd");
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnCopy_Click(object sender, EventArgs e)
         {
-            string dbstr=tbxStr.Text.Trim();
-            string code = tbxCode.Text.Trim();
-            string crypted = Crypto.EncryptStringAES(dbstr,code);
-            File.WriteAllText(FuLib.GlobalHelper.EnsurePathEndWithSlash( savepath) + tbxFileName.Text.Trim()
-                ,crypted);
-
-            MessageBox.Show("success");
+            Clipboard.SetText(tbxEncrypted.Text);
+            MessageBox.Show("复制成功.");
         }
     }
 }
