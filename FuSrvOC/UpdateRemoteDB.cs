@@ -32,7 +32,7 @@ namespace FuSrvOC
                             SiteVariables.DbFilePath);
                         if (!string.IsNullOrEmpty(SiteVariables.AccessPwd))
                         {
-                            connstr += " Jet OLEDB:Database Password=" + FuLib.Crypto.DecryptStringAES(SiteVariables.AccessPwd, "P@ssw0rd");
+                            connstr += " Jet OLEDB:Database Password=" + SiteVariables.AccessPwd;
                         }
                         _localConn = new OleDbConnection(connstr);
                         Logger.MyLogger.Info("ConnStr:" + connstr);
@@ -103,7 +103,7 @@ namespace FuSrvOC
         public static void UpdateRemote(string deviceno
             , string duration
             , string recordfilelocation, string remotePhoneNo
-            , string callType, string callRecordTime)
+            , string callType)
         {
             string sql = string.Format(@"insert into {0}({1},{2},{3},{4},{5},{6})
                         values('{7}','{8}','{9}','{10}','{11}','{12}')",
@@ -116,19 +116,19 @@ namespace FuSrvOC
                 SiteVariables.recordFilePath
 
                     , deviceno
-                    , callRecordTime
+                   , DateTime.Now.ToString("yyyy-MM-dd:HH:mm:ss")
                     , callType
                 , duration
                 , remotePhoneNo
                 , recordfilelocation
-                , DateTime.Now.ToString("yyyy-MM-dd:HH:mm:ss")
+                
                 );
             Logger.MyLogger.Info(sql);
             ExecuteSql(RemoteConn, new SqlCommand(sql));
         }
         public static void UpdateRemote(string deviceno, string duration, string savePath)
         {
-            UpdateRemote(deviceno, duration, savePath, string.Empty, null, string.Empty);
+            UpdateRemote(deviceno, duration, savePath,string.Empty, string.Empty);
         }
 
 

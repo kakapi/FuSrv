@@ -12,7 +12,7 @@ namespace FuSrvOC
 
         public static string DbFilePath = ConfigurationManager.AppSettings["DbFilePath"];
         public static string InteralDuration = ConfigurationManager.AppSettings["InteralDuration"];
-        public static string AccessPwd = ConfigurationManager.AppSettings["AccessPwd"];//加密文件存放的路径
+      
         public static string PwdFilePath = ConfigurationManager.AppSettings["PwdFilePath"];//加密文件存放的路径
 
 
@@ -31,7 +31,10 @@ namespace FuSrvOC
         public static string DBUser = "";
         public static string DBPwd = "";
         public static string DBDataBase = "";
+        //本地通话数据库(access)密码
+        public static string AccessPwd;
         //记录本地通话数据的表名
+        
         public const string LocalTableName = "TmCallRecTable";
         //序列号列名-->过滤已上传的数据
         public const string LocalTableNameIndexCol = "id";
@@ -85,6 +88,7 @@ namespace FuSrvOC
                     FtpPort = ss[1].Split('|')[1];
                     FtpUserId = ss[1].Split('|')[2];
                     FtpPassword = ss[1].Split('|')[3];
+                    AccessPwd = ss[2];
 
                 }
                 else
