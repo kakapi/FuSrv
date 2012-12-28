@@ -15,14 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_81AC91CB2B25422DA60F25AF869C6621"
+        "MsmKey" = "8:_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
+        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
+        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F370403641ECDAC0534D08A616594F0C"
-        "OwnerKey" = "8:_81AC91CB2B25422DA60F25AF869C6621"
+        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -34,7 +46,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_81AC91CB2B25422DA60F25AF869C6621"
+        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -77,59 +101,59 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_13BE087B6B7B4DB5A32E234636A5D1A2"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_7ED8BF64ADFD4AACB7F33039B7829A3D"
             {
-            "Name" = "8:主输出来自CCEncryptor(活动)"
+            "Name" = "8:主输出来自FuSrvOC(活动)"
             "Condition" = "8:"
-            "Object" = "8:_81AC91CB2B25422DA60F25AF869C6621"
-            "FileType" = "3:2"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_44D45E72_2C51_4477_B219_D088475B17D6"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9CB5E949818142D68B56BCF45C3C3A74"
-            {
-            "Name" = "8:主输出来自CCEncryptor(活动)"
-            "Condition" = "8:"
-            "Object" = "8:_81AC91CB2B25422DA60F25AF869C6621"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_4EE1DD35_0E24_4498_A15B_7710022E2DA0"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_ABCCA1E14A4D4597811926D846701012"
-            {
-            "Name" = "8:主输出来自CCEncryptor(活动)"
-            "Condition" = "8:"
-            "Object" = "8:_81AC91CB2B25422DA60F25AF869C6621"
+            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
             "FileType" = "3:2"
             "InstallAction" = "3:3"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_238361CA_C747_448C_A2F3_B1CDD7EF5F35"
+            "Identifier" = "8:_1827C66F_1959_441E_BB53_78BBF60C8915"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AC159ED56A9945FEB9FCF5FD53F92826"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_95520564CC384867A216859B3005FDA8"
             {
-            "Name" = "8:主输出来自CCEncryptor(活动)"
+            "Name" = "8:主输出来自FuSrvOC(活动)"
             "Condition" = "8:"
-            "Object" = "8:_81AC91CB2B25422DA60F25AF869C6621"
+            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_2EEC63D3_12DE_40F9_8BA5_D50C5AFE2B04"
+            "Identifier" = "8:_15A2E910_02E2_4709_B316_37421483642B"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_99203970691F43A4918EAC6420468360"
+            {
+            "Name" = "8:主输出来自FuSrvOC(活动)"
+            "Condition" = "8:"
+            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+            "FileType" = "3:2"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_E78E19AF_EA65_45C9_B114_F0A5627EA0AE"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_F3BE48FBDF1142B1BEB1B9494BAA5858"
+            {
+            "Name" = "8:主输出来自FuSrvOC(活动)"
+            "Condition" = "8:"
+            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_C3187A7D_30BD_4A5A_9812_B74A65C5FD54"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -156,6 +180,68 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
+                    {
+                    "Name" = "8:NAudio.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NAudio.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A657AB93BC5841F094833F2B6AECB613"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_58944E113D281E937E396E6FBB2A40D2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_58944E113D281E937E396E6FBB2A40D2"
+                    {
+                    "Name" = "8:log4net.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:log4net.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A657AB93BC5841F094833F2B6AECB613"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F370403641ECDAC0534D08A616594F0C"
             {
             "AssemblyRegister" = "3:1"
@@ -244,7 +330,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FuSrvOCSetup"
         "ProductCode" = "8:{C4684FE0-A0F0-4423-AF87-0D723B8C2309}"
-        "PackageCode" = "8:{DBB847FD-F29F-4AC8-9278-668663DAD51C}"
+        "PackageCode" = "8:{9F188CC7-4917-47AA-A9BA-DE030E2620FB}"
         "UpgradeCode" = "8:{844FE65E-1FF7-444D-A6AF-435AE0E92510}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -252,12 +338,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:默认公司名称"
+        "Manufacturer" = "8:CallService"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:FuSrvOCSetup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:默认公司名称"
+        "ARPCONTACT" = "8:CallService"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -763,9 +849,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_81AC91CB2B25422DA60F25AF869C6621"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_35B8F4838FF0420ABAC4CBA9BA25145B"
             {
-            "SourcePath" = "8:..\\CCEncryptor\\obj\\x86\\Debug\\CCEncryptor.exe"
+            "SourcePath" = "8:..\\FuSrvOC\\obj\\x86\\Debug\\FuSrvOC.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A657AB93BC5841F094833F2B6AECB613"
@@ -785,7 +871,7 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{642B19E3-D64F-4314-AB53-ACD48B4995AC}"
+            "OutputProjectGuid" = "8:{5E5310A4-3BD2-4D91-8610-AF7464614B3E}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

@@ -18,6 +18,9 @@ namespace FuSrvOC
 
         protected override void OnStart(string[] args)
         {
+            new SiteVariables().Init();
+                
+
             string strInteral = SiteVariables.InteralDuration;
             int interal;
             if(!int.TryParse(strInteral,out interal))
@@ -29,6 +32,7 @@ namespace FuSrvOC
             System.Timers.Timer t = new System.Timers.Timer(1000*60*interal);
             t.Elapsed += new System.Timers.ElapsedEventHandler(t_Elapsed);
             t.Start();
+            
         }
 
         void t_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

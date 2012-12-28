@@ -17,59 +17,71 @@ namespace FuSrvOC
         {
 
         }
-        private  static IDbConnection LocalConn
+        private static IDbConnection _localConn;
+        private static IDbConnection LocalConn
         {
-            get {
-                string connstr;
-                IDbConnection conn = null;
-                if (!string.IsNullOrEmpty(SiteVariables.DbFilePath))
+            get
+            {
+                if (_localConn == null)
                 {
-                    connstr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};",
-                        SiteVariables.DbFilePath);
-                    if (!string.IsNullOrEmpty(SiteVariables.AccessPwd))
+                    string connstr;
+                   
+                    if (!string.IsNullOrEmpty(SiteVariables.DbFilePath))
                     {
-                        connstr += " Jet OLEDB:Database Password=" + SiteVariables.AccessPwd;
+                        connstr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};",
+                            SiteVariables.DbFilePath);
+                        if (!string.IsNullOrEmpty(SiteVariables.AccessPwd))
+                        {
+                            connstr += " Jet OLEDB:Database Password=" + FuLib.Crypto.DecryptStringAES(SiteVariables.AccessPwd, "P@ssw0rd");
+                        }
+                        _localConn = new OleDbConnection(connstr);
+                        Logger.MyLogger.Info("ConnStr:" + connstr);
                     }
-                    conn=new OleDbConnection(connstr);
-                    Logger.MyLogger.Info("ConnStr:" + connstr);
+                    else
+                    {
+                        Logger.MyLogger.Error("DataBase Info Connect Failed");
+                    }
+                   
                 }
-                else{
-                    Logger.MyLogger.Error("DataBase Info Connect Failed");
-                }
-                return conn;
+                return _localConn;
             }
 
         }
+        private static IDbConnection _remoteConn;
         private static IDbConnection RemoteConn
         {
             get
             {
-                IDbConnection conn = null;
-                string connstr = string.Empty;
-              
-                if (!string.IsNullOrEmpty(SiteVariables.DBServiceIP))
+                if (_remoteConn == null)
                 {
-                    connstr = string.Format("server={0};database={1};uid={2};pwd={3};",
-                        SiteVariables.DBServiceIP,
-                        SiteVariables.DBDataBase,
-                        SiteVariables.DBUser, SiteVariables.DBPwd);
-                    Logger.MyLogger.Info("ConnStr:" + connstr);
                    
+                    string connstr = string.Empty;
+
+                    if (!string.IsNullOrEmpty(SiteVariables.DBServiceIP))
+                    {
+                        connstr = string.Format("server={0};database={1};uid={2};pwd={3};",
+                            SiteVariables.DBServiceIP,
+                            SiteVariables.DBDataBase,
+                            SiteVariables.DBUser, SiteVariables.DBPwd);
+                        Logger.MyLogger.Info("ConnStr:" + connstr);
+                        _remoteConn = new SqlConnection(connstr);
+                    }
+                    else
+                    {
+                        Logger.MyLogger.Error("DataBase Info Connect Failed");
+                    }
+                    
                 }
-                else
-                {
-                    Logger.MyLogger.Error("DataBase Info Connect Failed");
-                }
-                return conn;
+                return _remoteConn;
             }
         }
-        
+
         public static IList<LocalCallRec> GetRecordsToBeUpload(int lastUploadIndex)
         {
             IList<LocalCallRec> rl = new List<LocalCallRec>();
             string sql = string.Format("select * from {0} where {1}>{2}"
                 , SiteVariables.LocalTableName, SiteVariables.LocalTableNameIndexCol, new UploadLogger().GetLastUploadedFileIndex());
-            IDataReader reader = ExecuteReader(LocalConn,new OleDbCommand(sql) );
+            IDataReader reader = ExecuteReader(LocalConn, new OleDbCommand(sql));
             while (reader.Read())
             {
                 LocalCallRec lcr = new LocalCallRec();
@@ -81,11 +93,12 @@ namespace FuSrvOC
                 lcr.RemotePhoneNo = reader["号码"].ToString();
                 lcr.UserId = reader["用户名"].ToString();
                 lcr.FileSavePath = reader["录音文件"].ToString();
-             
+                rl.Add(lcr);
+
             }
             LocalConn.Close();
             return rl;
-          
+
         }
         public static void UpdateRemote(string deviceno
             , string duration
@@ -111,14 +124,14 @@ namespace FuSrvOC
                 , DateTime.Now.ToString("yyyy-MM-dd:HH:mm:ss")
                 );
             Logger.MyLogger.Info(sql);
-            ExecuteSql(RemoteConn,new SqlCommand( sql));
+            ExecuteSql(RemoteConn, new SqlCommand(sql));
         }
         public static void UpdateRemote(string deviceno, string duration, string savePath)
         {
             UpdateRemote(deviceno, duration, savePath, string.Empty, null, string.Empty);
         }
-       
-       
+
+
         public static void ExecuteSql(IDbConnection conn, IDbCommand comm)
         {
             try
@@ -141,7 +154,7 @@ namespace FuSrvOC
         }
         public static IDataReader ExecuteReader(IDbConnection conn, IDbCommand comm)
         {
-            IDataReader reader=null;
+            IDataReader reader = null;
             try
             {
                 comm.Connection = conn;
@@ -149,14 +162,14 @@ namespace FuSrvOC
                 if (conn.State != System.Data.ConnectionState.Open)
                 { conn.Open(); }
 
-                  reader=  comm.ExecuteReader();
-               
+                reader = comm.ExecuteReader();
+
             }
             catch (Exception ex)
             {
                 Logger.MyLogger.Error(ex.Message);
             }
-           
+
             return reader;
         }
     }

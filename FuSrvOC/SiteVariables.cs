@@ -13,10 +13,12 @@ namespace FuSrvOC
         public static string DbFilePath = ConfigurationManager.AppSettings["DbFilePath"];
         public static string InteralDuration = ConfigurationManager.AppSettings["InteralDuration"];
         public static string AccessPwd = ConfigurationManager.AppSettings["AccessPwd"];//加密文件存放的路径
+        public static string PwdFilePath = ConfigurationManager.AppSettings["PwdFilePath"];//加密文件存放的路径
+
         //OC means Original Client from factory
         public const string LastUploadFileName = "uploadOC.log";
         public const string LoggerFileName = "fusrvOC.log";
-        public const string UploaderLoggerName = "uploaderloggerOC";
+      
         //ftp服务器
         public static string FtpServerPath = "";
         public static string FtpPort = "";
@@ -40,8 +42,57 @@ namespace FuSrvOC
         public const string callType = "jh3";//被叫号码
 
         public void Init()
-        { 
-            
+        {
+             DbFilePath = ConfigurationManager.AppSettings["DbFilePath"];
+             InteralDuration = ConfigurationManager.AppSettings["InteralDuration"];
+             AccessPwd = ConfigurationManager.AppSettings["AccessPwd"];//加密文件存放的路径
+             InitEncryptedContent(ConfigurationManager.AppSettings["PwdFilePath"]);
+        }
+        public void InitEncryptedContent(string pwdfileUrl)
+        {
+            string msg = "";
+
+            Uri url = new Uri(PwdFilePath);
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+            try
+            {
+                req.Method = "GET";
+                StreamReader ReaderText = new StreamReader(res.GetResponseStream(), Encoding.GetEncoding("gb2312"));
+                msg = ReaderText.ReadToEnd();
+            }
+            finally
+            {
+                res.Close();
+            }
+
+            try
+            {
+                //解密
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    string s = FuLib.Crypto.DecryptStringAES(msg, "P@ssw0rd");
+                    //数据库配置
+                    string[] ss = s.Split(';');
+                    DBServiceIP = ss[0].Split('|')[0];
+                    DBUser = ss[0].Split('|')[2];
+                    DBPwd = ss[0].Split('|')[3];
+                    DBDataBase = ss[0].Split('|')[1];
+                    //ftp配置
+                    FtpServerPath = ss[1].Split('|')[0];
+                    FtpPort = ss[1].Split('|')[1];
+                    FtpUserId = ss[1].Split('|')[2];
+                    FtpPassword = ss[1].Split('|')[3];
+
+                }
+                else
+                {
+                    Logger.MyLogger.Error("Can't get db server info");
+                }
+            }
+            catch
+            {
+            }
         }
 
     }
