@@ -15,6 +15,8 @@ namespace FuSrvOC
         public static string AccessPwd = ConfigurationManager.AppSettings["AccessPwd"];//加密文件存放的路径
         public static string PwdFilePath = ConfigurationManager.AppSettings["PwdFilePath"];//加密文件存放的路径
 
+
+        public static string LogFilePath = ConfigurationManager.AppSettings["LogFilePath"];
         //OC means Original Client from factory
         public const string LastUploadFileName = "uploadOC.log";
         public const string LoggerFileName = "fusrvOC.log";

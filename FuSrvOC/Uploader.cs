@@ -14,10 +14,14 @@ namespace FuSrvOC
     {
         public static void UploadFiles()
         {
+            Guid operationId = Guid.NewGuid();
+            Logger.MyLogger.Debug("开始扫描"+operationId);
             try
             {
                 new SiteVariables().Init();
-                
+
+              
+
                 IList<LocalCallRec> records=DbUnit.GetRecordsToBeUpload(
                     new UploadLogger().GetLastUploadedFileIndex());
 
@@ -31,6 +35,7 @@ namespace FuSrvOC
             {
                 Logger.MyLogger.Fatal("*******ERROR**" + ex.Message+ex.StackTrace);
             }
+            Logger.MyLogger.Debug("操作结束" + operationId);
         }
 
 

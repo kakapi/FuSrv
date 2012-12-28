@@ -17,7 +17,7 @@ namespace FuSrvOC
             {
                 if (log == null)
                 {
-                    string logfileName = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory) + "fusrvlogs/" +
+                    string logfileName = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath) + "fusrvlogs/" +
                         SiteVariables.LoggerFileName;
                     Config(logfileName);
                   

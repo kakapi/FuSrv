@@ -14,7 +14,7 @@ namespace FuSrvOC
 
         public UploadLogger()
         {
-            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath)
                 + SiteVariables.LastUploadFileName;
             if (!File.Exists(uploadLogFile))
             {
@@ -26,7 +26,7 @@ namespace FuSrvOC
         }
         public int GetLastUploadedFileIndex()
         {
-            string loggerFile = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+            string loggerFile = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath)
                       + SiteVariables.LastUploadFileName;
             if (!File.Exists(loggerFile))
             {
@@ -46,7 +46,7 @@ namespace FuSrvOC
             long last = GetLastUploadedFileIndex();
             if (lastUploadIndex <= last) return;
 
-            File.WriteAllText(GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+            File.WriteAllText(GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath)
                   + SiteVariables.LastUploadFileName, lastUploadIndex.ToString());
         }
     }
