@@ -38,7 +38,7 @@
             // 
             // FuSrvOC
             // 
-            this.FuSrvOC.DelayedAutoStart = true;
+            this.FuSrvOC.StartType= System.ServiceProcess.ServiceStartMode.Automatic;
             this.FuSrvOC.Description = "通话记录同步服务";
             this.FuSrvOC.DisplayName = "FuSrvOCService";
             this.FuSrvOC.ServiceName = "FuSrvOCService";

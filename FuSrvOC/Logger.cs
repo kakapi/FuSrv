@@ -6,7 +6,7 @@ using log4net.Repository.Hierarchy;
 using log4net.Appender;
 using log4net.Layout;
 using FuLib;
-namespace FuSrv
+namespace FuSrvOC
 {
     public class Logger
     {

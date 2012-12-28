@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using FuLib;
-namespace FuSrv
+namespace FuSrvOC
 {
     /// <summary>
     /// 管理上传日志
@@ -24,7 +24,7 @@ namespace FuSrv
             }
 
         }
-        public long GetLastUploadedFileIndex()
+        public int GetLastUploadedFileIndex()
         {
             string loggerFile = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
                       + SiteVariables.LastUploadFileName;
@@ -32,12 +32,12 @@ namespace FuSrv
             {
                 return 0;
             }
-            long TimeOflastUploadedFile = 0;
+            int TimeOflastUploadedFile = 0;
             string s = File.ReadAllText(loggerFile);
             if (!string.IsNullOrEmpty(s))
             {
 
-                TimeOflastUploadedFile = Convert.ToInt64(s);
+                TimeOflastUploadedFile = Convert.ToInt32(s);
             }
             return TimeOflastUploadedFile;
         }

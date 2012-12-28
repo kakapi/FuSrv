@@ -5,7 +5,7 @@ using System.Configuration;
 using System.Net;
 using System.IO;
 
-namespace FuSrv
+namespace FuSrvOC
 {
     public class SiteVariables
     {
@@ -28,13 +28,21 @@ namespace FuSrv
         public static string DBPwd = "";
         public static string DBDataBase = "";
         //记录本地通话数据的表名
-        public const string LocalTableName = "calllog";
+        public const string LocalTableName = "TmCallRecTable";
         //序列号列名-->过滤已上传的数据
         public const string LocalTableNameIndexCol = "id";
         public const string TableName = "calllog";
-        public const string col1 = "jh1";//设备编号
-        public const string col2 = "jh8";//通话时长
-        public const string col3 = "jh2";//保存路径(相对于ftp根目录)
-        public const string col4 = "jh3";//文件创建时间(客户端本地时间)
+        public const string deviceno = "jh1";//设备编号
+        public const string duration= "jh8";//通话时长
+        public const string recordFilePath= "jh9";//保存路径(相对于ftp根目录)
+        public const string callRecordTime = "jh13";//文件创建时间(客户端本地时间)
+        public const string remotePhoneNo = "jh2";//被叫号码
+        public const string callType = "jh3";//被叫号码
+
+        public void Init()
+        { 
+            
+        }
+
     }
 }
