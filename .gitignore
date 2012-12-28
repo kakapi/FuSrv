@@ -8,5 +8,5 @@ release
 *.obj
 *.pdb
 packages/
-
+output/
 /FuSrvSetup/FuSrvSetup.vdproj
