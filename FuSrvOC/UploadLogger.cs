@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using FuLib;
-namespace FuSrv
+namespace FuSrvOC
 {
     /// <summary>
     /// 管理上传日志
@@ -14,7 +14,7 @@ namespace FuSrv
 
         public UploadLogger()
         {
-            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+            string uploadLogFile = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath)
                 + SiteVariables.LastUploadFileName;
             if (!File.Exists(uploadLogFile))
             {
@@ -24,20 +24,20 @@ namespace FuSrv
             }
 
         }
-        public long GetLastUploadedFileIndex()
+        public int GetLastUploadedFileIndex()
         {
-            string loggerFile = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+            string loggerFile = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath)
                       + SiteVariables.LastUploadFileName;
             if (!File.Exists(loggerFile))
             {
                 return 0;
             }
-            long TimeOflastUploadedFile = 0;
+            int TimeOflastUploadedFile = 0;
             string s = File.ReadAllText(loggerFile);
             if (!string.IsNullOrEmpty(s))
             {
 
-                TimeOflastUploadedFile = Convert.ToInt64(s);
+                TimeOflastUploadedFile = Convert.ToInt32(s);
             }
             return TimeOflastUploadedFile;
         }
@@ -46,7 +46,7 @@ namespace FuSrv
             long last = GetLastUploadedFileIndex();
             if (lastUploadIndex <= last) return;
 
-            File.WriteAllText(GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
+            File.WriteAllText(GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath)
                   + SiteVariables.LastUploadFileName, lastUploadIndex.ToString());
         }
     }

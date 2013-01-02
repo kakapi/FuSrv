@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using log4net;
 using FuLib;
-namespace FuSrv
+namespace FuSrvOC
 {
     /// <summary>
     /// ftp上传文件
@@ -14,62 +14,55 @@ namespace FuSrv
     {
         public static void UploadFiles()
         {
+            Guid operationId = Guid.NewGuid();
+            Logger.MyLogger.Debug("开始扫描"+operationId);
             try
             {
-                foreach (string filename in GetUploadedFile())
+                new SiteVariables().Init();
+
+              
+
+                IList<LocalCallRec> records=DbUnit.GetRecordsToBeUpload(
+                    new UploadLogger().GetLastUploadedFileIndex());
+
+               
+                foreach (LocalCallRec call in  records)
                 {
-                    bool result = UploadSingleFile(filename);
+                    bool result = UploadSingleFile(call);
                 }
             }
             catch (Exception ex)
             {
                 Logger.MyLogger.Fatal("*******ERROR**" + ex.Message+ex.StackTrace);
             }
+            Logger.MyLogger.Debug("操作结束" + operationId);
         }
-        public static string[] GetUploadedFile()
+
+
+        public static bool UploadSingleFile(LocalCallRec call)
         {
-            return GetFilesToBeUploaded(FuLib.GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory)
-                , new UploadLogger().GetLastUploadedFileIndex()
-                );
-        }
-        public static bool UploadSingleFile(string fileNametouploaded)
-        {
-            return UploadSingleFile(fileNametouploaded, SiteVariables.FtpServerPath
+            return UploadSingleFile(call.FileSavePath,call.Id, SiteVariables.FtpServerPath
                 , SiteVariables.FtpUserId, SiteVariables.FtpPassword);
         }
 
         #region Services
 
-        public static string[] GetFilesToBeUploaded(string localStoragePath, long lastUploaded)
-        {
-            List<string> tobeUploaded = new List<string>();
+       
 
-
-
-            string[] result = Directory.GetFiles(localStoragePath, "*.wav", SearchOption.AllDirectories);
-            foreach (string s in result)
-            {
-                FileInfo fi = new FileInfo(s);
-                if (FuLib.IOHelper.IsFileLocked(fi))
-                {
-                    Logger.MyLogger.Info("文件正在被占用,暂时跳过:" + s);
-                    continue;
-                }
-                long dt = File.GetCreationTime(s).Ticks;
-                if (dt > lastUploaded)
-                {
-                    tobeUploaded.Add(s);
-                }
-            }
-            return tobeUploaded.ToArray();
-        }
-
-
-        public static bool UploadSingleFile(string fileNametouploaded
+        public static bool UploadSingleFile(string fileNametouploaded,int id
             , string ftpServer
             , string uid, string pwd)
         {
-            
+            if (!File.Exists(fileNametouploaded))
+            {
+                Logger.MyLogger.Error("录音文件不存在:"+fileNametouploaded);
+                return false;
+
+            }
+            if (FuLib.IOHelper.IsFileLocked(new FileInfo(fileNametouploaded)))
+            {
+                Logger.MyLogger.Info("文件正在被占用,跳过:" + fileNametouploaded);
+            }
             string deviceNo = string.Empty, duration = string.Empty,errMsg;
             if (!ExtractInfo(fileNametouploaded, out deviceNo, out duration))
             {
@@ -101,10 +94,10 @@ namespace FuSrv
             if (uploadResult == true)
             {
                 Logger.MyLogger.Info(msg);
-                new UploadLogger().WriteLastUploadFileIndex(File.GetCreationTime(fileNametouploaded).Ticks);
+                new UploadLogger().WriteLastUploadFileIndex(id);
            
 
-                UpdateRemoteDB.Update(deviceNo, duration,deviceNo+"/"+nowString+"/"+fileName);
+                DbUnit.UpdateRemote(deviceNo, duration,deviceNo+"/"+nowString+"/"+fileName);
             }
             else
             {

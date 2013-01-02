@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuSrvOC", "FuSrvOC\FuSrvOC.csproj", "{5E5310A4-3BD2-4D91-8610-AF7464614B3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{02EB4852-346C-48E9-9E93-5D403B91A2B0}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FuSrvOCSetup", "FuSrvOCSetup\FuSrvOCSetup.vdproj", "{4B59D6E9-9197-4695-873F-8E2068351AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCEncryptOC", "CCEncryptOC\CCEncryptOC.csproj", "{B7C0D19B-511C-4C76-B620-998D1283DF6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +110,22 @@ Global
 		{02EB4852-346C-48E9-9E93-5D403B91A2B0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{02EB4852-346C-48E9-9E93-5D403B91A2B0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{02EB4852-346C-48E9-9E93-5D403B91A2B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B59D6E9-9197-4695-873F-8E2068351AF1}.Debug|Any CPU.ActiveCfg = Debug
+		{4B59D6E9-9197-4695-873F-8E2068351AF1}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{4B59D6E9-9197-4695-873F-8E2068351AF1}.Debug|x86.ActiveCfg = Debug
+		{4B59D6E9-9197-4695-873F-8E2068351AF1}.Release|Any CPU.ActiveCfg = Release
+		{4B59D6E9-9197-4695-873F-8E2068351AF1}.Release|Mixed Platforms.ActiveCfg = Release
+		{4B59D6E9-9197-4695-873F-8E2068351AF1}.Release|x86.ActiveCfg = Release
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Debug|x86.ActiveCfg = Debug|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Debug|x86.Build.0 = Debug|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Release|Any CPU.ActiveCfg = Release|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Release|x86.ActiveCfg = Release|x86
+		{B7C0D19B-511C-4C76-B620-998D1283DF6C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,7 @@ using log4net.Repository.Hierarchy;
 using log4net.Appender;
 using log4net.Layout;
 using FuLib;
-namespace FuSrv
+namespace FuSrvOC
 {
     public class Logger
     {
@@ -17,7 +17,7 @@ namespace FuSrv
             {
                 if (log == null)
                 {
-                    string logfileName = GlobalHelper.EnsurePathEndWithSlash(Environment.CurrentDirectory) + "fusrvlogs/" +
+                    string logfileName = GlobalHelper.EnsurePathEndWithSlash(SiteVariables.LogFilePath) + "fusrvlogs/" +
                         SiteVariables.LoggerFileName;
                     Config(logfileName);
                   

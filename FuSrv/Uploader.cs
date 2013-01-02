@@ -16,6 +16,7 @@ namespace FuSrv
         {
             try
             {
+                new SiteVariables().GetServiceParam();
                 foreach (string filename in GetUploadedFile())
                 {
                     bool result = UploadSingleFile(filename);

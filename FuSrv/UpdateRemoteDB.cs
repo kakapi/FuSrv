@@ -47,10 +47,10 @@ namespace FuSrv
         {
             string sql = string.Format("insert into {0}({1},{2},{3},{4}) values('{5}','{6}','{7}','{8}')",
                 SiteVariables.TableName
-                , SiteVariables.col1
-                , SiteVariables.col2
-                ,SiteVariables.col3,
-                SiteVariables.col4
+                , SiteVariables.deviceno
+                , SiteVariables.duration
+                ,SiteVariables.recordFilePath,
+                SiteVariables.callRecordTime
                 
                     , deviceno
                 , duration
