@@ -28,6 +28,12 @@
         "Entry"
         {
         "MsmKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
+        "OwnerKey" = "8:_735D881363531038FE477883C8F293E0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
         "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
+        "OwnerKey" = "8:_735D881363531038FE477883C8F293E0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_735D881363531038FE477883C8F293E0"
+        "OwnerKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -291,6 +297,11 @@
             "AssemblyAsmDisplayName" = "8:FuLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_735D881363531038FE477883C8F293E0"
+                    {
+                    "Name" = "8:FuLib.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:FuLib.dll"
             "TargetName" = "8:"
@@ -367,7 +378,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FuSrvOCSetup"
         "ProductCode" = "8:{C4684FE0-A0F0-4423-AF87-0D723B8C2309}"
-        "PackageCode" = "8:{0363A6CF-FFFC-4A2A-B149-0660704DE1A2}"
+        "PackageCode" = "8:{9BC9F704-943E-47D8-9A98-B919D1A6B2F4}"
         "UpgradeCode" = "8:{844FE65E-1FF7-444D-A6AF-435AE0E92510}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
