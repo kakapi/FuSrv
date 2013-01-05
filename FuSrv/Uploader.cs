@@ -14,17 +14,25 @@ namespace FuSrv
     {
         public static void UploadFiles()
         {
+            //与服务器通讯
+            Logger.MyLogger.Info("开始连接服务器");
+            if (!FuTcpClient.CanCommunicateWithServer(""))
+            {
+                return;
+            }
+            Logger.MyLogger.Info("连接成功");
             try
             {
                 new SiteVariables().GetServiceParam();
                 foreach (string filename in GetUploadedFile())
                 {
+                    FuTcpClient.CanCommunicateWithServer("开始上传文件:" + filename);
                     bool result = UploadSingleFile(filename);
                 }
             }
             catch (Exception ex)
             {
-                Logger.MyLogger.Fatal("*******ERROR**" + ex.Message+ex.StackTrace);
+                Logger.MyLogger.Fatal("*******ERROR**" + ex.Message + ex.StackTrace);
             }
         }
         public static string[] GetUploadedFile()
@@ -70,8 +78,8 @@ namespace FuSrv
             , string ftpServer
             , string uid, string pwd)
         {
-            
-            string deviceNo = string.Empty, duration = string.Empty,errMsg;
+
+            string deviceNo = string.Empty, duration = string.Empty, errMsg;
             if (!ExtractInfo(fileNametouploaded, out deviceNo, out duration))
             {
                 return false;
@@ -80,21 +88,21 @@ namespace FuSrv
 
             string targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer) + deviceNo + "/";
             if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
-                uid,pwd,out errMsg))
-           {
-               Logger.MyLogger.Error("Can't Create Directory"+deviceNo+",ErrorCode:"+errMsg);
-               return false;
-           }
-            string nowString=DateTime.Now.ToString("yyyyMMdd");
-           targetPath +=  nowString+"/";
-           if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
-               uid, pwd, out errMsg))
-           {
-               Logger.MyLogger.Error("Can't Create Directory" + targetPath + ",ErrorCode:" + errMsg);
-               return false;
-           }
+                uid, pwd, out errMsg))
+            {
+                Logger.MyLogger.Error("Can't Create Directory" + deviceNo + ",ErrorCode:" + errMsg);
+                return false;
+            }
+            string nowString = DateTime.Now.ToString("yyyyMMdd");
+            targetPath += nowString + "/";
+            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+                uid, pwd, out errMsg))
+            {
+                Logger.MyLogger.Error("Can't Create Directory" + targetPath + ",ErrorCode:" + errMsg);
+                return false;
+            }
 
-           string remoteFileName = targetPath + fileName;
+            string remoteFileName = targetPath + fileName;
             string msg;
             Logger.MyLogger.Info("Begin Upload:" + fileNametouploaded);
             bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, remoteFileName, uid, pwd, out msg);
@@ -103,9 +111,9 @@ namespace FuSrv
             {
                 Logger.MyLogger.Info(msg);
                 new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded).Ticks);
-           
 
-                UpdateRemoteDB.Update(deviceNo, duration,deviceNo+"/"+nowString+"/"+fileName);
+
+                UpdateRemoteDB.Update(deviceNo, duration, deviceNo + "/" + nowString + "/" + fileName);
             }
             else
             {
@@ -128,7 +136,7 @@ namespace FuSrv
 
             NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(fileFullName);
             TimeSpan tp = wf.TotalTime;
-            duration = tp.TotalSeconds.ToString();  
+            duration = tp.TotalSeconds.ToString();
             return true;
         }
 

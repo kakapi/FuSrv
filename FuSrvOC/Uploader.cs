@@ -20,8 +20,6 @@ namespace FuSrvOC
             {
                 new SiteVariables().Init();
 
-              
-
                 IList<LocalCallRec> records=DbUnit.GetRecordsToBeUpload(
                     new UploadLogger().GetLastUploadedFileIndex());
 

@@ -19,11 +19,13 @@ namespace FuSrv
 
         protected override void OnStart(string[] args)
         {
+            
             //启动服务
             Logger.MyLogger.Info("Service Started " + SiteVariables.LocalStoragePath);
             //从配置文件中读取密码文件的下载路径,下载文件,然后解析出密码
           
 
+            
             FileSystemWatcher fsw = new FileSystemWatcher(SiteVariables.LocalStoragePath, "*.wav");            
             fsw.Changed += new FileSystemEventHandler(fsw_Changed);
             fsw.IncludeSubdirectories = true;

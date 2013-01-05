@@ -89,13 +89,13 @@ namespace FUServer
                     try
                     {
                         Stream s = new NetworkStream(soc);
-
+                        StreamReader sr = new StreamReader(s);
                         StreamWriter sw = new StreamWriter(s);
                         sw.AutoFlush = true; // enable automatic flushing
-
-
-                        sw.WriteLine(DateTime.Now);
-                        sw.WriteLine("");
+                        sw.WriteLine("OK");
+                        string clientMsg=sr.ReadToEnd();
+                        Log(clientMsg);
+                        
 
                     }
                     catch (Exception e)

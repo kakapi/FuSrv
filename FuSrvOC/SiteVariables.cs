@@ -50,7 +50,8 @@ namespace FuSrvOC
         {
              DbFilePath = ConfigurationManager.AppSettings["DbFilePath"];
              InteralDuration = ConfigurationManager.AppSettings["InteralDuration"];
-             AccessPwd = ConfigurationManager.AppSettings["AccessPwd"];//加密文件存放的路径
+             AccessPwd = ConfigurationManager.AppSettings["AccessPwd"];
+            //加密文件存放的路径
              InitEncryptedContent(ConfigurationManager.AppSettings["PwdFilePath"]);
         }
         public void InitEncryptedContent(string pwdfileUrl)
