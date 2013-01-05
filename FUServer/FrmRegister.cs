@@ -48,5 +48,11 @@ namespace FUServer
         {
             Application.Exit();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Clipboard.Clear();
+            Clipboard.SetText(tbxMachinaCode.Text.Trim());
+        }
     }
 }
