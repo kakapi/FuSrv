@@ -89,7 +89,7 @@ namespace FuSrvOC
                     FtpPort = ss[1].Split('|')[1];
                     FtpUserId = ss[1].Split('|')[2];
                     FtpPassword = ss[1].Split('|')[3];
-                    AccessPwd = ss[2];
+                  
 
                 }
                 else

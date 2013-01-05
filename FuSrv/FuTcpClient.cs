@@ -17,13 +17,14 @@ namespace FuSrv
                 Stream s = client.GetStream();
                 StreamWriter sw = new StreamWriter(s);
                 StreamReader sr = new StreamReader(s);
-
-                string dd = sr.ReadToEnd();
+                sw.AutoFlush = true;
+                string dd = sr.ReadLine();
 
                 if (dd == "OK")
                 {
                     can = true;
-                    sw.Write(msg);
+                    sw.WriteLine(msg);
+                    sw.WriteLine(string.Empty);
                 }
                
                 s.Close();

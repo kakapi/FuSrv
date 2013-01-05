@@ -93,9 +93,13 @@ namespace FUServer
                         StreamWriter sw = new StreamWriter(s);
                         sw.AutoFlush = true; // enable automatic flushing
                         sw.WriteLine("OK");
-                        string clientMsg=sr.ReadToEnd();
-                        Log(clientMsg);
-                        
+                        while (true)
+                        {
+                            string clientMsg = sr.ReadLine();
+                            if(string.IsNullOrEmpty(clientMsg)) break;
+                            Log(clientMsg);
+
+                        }
 
                     }
                     catch (Exception e)

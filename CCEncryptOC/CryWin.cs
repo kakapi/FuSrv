@@ -41,9 +41,9 @@ namespace CCEncryptor
 
             string sharedsecret = "P@ssw0rd";
 
-            string original = server + "|" + database + "|" + uid + "|" + pwd 
+            string original = server + "|" + database + "|" + uid + "|" + pwd
                 + ";" + ftpIP.Text + "|" + ftpPort.Text + "|" + ftpUser.Text + "|" + ftpPwd.Text
-                +";"+tbxAccessPwd.Text;
+                ;
 
             string crypted = Crypto.EncryptStringAES(original, sharedsecret);
             return crypted;

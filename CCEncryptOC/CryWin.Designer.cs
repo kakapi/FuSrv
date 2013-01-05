@@ -50,12 +50,8 @@
             this.ftpPwd = new System.Windows.Forms.TextBox();
             this.ftpIP = new System.Windows.Forms.TextBox();
             this.ftpUser = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tbxAccessPwd = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -135,7 +131,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(452, 221);
+            this.btnSave.Location = new System.Drawing.Point(342, 230);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 9;
@@ -257,39 +253,11 @@
             this.ftpUser.Size = new System.Drawing.Size(100, 21);
             this.ftpUser.TabIndex = 7;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tbxAccessPwd);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(423, 12);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(191, 73);
-            this.groupBox3.TabIndex = 9;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Access";
-            // 
-            // tbxAccessPwd
-            // 
-            this.tbxAccessPwd.Location = new System.Drawing.Point(60, 37);
-            this.tbxAccessPwd.Name = "tbxAccessPwd";
-            this.tbxAccessPwd.Size = new System.Drawing.Size(100, 21);
-            this.tbxAccessPwd.TabIndex = 5;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 40);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 12);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "密码";
-            // 
             // CryWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 285);
-            this.Controls.Add(this.groupBox3);
+            this.ClientSize = new System.Drawing.Size(430, 285);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
@@ -302,8 +270,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,8 +299,5 @@
         private System.Windows.Forms.TextBox ftpPwd;
         private System.Windows.Forms.TextBox ftpIP;
         private System.Windows.Forms.TextBox ftpUser;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox tbxAccessPwd;
-        private System.Windows.Forms.Label label10;
     }
 }
