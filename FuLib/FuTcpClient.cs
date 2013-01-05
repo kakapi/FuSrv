@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Net.Sockets;
-namespace FuSrv
+namespace FuLib
 {
     //客户端
     public class FuTcpClient
     {
-        public static bool CanCommunicateWithServer(string msg)
+        public static bool CanCommunicateWithServer(string serverIp,string msg,out string errMsg)
         {
+            errMsg = string.Empty;
             bool can = false;
-            TcpClient client = new TcpClient("192.168.1.141", 13000);
+            TcpClient client = new TcpClient(serverIp, 13000);
             try
             {
                 Stream s = client.GetStream();
@@ -32,7 +33,7 @@ namespace FuSrv
             }
             catch (Exception ex)
             {
-                Logger.MyLogger.Error("连接失败:"+ex.Message);
+                errMsg = ex.Message;
             }
             finally
             {

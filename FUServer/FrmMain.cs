@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.IO;
+using Microsoft.Win32;
 namespace FUServer
 {
     public partial class FrmMain : Form
@@ -21,7 +22,7 @@ namespace FUServer
         public FrmMain()
         {
             InitializeComponent();
-
+            SetAutoRun(true);
             StartService();
         }
         private void SetButtonStatus()
@@ -140,6 +141,17 @@ namespace FUServer
             
         }
 
-        
+          private void SetAutoRun(bool enable)
+       {
+           string appName = "FuService";
+           RegistryKey rk = Registry.CurrentUser.OpenSubKey
+               ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+           if (enable)
+               rk.SetValue(appName, Application.ExecutablePath.ToString());
+           else
+               rk.DeleteValue(appName, false);            
+
+       }
     }
 }

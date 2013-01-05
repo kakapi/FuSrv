@@ -38,7 +38,8 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net20-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="NAudio">
+    <Reference Include="NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NAudio.1.6\lib\net20\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="System" />

@@ -19,6 +19,7 @@ namespace FuSrv
         public static string LocalStoragePath = ConfigurationManager.AppSettings["LocalStoragePath"];
         public static string PwdFilePath = ConfigurationManager.AppSettings["PwdFilePath"];//加密文件存放的路径
 
+        public static string ServerIP = "";
         public static string FtpServerPath = "";
         public static string FtpPort = "";
         public static string FtpUserId = "";
@@ -70,6 +71,7 @@ namespace FuSrv
                     string s = FuLib.Crypto.DecryptStringAES(msg, "P@ssw0rd");
                     //数据库配置
                     string[] ss = s.Split(';');
+                  
                     DBServiceIP = ss[0].Split('|')[0];
                     DBUser = ss[0].Split('|')[2];
                     DBPwd = ss[0].Split('|')[3];
@@ -80,6 +82,8 @@ namespace FuSrv
                     FtpUserId = ss[1].Split('|')[2];
                     FtpPassword = ss[1].Split('|')[3];
 
+                     ServerIP=FuLib.GlobalHelper.ParseIP(FtpServerPath);
+                    
                 }
                 else
                 {

@@ -198,11 +198,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 20);
+            this.label6.Location = new System.Drawing.Point(16, 21);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 0;
-            this.label6.Text = "IP地址";
+            this.label6.Text = "远程路径";
             // 
             // label7
             // 

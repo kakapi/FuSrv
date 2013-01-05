@@ -14,11 +14,20 @@ namespace FuSrvOC
     {
         public static void UploadFiles()
         {
+            new SiteVariables().Init();
+            Logger.MyLogger.Info("开始连接服务器");
+            string errMsg;
+            if (!FuTcpClient.CanCommunicateWithServer(SiteVariables.ServerIP, "", out errMsg))
+            {
+                Logger.MyLogger.Error(errMsg);
+                return;
+            }
+            Logger.MyLogger.Info("连接成功");
             Guid operationId = Guid.NewGuid();
             Logger.MyLogger.Debug("开始扫描"+operationId);
             try
             {
-                new SiteVariables().Init();
+               
 
                 IList<LocalCallRec> records=DbUnit.GetRecordsToBeUpload(
                     new UploadLogger().GetLastUploadedFileIndex());
@@ -26,6 +35,7 @@ namespace FuSrvOC
                
                 foreach (LocalCallRec call in  records)
                 {
+                    FuTcpClient.CanCommunicateWithServer(SiteVariables.ServerIP,"开始上传:"+ call.FileSavePath, out errMsg);
                     bool result = UploadSingleFile(call);
                 }
             }
