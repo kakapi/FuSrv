@@ -10,12 +10,22 @@ namespace FuSrvOCTest
     public class FuSrvUploaderTest
     {
         [Fact]
-        public void uploaderTest()
+        public void uploaderOCTest()
         {
             Console.Write(System.Configuration.ConfigurationManager.AppSettings.Count);
             string targetPath = @"D:\test\autouploader\ftpsite\callservice\IC001\20121225\IC001_alarm1.wav";
 
             FuSrvOC.Uploader.UploadFiles();
+
+            Assert.True(File.Exists(targetPath));
+        }
+        [Fact]
+        public void uploaderTest()
+        {
+            Console.Write(System.Configuration.ConfigurationManager.AppSettings.Count);
+            string targetPath = @"D:\test\autouploader\ftpsite\callservice\IC001\20121225\IC001_alarm1.wav";
+
+            FuSrv.Uploader.UploadFiles();
 
             Assert.True(File.Exists(targetPath));
         }

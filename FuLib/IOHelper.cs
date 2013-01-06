@@ -31,5 +31,17 @@ namespace FuLib
            //file is not locked
            return false;
        }
+       public static string RealFile(string filePath)
+       {
+           string result  = File.ReadAllText(filePath);
+           
+           return result;
+       }
+       public static void WriteFile(string filePath, string content)
+       {
+           
+               File.WriteAllText(filePath, content);
+              
+       }
     }
 }

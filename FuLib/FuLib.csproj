@@ -33,21 +33,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net20-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto.cs" />
     <Compile Include="FtpUnit.cs" />
+    <Compile Include="FuTcpClient.cs" />
     <Compile Include="GlobalHelper.cs" />
     <Compile Include="IOHelper.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="ManagementClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

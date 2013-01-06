@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxServer = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,8 +51,10 @@
             this.ftpPwd = new System.Windows.Forms.TextBox();
             this.ftpIP = new System.Windows.Forms.TextBox();
             this.ftpUser = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -137,7 +140,7 @@
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.button1_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // saveFileDialog1
             // 
@@ -198,11 +201,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 20);
+            this.label6.Location = new System.Drawing.Point(16, 21);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 0;
-            this.label6.Text = "IP地址";
+            this.label6.Text = "远程路径";
             // 
             // label7
             // 
@@ -253,6 +256,10 @@
             this.ftpUser.Size = new System.Drawing.Size(100, 21);
             this.ftpUser.TabIndex = 7;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // CryWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -263,13 +270,15 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label5);
+            this.MaximizeBox = false;
             this.Name = "CryWin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CryWin";
+            this.Text = "配置加密";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,5 +308,6 @@
         private System.Windows.Forms.TextBox ftpPwd;
         private System.Windows.Forms.TextBox ftpIP;
         private System.Windows.Forms.TextBox ftpUser;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

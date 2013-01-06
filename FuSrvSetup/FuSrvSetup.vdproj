@@ -15,7 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_3D7CA7ECEDAC8932DF18255BAD2A7D24"
+        "MsmKey" = "8:_0C094D469C8F33E0BD2A05594E283E53"
+        "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0FBAB46133BD1F53335D7F72E1133B3B"
+        "OwnerKey" = "8:_0C094D469C8F33E0BD2A05594E283E53"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0FBAB46133BD1F53335D7F72E1133B3B"
         "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -27,19 +39,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5EC45A0DE84A673D07379B7DB61817F8"
-        "OwnerKey" = "8:_BBB48335826149AA63946091B3226BB8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5EC45A0DE84A673D07379B7DB61817F8"
-        "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BBB48335826149AA63946091B3226BB8"
+        "MsmKey" = "8:_F7415D43BED0B2CC316A1B3F2423456C"
         "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,19 +52,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3D7CA7ECEDAC8932DF18255BAD2A7D24"
+        "OwnerKey" = "8:_F7415D43BED0B2CC316A1B3F2423456C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BBB48335826149AA63946091B3226BB8"
+        "OwnerKey" = "8:_0C094D469C8F33E0BD2A05594E283E53"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5EC45A0DE84A673D07379B7DB61817F8"
+        "OwnerKey" = "8:_0FBAB46133BD1F53335D7F72E1133B3B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -228,20 +228,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3D7CA7ECEDAC8932DF18255BAD2A7D24"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0C094D469C8F33E0BD2A05594E283E53"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:FuLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3D7CA7ECEDAC8932DF18255BAD2A7D24"
+                    "_0C094D469C8F33E0BD2A05594E283E53"
                     {
-                    "Name" = "8:NAudio.dll"
+                    "Name" = "8:FuLib.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:NAudio.dll"
+            "SourcePath" = "8:FuLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CAA92D8C5ABC45538D1F9A2354D7BAEC"
@@ -259,14 +259,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5EC45A0DE84A673D07379B7DB61817F8"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0FBAB46133BD1F53335D7F72E1133B3B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5EC45A0DE84A673D07379B7DB61817F8"
+                    "_0FBAB46133BD1F53335D7F72E1133B3B"
                     {
                     "Name" = "8:log4net.dll"
                     "Attributes" = "3:512"
@@ -290,20 +290,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BBB48335826149AA63946091B3226BB8"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F7415D43BED0B2CC316A1B3F2423456C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:FuLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BBB48335826149AA63946091B3226BB8"
+                    "_F7415D43BED0B2CC316A1B3F2423456C"
                     {
-                    "Name" = "8:FuLib.dll"
+                    "Name" = "8:NAudio.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:FuLib.dll"
+            "SourcePath" = "8:NAudio.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CAA92D8C5ABC45538D1F9A2354D7BAEC"
@@ -378,7 +378,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FuSrvSetup"
         "ProductCode" = "8:{56ADDE22-534A-4FFF-906E-7CE7BF913AB5}"
-        "PackageCode" = "8:{7C34ED9D-F1AA-4BC1-B5D8-A4A1DD09E81F}"
+        "PackageCode" = "8:{C2A6B41D-8401-458C-9671-3579FCCEF4FE}"
         "UpgradeCode" = "8:{DBF2B580-C0DB-4258-9587-5B356ED09ED7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
