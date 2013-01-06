@@ -378,7 +378,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FuSrvSetup"
         "ProductCode" = "8:{56ADDE22-534A-4FFF-906E-7CE7BF913AB5}"
-        "PackageCode" = "8:{8F39ED9E-05E5-45E5-A0BF-5EF3ADF27413}"
+        "PackageCode" = "8:{C2A6B41D-8401-458C-9671-3579FCCEF4FE}"
         "UpgradeCode" = "8:{DBF2B580-C0DB-4258-9587-5B356ED09ED7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

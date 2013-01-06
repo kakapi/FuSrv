@@ -8,6 +8,11 @@ namespace FuLib
     //客户端
     public class FuTcpClient
     {
+        public string ServerIP
+        {
+             get;set;
+        }
+        public int Port=13000;
         public static bool CanCommunicateWithServer(string serverIp,string msg,out string errMsg)
         {
             errMsg = string.Empty;
@@ -19,6 +24,7 @@ namespace FuLib
                 StreamWriter sw = new StreamWriter(s);
                 StreamReader sr = new StreamReader(s);
                 sw.AutoFlush = true;
+
                 string dd = sr.ReadLine();
 
                 if (dd == "OK")
@@ -41,5 +47,22 @@ namespace FuLib
             }
             return can;
         }
+
+        TcpClient client;
+        public TcpClient GetInstance(string serverIP)
+        {
+            if (client == null)
+            {
+                client = new TcpClient(serverIP, 13000);
+            }
+            return client;
+        }
+        public FuTcpClient()
+        { 
+            
+        }
+      //  public void Send
+        
+
     }
 }

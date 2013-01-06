@@ -7,6 +7,7 @@ namespace FUServer
 {
     public class GlobalVariables
     {
+        public const int Port = 13092;
        public static bool IsRegisted = false;
        public static string SerialFileFullName = AppDomain.CurrentDomain.BaseDirectory + "serial.no";
        public static string MachineCode =FuLib.ServerInfo.GetMacAddress()+ FuLib.ServerInfo.GetCPUId();

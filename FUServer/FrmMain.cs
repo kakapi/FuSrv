@@ -12,11 +12,15 @@ using System.Net.Sockets;
 using System.Threading;
 using System.IO;
 using Microsoft.Win32;
+using FUServer.Properties;
+using Socktes;
 namespace FUServer
 {
     public partial class FrmMain : Form
     {
-        static TcpListener listener;
+        private Socktes.ConnectSocket Socket_Connection;
+        private Socktes.ListenSocket Socket_Listen;
+
         const int LIMIT = 5; //5 concurrent clients
         bool started = true;
         public FrmMain()
@@ -40,118 +44,98 @@ namespace FUServer
                 btnStop.Text = "已停止";
             }
         }
-        private  void Log(string message)
+        private void Log(string message)
         {
             new FuLib.Logger().GetLoggerInstance().Info(message);
-            tbxLog.AppendText(DateTime.Now +"  "+ message+Environment.NewLine);
+            tbxLog.AppendText(DateTime.Now + "  " + message + Environment.NewLine);
         }
-        
+
         private void StartService()
         {
-            if (listener == null)
-            {
-                Int32 port = 13000;
-                IPAddress localAddr = IPAddress.Parse("192.168.1.141");
-                listener = new TcpListener(localAddr, port);
-            }
-            try
-            {
-                listener.Start();
-                started = true;
-                SetButtonStatus();
-                Log("服务启动");
 
-                for (int i = 0; i < LIMIT; i++)
-                {
-                    Thread t = new Thread(new ThreadStart(Service));
-                    t.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log("启动出错:"+ex.Message);
-            }
+            this.Socket_Connection = new ConnectSocket();
+            this.Socket_Listen = new ListenSocket();
+
+            this.Socket_Connection.IsBlocked = true;
+            this.Socket_Connection.recieve += new RecieveEventHandler(Socket_Connection_recieve);
+
+            this.Socket_Listen.Port = GlobalVariables.Port;
+            this.Socket_Listen.accept += new AcceptEvenetHandler(Socket_Listen_accept);
+
+            this.Socket_Listen.StratListen(true);
+            started = true;
+            SetButtonStatus();
+            Log("服务启动");
+
             
         }
-        private  void Service()
+
+        void Socket_Listen_accept(object Sender, AcceptEventArgs e)
         {
-            try
-            {
-                while (true && started)
-                {
-
-                    Socket soc = listener.AcceptSocket();
-                    //soc.SetSocketOption(SocketOptionLevel.Socket,
-                    //        SocketOptionName.ReceiveTimeout,10000);
-
-                    Log( string.Format("Connected: {0}",
-                                             soc.RemoteEndPoint));
-
-                    try
-                    {
-                        Stream s = new NetworkStream(soc);
-                        StreamReader sr = new StreamReader(s);
-                        StreamWriter sw = new StreamWriter(s);
-                        sw.AutoFlush = true; // enable automatic flushing
-                        sw.WriteLine("OK");
-                        while (true)
-                        {
-                            string clientMsg = sr.ReadLine();
-                            if(string.IsNullOrEmpty(clientMsg)) break;
-                            Log(clientMsg);
-
-                        }
-
-                    }
-                    catch (Exception e)
-                    {
-
-                    Log(e.Message);
-
-                    }
-
-               Log( string.Format("Disconnected: {0}", 
-                                        soc.RemoteEndPoint));
-
-                    soc.Close();
-                }
-            }
-            catch { }
+            Socket_Connection.SocketHandle = e.ConnectedSocket;
         }
+
+        void Socket_Connection_recieve(object Sender, RecieveEventArgs e)
+        {
+            string s = ByesConvertor.BytesToString(e.Data).TrimEnd('\0') ;
+            Log("接受数据:" + s);
+            if (s == "FetchServerInfo")
+            {
+                string serverInfo = string.Format(
+              "{0}|{1}|{2}|{3};{4}|{5}|{6}|{7}"
+             , Settings.Default.DbServer
+             , Settings.Default.DbName
+             , Settings.Default.DbUid
+             , Settings.Default.DbPwd
+             , Settings.Default.FtpServer
+             , Settings.Default.FtpPort
+             , Settings.Default.FtpUid
+             , Settings.Default.FtpPwd
+            );
+                Socket_Connection.Send(ByesConvertor.GetBytes(serverInfo));
+            }
+        }
+ 
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             started = false;
-            listener.Stop();
-            
+            Socket_Listen.StopListen();
+
             SetButtonStatus();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             StartService();
-           
+
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             started = false;
-            listener.Stop();
+
+            Socket_Listen.Close();
             Application.ExitThread();
-            
+
         }
 
-          private void SetAutoRun(bool enable)
-       {
-           string appName = "FuService";
-           RegistryKey rk = Registry.CurrentUser.OpenSubKey
-               ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        private void SetAutoRun(bool enable)
+        {
+            string appName = "FuService";
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-           if (enable)
-               rk.SetValue(appName, Application.ExecutablePath.ToString());
-           else
-               rk.DeleteValue(appName, false);            
+            if (enable)
+                rk.SetValue(appName, Application.ExecutablePath.ToString());
+            else
+                rk.DeleteValue(appName, false);
 
-       }
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            new CryWin().Show();
+        }
     }
 }

@@ -14,21 +14,12 @@ namespace FuSrv
     {
         public static void UploadFiles()
         {
-            //与服务器通讯
-            Logger.MyLogger.Info("开始连接服务器");
-            string errMsg;
-            if (!FuTcpClient.CanCommunicateWithServer(SiteVariables.ServerIP, "",out errMsg))
-            {
-                Logger.MyLogger.Error(errMsg);
-                return;
-            }
-            Logger.MyLogger.Info("连接成功");
+           
             try
             {
                 new SiteVariables().GetServiceParam();
                 foreach (string filename in GetUploadedFile())
                 {
-                    FuTcpClient.CanCommunicateWithServer(SiteVariables.ServerIP, "开始上传文件:" + filename,out errMsg);
                     bool result = UploadSingleFile(filename);
                 }
             }

@@ -5,6 +5,8 @@ using System.IO;
 using System.Net;
 using log4net;
 using FuLib;
+using System.Net.Sockets;
+using Socktes;
 namespace FuSrvOC
 {
     /// <summary>
@@ -12,17 +14,16 @@ namespace FuSrvOC
     /// </summary>
     public class Uploader
     {
+        private static Socktes.ConnectSocket Socket_Connection;
         public static void UploadFiles()
         {
             new SiteVariables().Init();
-            Logger.MyLogger.Info("开始连接服务器");
-            string errMsg;
-            if (!FuTcpClient.CanCommunicateWithServer(SiteVariables.ServerIP, "", out errMsg))
-            {
-                Logger.MyLogger.Error(errMsg);
-                return;
-            }
-            Logger.MyLogger.Info("连接成功");
+
+            Socket_Connection = new Socktes.ConnectSocket();
+            Socket_Connection.IsBlocked = false;
+            Socket_Connection.recieve += new RecieveEventHandler(Socket_Connection_recieve);
+
+            Socket_Connection.Connect(SiteVariables.ServerIP, SiteVariables.Port);
             Guid operationId = Guid.NewGuid();
             Logger.MyLogger.Debug("开始扫描"+operationId);
             try
@@ -35,7 +36,8 @@ namespace FuSrvOC
                
                 foreach (LocalCallRec call in  records)
                 {
-                    FuTcpClient.CanCommunicateWithServer(SiteVariables.ServerIP,"开始上传:"+ call.FileSavePath, out errMsg);
+
+                    Socket_Connection.Send(ByesConvertor.GetBytes(call.FileSavePath));
                     bool result = UploadSingleFile(call);
                 }
             }
@@ -44,6 +46,11 @@ namespace FuSrvOC
                 Logger.MyLogger.Fatal("*******ERROR**" + ex.Message+ex.StackTrace);
             }
             Logger.MyLogger.Debug("操作结束" + operationId);
+        }
+
+        static void Socket_Connection_recieve(object Sender, RecieveEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 

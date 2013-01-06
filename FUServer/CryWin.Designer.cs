@@ -1,4 +1,4 @@
-﻿namespace CCEncryptor
+﻿namespace FUServer
 {
     partial class CryWin
     {
@@ -37,7 +37,6 @@
             this.tbxPwd = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbxDatabase = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnClose = new System.Windows.Forms.Button();
@@ -122,19 +121,9 @@
             this.tbxDatabase.Size = new System.Drawing.Size(100, 21);
             this.tbxDatabase.TabIndex = 2;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(20, 199);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 12);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "保存文件名为:dbstr.txt";
-            // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(342, 230);
+            this.btnSave.Location = new System.Drawing.Point(342, 205);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 9;
@@ -149,7 +138,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(12, 230);
+            this.btnClose.Location = new System.Drawing.Point(12, 205);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 10;
@@ -264,12 +253,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 285);
+            this.ClientSize = new System.Drawing.Size(440, 247);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.label5);
             this.MaximizeBox = false;
             this.Name = "CryWin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -280,7 +268,6 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -294,7 +281,6 @@
         private System.Windows.Forms.TextBox tbxPwd;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbxDatabase;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnClose;

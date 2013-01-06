@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCEncryptorServer", "CCEncr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FUServer", "FUServer\FUServer.csproj", "{761262A4-6D8B-4ABE-A930-B35C43DC5BA8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{98AFD27A-E488-41BD-B576-5C144A6DEDC5}"
+	ProjectSection(SolutionItems) = preProject
+		lib\socktes.dll = lib\socktes.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

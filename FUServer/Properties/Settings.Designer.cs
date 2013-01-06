@@ -22,5 +22,101 @@ namespace FUServer.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\sqlexpress")]
+        public string DbServer {
+            get {
+                return ((string)(this["DbServer"]));
+            }
+            set {
+                this["DbServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("calldb")]
+        public string DbName {
+            get {
+                return ((string)(this["DbName"]));
+            }
+            set {
+                this["DbName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DbUid {
+            get {
+                return ((string)(this["DbUid"]));
+            }
+            set {
+                this["DbUid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DbPwd {
+            get {
+                return ((string)(this["DbPwd"]));
+            }
+            set {
+                this["DbPwd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ftp://127.0.0.1/callservice")]
+        public string FtpServer {
+            get {
+                return ((string)(this["FtpServer"]));
+            }
+            set {
+                this["FtpServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("21")]
+        public string FtpPort {
+            get {
+                return ((string)(this["FtpPort"]));
+            }
+            set {
+                this["FtpPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FtpUid {
+            get {
+                return ((string)(this["FtpUid"]));
+            }
+            set {
+                this["FtpUid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FtpPwd {
+            get {
+                return ((string)(this["FtpPwd"]));
+            }
+            set {
+                this["FtpPwd"] = value;
+            }
+        }
     }
 }

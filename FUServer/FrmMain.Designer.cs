@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.pnlAction = new System.Windows.Forms.Panel();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.tbxLog = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.tbxLog = new System.Windows.Forms.RichTextBox();
+            this.btnConfig = new System.Windows.Forms.Button();
             this.pnlAction.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,43 +41,13 @@
             // 
             this.pnlAction.Controls.Add(this.label1);
             this.pnlAction.Controls.Add(this.btnStop);
+            this.pnlAction.Controls.Add(this.btnConfig);
             this.pnlAction.Controls.Add(this.btnStart);
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAction.Location = new System.Drawing.Point(0, 0);
             this.pnlAction.Name = "pnlAction";
             this.pnlAction.Size = new System.Drawing.Size(475, 44);
             this.pnlAction.TabIndex = 0;
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(290, 12);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "启动";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Visible = false;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(371, 13);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 1;
-            this.btnStop.Text = "停止";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Visible = false;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // tbxLog
-            // 
-            this.tbxLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxLog.Location = new System.Drawing.Point(0, 44);
-            this.tbxLog.Name = "tbxLog";
-            this.tbxLog.Size = new System.Drawing.Size(475, 218);
-            this.tbxLog.TabIndex = 1;
-            this.tbxLog.Text = "";
             // 
             // label1
             // 
@@ -88,6 +59,47 @@
             this.label1.Size = new System.Drawing.Size(100, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "服务已启动";
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(388, 10);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 1;
+            this.btnStop.Text = "停止";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Visible = false;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(307, 10);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "启动";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Visible = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // tbxLog
+            // 
+            this.tbxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxLog.Location = new System.Drawing.Point(0, 44);
+            this.tbxLog.Name = "tbxLog";
+            this.tbxLog.Size = new System.Drawing.Size(475, 218);
+            this.tbxLog.TabIndex = 1;
+            this.tbxLog.Text = "";
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.Location = new System.Drawing.Point(226, 10);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnConfig.TabIndex = 0;
+            this.btnConfig.Text = "配置";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
             // FrmMain
             // 
@@ -112,6 +124,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.RichTextBox tbxLog;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnConfig;
     }
 }
 
