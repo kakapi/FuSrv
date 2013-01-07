@@ -16,19 +16,19 @@ namespace FUServer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
-            if (GlobalVariables.GetRegistStatus())
+            if (!GlobalVariables.GetRegistStatus())
             {
-                Application.Run(new FrmMain());
+                FrmRegister fr = new FrmRegister();
+                if (fr.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new FrmMain());
+                }
             }
             else
             {
-                Application.Run(new FrmRegister());
+                Application.Run(new FrmMain());
             }
 
-
-           
         }
-      
     }
 }

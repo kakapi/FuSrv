@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading;
 namespace FuLib
 {
-    //客户端
+   
     public class FuSocket
     {
         int port = 13009;

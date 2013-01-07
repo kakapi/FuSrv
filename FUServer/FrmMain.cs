@@ -13,7 +13,6 @@ using System.Threading;
 using System.IO;
 using Microsoft.Win32;
 using FUServer.Properties;
-using Socktes;
 namespace FUServer
 {
     public partial class FrmMain : Form
@@ -23,7 +22,7 @@ namespace FUServer
         public FrmMain()
         {
             InitializeComponent();
-            SetAutoRun(true);
+          //  SetAutoRun(true);
             StartService();
         }
         private void SetButtonStatus()
@@ -44,7 +43,8 @@ namespace FUServer
         private void Log(string message)
         {
             GlobalVariables.Logger.Info(message);
-            tbxLog.AppendText(DateTime.Now + "  " + message + Environment.NewLine);
+            tbxLog.Text = DateTime.Now + "  " + message + Environment.NewLine + tbxLog.Text;
+          //  tbxLog.AppendText(DateTime.Now + "  " + message + Environment.NewLine);
         }
 
         private void StartService()
@@ -98,9 +98,28 @@ namespace FUServer
 
         }
 
-        private void btnConfig_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            new CryWin().Show();
+            if (userConfig1.Save())
+            {
+                MessageBox.Show("保存成功");
+            }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            userConfig1.Reset();
+        }
+
+        private void tbxLog_TextChanged(object sender, EventArgs e)
+        {
+            if (tbxLog.Lines.Length > 1000)
+            {
+               
+                int midlineposition = tbxLog.Text.IndexOf(tbxLog.Lines[500]);
+                MessageBox.Show(midlineposition.ToString());
+                tbxLog.Text = tbxLog.Text.Remove(midlineposition);
+            }
+        }       
     }
 }

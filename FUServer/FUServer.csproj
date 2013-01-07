@@ -36,14 +36,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>兆64紫色.ico</ApplicationIcon>
+    <ApplicationIcon>Pearl64.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.0\lib\net20-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="socktes">
-      <HintPath>..\lib\socktes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -76,6 +73,12 @@
       <DependentUpon>FrmRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="SocketAction.cs" />
+    <Compile Include="UserConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConfig.Designer.cs">
+      <DependentUpon>UserConfig.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CryWin.resx">
       <DependentUpon>CryWin.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +97,9 @@
     </Compile>
     <EmbeddedResource Include="FrmRegister.resx">
       <DependentUpon>FrmRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConfig.resx">
+      <DependentUpon>UserConfig.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -114,7 +120,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="兆64紫色.ico" />
+    <Content Include="Pearl64.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

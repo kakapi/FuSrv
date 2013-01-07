@@ -3,19 +3,19 @@
   <Profiles />
   <Settings>
     <Setting Name="DbServer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.\sqlexpress</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">calldb</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DbUid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">call</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DbPwd" Type="System.String" Scope="User">
-      <Value Profile="(Default)">call</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FtpServer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ftp://127.0.0.1/callservice</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FtpPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">21</Value>

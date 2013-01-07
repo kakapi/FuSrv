@@ -9,7 +9,7 @@ namespace FUServer
     public class GlobalVariables
     {
        public const int Port = 13092;
-       const string logFileName = "FuServer.log";
+       const string logFileName = "log/FuServer.log";
        public static bool IsRegisted = false;
        public static string SerialFileFullName = AppDomain.CurrentDomain.BaseDirectory + "serial.no";
        public static string MachineCode =FuLib.ServerInfo.GetMacAddress()+ FuLib.ServerInfo.GetCPUId();

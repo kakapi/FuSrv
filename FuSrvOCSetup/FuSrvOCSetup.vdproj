@@ -15,56 +15,56 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_2EAC0372AF207B44E160CB978AE23546"
-        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+        "MsmKey" = "8:_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
+        "OwnerKey" = "8:_924CBDF0A4CC4CF086F588F693333A03"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+        "MsmKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
+        "OwnerKey" = "8:_735D881363531038FE477883C8F293E0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
+        "OwnerKey" = "8:_924CBDF0A4CC4CF086F588F693333A03"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_735D881363531038FE477883C8F293E0"
+        "OwnerKey" = "8:_924CBDF0A4CC4CF086F588F693333A03"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_924CBDF0A4CC4CF086F588F693333A03"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_69BE037DD94CDF57822793D458212123"
-        "OwnerKey" = "8:_2EAC0372AF207B44E160CB978AE23546"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_69BE037DD94CDF57822793D458212123"
-        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_80362FBA8CED199B1813D10E534F2A36"
-        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_58944E113D281E937E396E6FBB2A40D2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+        "OwnerKey" = "8:_924CBDF0A4CC4CF086F588F693333A03"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_69BE037DD94CDF57822793D458212123"
+        "OwnerKey" = "8:_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2EAC0372AF207B44E160CB978AE23546"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_80362FBA8CED199B1813D10E534F2A36"
+        "OwnerKey" = "8:_735D881363531038FE477883C8F293E0"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -75,7 +75,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:..\\output\\FuSrvOCSetup.msi"
+        "OutputFilename" = "8:..\\output\\yuntelserver.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -149,59 +149,59 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_7ED8BF64ADFD4AACB7F33039B7829A3D"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_421605607C2840EEBBFD8D3AE144511D"
             {
             "Name" = "8:主输出来自FuSrvOC(活动)"
             "Condition" = "8:"
-            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+            "Object" = "8:_924CBDF0A4CC4CF086F588F693333A03"
             "FileType" = "3:2"
             "InstallAction" = "3:3"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_1827C66F_1959_441E_BB53_78BBF60C8915"
+            "Identifier" = "8:_9924E3CE_191B_4085_8ECA_4FA28CB9ED41"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_95520564CC384867A216859B3005FDA8"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_7AAA757563C64698846D48B0C9F7A0DD"
             {
             "Name" = "8:主输出来自FuSrvOC(活动)"
             "Condition" = "8:"
-            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+            "Object" = "8:_924CBDF0A4CC4CF086F588F693333A03"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_15A2E910_02E2_4709_B316_37421483642B"
+            "Identifier" = "8:_9663BF68_AE1E_4A51_AB28_BED7BC756B98"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_99203970691F43A4918EAC6420468360"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_B10A6B469BAE4822B74398D83C0E792D"
             {
             "Name" = "8:主输出来自FuSrvOC(活动)"
             "Condition" = "8:"
-            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+            "Object" = "8:_924CBDF0A4CC4CF086F588F693333A03"
             "FileType" = "3:2"
             "InstallAction" = "3:4"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_E78E19AF_EA65_45C9_B114_F0A5627EA0AE"
+            "Identifier" = "8:_968FA0E8_045A_4F23_B591_1249A7EB6164"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_F3BE48FBDF1142B1BEB1B9494BAA5858"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_B4F6B23D90154FC1AB8BF90B2BE656EF"
             {
             "Name" = "8:主输出来自FuSrvOC(活动)"
             "Condition" = "8:"
-            "Object" = "8:_35B8F4838FF0420ABAC4CBA9BA25145B"
+            "Object" = "8:_924CBDF0A4CC4CF086F588F693333A03"
             "FileType" = "3:2"
             "InstallAction" = "3:2"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_C3187A7D_30BD_4A5A_9812_B74A65C5FD54"
+            "Identifier" = "8:_CD69387C_35AF_41D4_BFF7_619F40A8C59C"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -228,15 +228,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2EAC0372AF207B44E160CB978AE23546"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:FuLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_1BEC5A3CFFC2072FA764E0A3CB1E4D0F"
+                    {
+                    "Name" = "8:NAudio.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
-            "SourcePath" = "8:FuLib.dll"
+            "SourcePath" = "8:NAudio.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A657AB93BC5841F094833F2B6AECB613"
@@ -254,13 +259,18 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_69BE037DD94CDF57822793D458212123"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_58944E113D281E937E396E6FBB2A40D2"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_58944E113D281E937E396E6FBB2A40D2"
+                    {
+                    "Name" = "8:log4net.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -280,15 +290,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_80362FBA8CED199B1813D10E534F2A36"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_735D881363531038FE477883C8F293E0"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:FuLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_735D881363531038FE477883C8F293E0"
+                    {
+                    "Name" = "8:FuLib.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
-            "SourcePath" = "8:NAudio.dll"
+            "SourcePath" = "8:FuLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A657AB93BC5841F094833F2B6AECB613"
@@ -336,7 +351,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_A657AB93BC5841F094833F2B6AECB613"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:D:\\Program Files\\[Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -363,7 +378,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:yuntelserver"
         "ProductCode" = "8:{C4684FE0-A0F0-4423-AF87-0D723B8C2309}"
-        "PackageCode" = "8:{01E5A31C-D34F-44B6-9D8C-350A6CB0E6E3}"
+        "PackageCode" = "8:{296C8E8E-BDA7-41F6-B470-F478C25F0AF6}"
         "UpgradeCode" = "8:{844FE65E-1FF7-444D-A6AF-435AE0E92510}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -882,9 +897,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_35B8F4838FF0420ABAC4CBA9BA25145B"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_924CBDF0A4CC4CF086F588F693333A03"
             {
-            "SourcePath" = "8:..\\FuSrvOC\\obj\\x86\\Debug\\FuSrvOC.exe"
+            "SourcePath" = "8:..\\FuSrvOC\\obj\\x86\\Debug\\yuntelserver.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A657AB93BC5841F094833F2B6AECB613"
