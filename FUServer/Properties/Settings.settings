@@ -9,10 +9,10 @@
       <Value Profile="(Default)">calldb</Value>
     </Setting>
     <Setting Name="DbUid" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">call</Value>
     </Setting>
     <Setting Name="DbPwd" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">call</Value>
     </Setting>
     <Setting Name="FtpServer" Type="System.String" Scope="User">
       <Value Profile="(Default)">ftp://127.0.0.1/callservice</Value>

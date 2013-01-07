@@ -3,15 +3,23 @@ using System.Collections.Generic;
 
 using System.Text;
 using System.IO;
+using log4net;
 namespace FUServer
 {
     public class GlobalVariables
     {
-        public const int Port = 13092;
+       public const int Port = 13092;
+       const string logFileName = "FuServer.log";
        public static bool IsRegisted = false;
        public static string SerialFileFullName = AppDomain.CurrentDomain.BaseDirectory + "serial.no";
        public static string MachineCode =FuLib.ServerInfo.GetMacAddress()+ FuLib.ServerInfo.GetCPUId();
-       public static bool GetRegistStatus()
+       public static ILog Logger {
+           get {
+               return new FuLib.Logger().GetLoggerInstance(logFileName);
+           }
+       }
+
+        public static bool GetRegistStatus()
        {
            try
            {
@@ -23,17 +31,17 @@ namespace FUServer
                }
                else
                {
-                   new FuLib.Logger().GetLoggerInstance().Error("注册码有误.");
+                   Logger.Error("注册码有误.");
                }
 
            }
            catch (FileNotFoundException ex1)
            {
-               new FuLib.Logger().GetLoggerInstance().Fatal("还未注册");
+               Logger.Fatal("还未注册");
            }
            catch (Exception ex)
            {
-               new FuLib.Logger().GetLoggerInstance().Fatal("Can't Read SerialNo:" + ex);
+              Logger.Fatal("Can't Read SerialNo:" + ex);
            }
            return IsRegisted;
        }

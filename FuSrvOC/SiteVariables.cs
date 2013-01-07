@@ -5,7 +5,7 @@ using System.Configuration;
 using System.Net;
 using System.IO;
 using System.Net.Sockets;
-using Socktes;
+
 namespace FuSrvOC
 {
     public class SiteVariables
@@ -54,49 +54,43 @@ namespace FuSrvOC
             //加密文件存放的路径
             InitEncryptedContent();
         }
-        private Socktes.ConnectSocket Socket_Connection;
+        private string serverInfo = string.Empty;
         public void InitEncryptedContent()
         {
             Logger.MyLogger.Info("开始获取服务器信息");
 
-            this.Socket_Connection = new Socktes.ConnectSocket();
-            this.Socket_Connection.IsBlocked = false;
-            this.Socket_Connection.recieve += new Socktes.RecieveEventHandler(Socket_Connection_recieve);
+            FuLib.FuSocket fusocket = new FuLib.FuSocket();
+            fusocket.ClientActions(ServerIP, FetchServerInfo);
+            if (!string.IsNullOrEmpty(fusocket.ErrMsg))
+            {
+                Logger.MyLogger.Error(fusocket.ErrMsg);
+            }
+            else {
+                
+                string[] ss = serverInfo.Split(';');
+                DBServiceIP = ss[0].Split('|')[0];
+                DBDataBase = ss[0].Split('|')[1];
+                DBUser = ss[0].Split('|')[2];
+                DBPwd = ss[0].Split('|')[3];
 
-            Socket_Connection.Connect(ServerIP, Port);
-            Socket_Connection.Send(ByesConvertor.GetBytes("FetchServerInfo"));
+                //ftp配置
+                FtpServerPath = ss[1].Split('|')[0];
+                FtpPort = ss[1].Split('|')[1];
+                FtpUserId = ss[1].Split('|')[2];
+                FtpPassword = ss[1].Split('|')[3];
+            }
             // 
         }
-
-        void Socket_Connection_recieve(object Sender, Socktes.RecieveEventArgs e)
+        private void FetchServerInfo(StreamReader sr, StreamWriter sw)
         {
-            
-            string receiveMsg = ByesConvertor.BytesToString(e.Data);
-            if (receiveMsg.Length > 4)
+            string status = sr.ReadLine();
+            if (status == "OK")
             {
-                try
-                {
-                    Logger.MyLogger.Info("获取服务器信息");
-                    string serverInfo = receiveMsg;
-                    string[] ss = serverInfo.Split(';');
-                    DBServiceIP = ss[0].Split('|')[0];
-                    DBDataBase = ss[0].Split('|')[1];
-                    DBUser = ss[0].Split('|')[2];
-                    DBPwd = ss[0].Split('|')[3];
-
-                    //ftp配置
-                    FtpServerPath = ss[1].Split('|')[0];
-                    FtpPort = ss[1].Split('|')[1];
-                    FtpUserId = ss[1].Split('|')[2];
-                    FtpPassword = ss[1].Split('|')[3];
-                    Logger.MyLogger.Info("已获取");
-                }
-                catch (Exception ex)
-                {
-                    Logger.MyLogger.Error("获取服务器信息出错:"+ex.Message);
-                }
+                sw.WriteLine("FetchServerInfo");
+                serverInfo = sr.ReadLine();
             }
         }
 
+     
     }
 }

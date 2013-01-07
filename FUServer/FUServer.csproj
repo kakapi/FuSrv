@@ -72,6 +72,7 @@
     <Compile Include="FrmRegister.Designer.cs">
       <DependentUpon>FrmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="SocketAction.cs" />
     <EmbeddedResource Include="CryWin.resx">
       <DependentUpon>CryWin.cs</DependentUpon>
     </EmbeddedResource>

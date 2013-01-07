@@ -11,20 +11,20 @@ namespace FuLib
     {
         ILog log = null;
         ILog rollLog = null;
-        public ILog GetLoggerInstance()
+        public ILog GetLoggerInstance(string logFile)
         {
 
-            return GetLoggerInstance( true);
+            return GetLoggerInstance( true,logFile);
 
         }
-        public ILog GetLoggerInstance( bool isRolling)
+        public ILog GetLoggerInstance( bool isRolling,string logFile)
         {
             if (isRolling)
             {
 
                 if (rollLog == null)
                 {
-                    Config( isRolling);
+                    Config( isRolling,logFile);
                     rollLog = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
                 }
 
@@ -34,7 +34,7 @@ namespace FuLib
             {
                 if (log == null)
                 {
-                    Config( isRolling);
+                    Config( isRolling,logFile);
                     log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
                 }
                 return log;
@@ -42,7 +42,7 @@ namespace FuLib
            
            
         }
-        public static void Config( bool isRolling)
+        public static void Config( bool isRolling,string logFile)
         {
             Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
             hierarchy.Root.RemoveAllAppenders(); /*Remove any other appenders*/
@@ -55,7 +55,7 @@ namespace FuLib
             fileAppender.AppendToFile = true;
             fileAppender.LockingModel = new FileAppender.MinimalLock();
 
-            fileAppender.File = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
+            fileAppender.File = AppDomain.CurrentDomain.BaseDirectory +logFile;
             PatternLayout pl = new PatternLayout();
             pl.ConversionPattern = "%d [%2%t] %-5p [%-10c] %m%n%n";
             pl.ActivateOptions();

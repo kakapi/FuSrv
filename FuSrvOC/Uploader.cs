@@ -6,7 +6,7 @@ using System.Net;
 using log4net;
 using FuLib;
 using System.Net.Sockets;
-using Socktes;
+
 namespace FuSrvOC
 {
     /// <summary>
@@ -14,31 +14,23 @@ namespace FuSrvOC
     /// </summary>
     public class Uploader
     {
-        private static Socktes.ConnectSocket Socket_Connection;
+       
         public static void UploadFiles()
         {
             new SiteVariables().Init();
 
-            Socket_Connection = new Socktes.ConnectSocket();
-            Socket_Connection.IsBlocked = false;
-            Socket_Connection.recieve += new RecieveEventHandler(Socket_Connection_recieve);
-
-            Socket_Connection.Connect(SiteVariables.ServerIP, SiteVariables.Port);
-            Guid operationId = Guid.NewGuid();
+               Guid operationId = Guid.NewGuid();
             Logger.MyLogger.Debug("开始扫描"+operationId);
             try
             {
-               
-
                 IList<LocalCallRec> records=DbUnit.GetRecordsToBeUpload(
                     new UploadLogger().GetLastUploadedFileIndex());
-
-               
                 foreach (LocalCallRec call in  records)
                 {
-
-                    Socket_Connection.Send(ByesConvertor.GetBytes(call.FileSavePath));
-                    bool result = UploadSingleFile(call);
+                    currentUploadFile = call.FileSavePath;
+                    FuSocket fusocket = new FuSocket();
+                    fusocket.ClientActions(SiteVariables.ServerIP, SendUploadMsg);
+                  bool result = UploadSingleFile(call);
                 }
             }
             catch (Exception ex)
@@ -47,12 +39,19 @@ namespace FuSrvOC
             }
             Logger.MyLogger.Debug("操作结束" + operationId);
         }
-
-        static void Socket_Connection_recieve(object Sender, RecieveEventArgs e)
+        static string currentUploadFile;
+        private static void SendUploadMsg(StreamReader sr,StreamWriter sw)
         {
-            throw new NotImplementedException();
+            string status = sr.ReadLine();
+            if (status == "OK")
+            {
+                sw.WriteLine("uploadmsg");
+                sw.Flush();
+                sw.WriteLine("上传文件:"+currentUploadFile);
+            }
         }
 
+       
 
         public static bool UploadSingleFile(LocalCallRec call)
         {

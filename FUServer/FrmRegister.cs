@@ -40,7 +40,7 @@ namespace FUServer
             else
             {
                 MessageBox.Show("注册失败:不是有效的注册码");
-                new FuLib.Logger().GetLoggerInstance().Info("注册码无效,注册失败.填写的注册码是:"+tbxRegisterCode.Text);
+              GlobalVariables.Logger.Info("注册码无效,注册失败.填写的注册码是:"+tbxRegisterCode.Text);
             }
         }
 

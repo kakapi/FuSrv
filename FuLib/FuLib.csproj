@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Crypto.cs" />
     <Compile Include="FtpUnit.cs" />
-    <Compile Include="FuTcpClient.cs" />
+    <Compile Include="FuSocket.cs" />
     <Compile Include="GlobalHelper.cs" />
     <Compile Include="IOHelper.cs" />
     <Compile Include="Logger.cs" />

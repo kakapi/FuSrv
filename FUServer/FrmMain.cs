@@ -18,10 +18,7 @@ namespace FUServer
 {
     public partial class FrmMain : Form
     {
-        private Socktes.ConnectSocket Socket_Connection;
-        private Socktes.ListenSocket Socket_Listen;
-
-        const int LIMIT = 5; //5 concurrent clients
+       
         bool started = true;
         public FrmMain()
         {
@@ -46,61 +43,30 @@ namespace FUServer
         }
         private void Log(string message)
         {
-            new FuLib.Logger().GetLoggerInstance().Info(message);
+            GlobalVariables.Logger.Info(message);
             tbxLog.AppendText(DateTime.Now + "  " + message + Environment.NewLine);
         }
 
         private void StartService()
         {
-
-            this.Socket_Connection = new ConnectSocket();
-            this.Socket_Listen = new ListenSocket();
-
-            this.Socket_Connection.IsBlocked = true;
-            this.Socket_Connection.recieve += new RecieveEventHandler(Socket_Connection_recieve);
-
-            this.Socket_Listen.Port = GlobalVariables.Port;
-            this.Socket_Listen.accept += new AcceptEvenetHandler(Socket_Listen_accept);
-
-            this.Socket_Listen.StratListen(true);
+            new SocketAction().StartServer(msgHandler);
             started = true;
             SetButtonStatus();
             Log("服务启动");
 
             
         }
-
-        void Socket_Listen_accept(object Sender, AcceptEventArgs e)
+        void msgHandler(string msg)
         {
-            Socket_Connection.SocketHandle = e.ConnectedSocket;
+            Log(msg);
         }
 
-        void Socket_Connection_recieve(object Sender, RecieveEventArgs e)
-        {
-            string s = ByesConvertor.BytesToString(e.Data).TrimEnd('\0') ;
-            Log("接受数据:" + s);
-            if (s == "FetchServerInfo")
-            {
-                string serverInfo = string.Format(
-              "{0}|{1}|{2}|{3};{4}|{5}|{6}|{7}"
-             , Settings.Default.DbServer
-             , Settings.Default.DbName
-             , Settings.Default.DbUid
-             , Settings.Default.DbPwd
-             , Settings.Default.FtpServer
-             , Settings.Default.FtpPort
-             , Settings.Default.FtpUid
-             , Settings.Default.FtpPwd
-            );
-                Socket_Connection.Send(ByesConvertor.GetBytes(serverInfo));
-            }
-        }
- 
+    
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             started = false;
-            Socket_Listen.StopListen();
+         
 
             SetButtonStatus();
         }
@@ -113,10 +79,9 @@ namespace FUServer
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            started = false;
-
-            Socket_Listen.Close();
-            Application.ExitThread();
+            new FuLib.FuSocket().StopServer();
+            
+            Application.Exit();
 
         }
 
