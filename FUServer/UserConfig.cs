@@ -16,16 +16,15 @@ namespace FUServer
             InitializeComponent();
             LoadData();
         }
-        string configFileName = AppDomain.CurrentDomain.BaseDirectory + "conf.ig";
-       
+
         private void LoadData()
         {
-
-            if (!File.Exists(configFileName))
+            string encrypted = ServerInfo.GetDecryptedInfo();
+            if (string.IsNullOrEmpty(encrypted))
             {
                 return;
             }
-            string encrypted = File.ReadAllText(configFileName);
+          
             string decrypted = FuLib.Crypto.DecryptStringAES(encrypted,"P@ssw0rd");
 
             string[] dbconfig = decrypted.Split(';')[0].Split('|');
@@ -103,11 +102,7 @@ namespace FUServer
         }
         private void SaveData()
         {
-            if (!File.Exists(configFileName))
-            {
-              FileStream fs=  File.Create(configFileName);
-              fs.Close();
-            }
+            
             string server = tbxServer.Text.Trim();
             string database = tbxDatabase.Text.Trim();
             string uid = tbxUID.Text.Trim();
@@ -124,7 +119,7 @@ namespace FUServer
                 + _ftpPath + "|" + _ftpPort + "|" + _ftpUid + "|" + _ftpPassword;
 
             string crypted = FuLib.Crypto.EncryptStringAES(original, sharedsecret);
-            File.WriteAllText(configFileName, crypted);
+            ServerInfo.SaveEncryptedInfo(crypted);
            
         }
         private IEnumerable<Control> GetAllTextBoxControls(Control container)

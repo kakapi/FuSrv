@@ -28,17 +28,12 @@ namespace FUServer
             switch (requestType.ToLower())
             {
                 case "fetchserverinfo":
-                    string serverInfo = string.Format(
-            "{0}|{1}|{2}|{3};{4}|{5}|{6}|{7}"
-           , Settings.Default.DbServer
-           , Settings.Default.DbName
-           , Settings.Default.DbUid
-           , Settings.Default.DbPwd
-           , Settings.Default.FtpServer
-           , Settings.Default.FtpPort
-           , Settings.Default.FtpUid
-           , Settings.Default.FtpPwd
-          );
+
+                    string serverInfo = ServerInfo.GetDecryptedInfo();
+                    if (string.IsNullOrEmpty(serverInfo))
+                    {
+                        GlobalVariables.Logger.Error("配置信息为空,请检查");
+                    }
                     sw.WriteLine(serverInfo);
                     break;
                 case "uploadmsg":

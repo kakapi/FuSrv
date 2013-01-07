@@ -72,6 +72,7 @@
     <Compile Include="FrmRegister.Designer.cs">
       <DependentUpon>FrmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="ServerInfo.cs" />
     <Compile Include="SocketAction.cs" />
     <Compile Include="UserConfig.cs">
       <SubType>UserControl</SubType>
