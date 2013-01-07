@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CryWin));
             this.label1 = new System.Windows.Forms.Label();
             this.tbxServer = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -270,6 +271,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CryWin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.pnlAction = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStop = new System.Windows.Forms.Button();
+            this.btnConfig = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.tbxLog = new System.Windows.Forms.RichTextBox();
-            this.btnConfig = new System.Windows.Forms.Button();
             this.pnlAction.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,16 @@
             this.btnStop.Visible = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
+            // btnConfig
+            // 
+            this.btnConfig.Location = new System.Drawing.Point(226, 10);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnConfig.TabIndex = 0;
+            this.btnConfig.Text = "配置";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(307, 10);
@@ -91,16 +102,6 @@
             this.tbxLog.TabIndex = 1;
             this.tbxLog.Text = "";
             // 
-            // btnConfig
-            // 
-            this.btnConfig.Location = new System.Drawing.Point(226, 10);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(75, 23);
-            this.btnConfig.TabIndex = 0;
-            this.btnConfig.Text = "配置";
-            this.btnConfig.UseVisualStyleBackColor = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -108,6 +109,7 @@
             this.ClientSize = new System.Drawing.Size(475, 262);
             this.Controls.Add(this.tbxLog);
             this.Controls.Add(this.pnlAction);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);

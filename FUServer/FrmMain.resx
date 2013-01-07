@@ -117,4 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAA
+        AADSAFcU0gBWpdMAV+bTAFft0wBX7dMAV+3TAFft0wBX7dMAV+3TAFft0wBX7dMAV+3TAFft0wBX6NIA
+        Vq3RAFcazgBVpcsAVf/EAFL/yQBU/80AVv/NAFb/zQBW/80AVv/JAFT/yQBU/8kAVP/JAFT/zQBW/80A
+        Vv/NAFb/zQBUssEAUOfTAFf//wNr/9cAWv+0AEv/wwBQ/8QAUf/AAE//zgBW/9AAVv/TAFj/ywBU/78A
+        T//EAFH/xABR/8QAUey5AEznvwBO//8Tdv//n8j//0GQ/6sARv+tAEf//wxw///T5///3On//9rr///M
+        4//pAGD/sgBJ/7oATP+6AEzssgBK5rAASf+mAEX/zABU///G3///QpD/mABC//8ge////////3Os//IA
+        Y///VJv/wQBP/64AR/+xAEn/sQBJ66kARuaZAD///0qU//96sv//BG7//+by/9AAV//UAFj///////9K
+        kv+RAEL//y2E/94AW/+mAEX/qABG/6cAROugAELmmAA+//9lo///6vT//5/H///R5f//VZr/nABB///p
+        8v//cKz//x57////////kr3/nwBC/54AQP+hAEHrmgA+5poAPv+XAD3/rQBI/+8AYv//l77//6fK/44A
+        PP//p8j//9vq//+rzP//RZH/sQBJ/5cAP/+aAD7/mgA+65YAPuaVAD3/kQA7/6gAQ///a6r//yh///+0
+        0v+PADv//2Of///y+P//Ro7/owBD/4sAPf+TADr/lQA9/5QAPeuWAD7mlgA8/44AO//9AGT///////9b
+        nv//t9T/qQBD//8nff//4/D//yuA///T4///LoP/qgBF/5wAP/+eAEHrxwBa5scAWv+6AFT//2es//99
+        uf/dAGT//9js//8Qf///C3v///////8VgP//pNL//8Tg//AAcP/SAGL/2QBn7foAeub/AXz//wB+//8P
+        hf/wAHX//wF8///q9P//gcD//wuA////////j8f//wqE//8Jg///An///wqE//8KhO3/I5Hn/1ep//88
+        nv//H43//yaS//8pkf//isT//3y9//8rk///kMf//43G//8rk///K5X//zCW//8wlv//MZju/z6Y5f97
+        uv//fLv//0+k//9No///T6T//0Sg//9HoP//UaX//0Wf//9In///VKf//1Sl//9Upf//VaT//1Wk7P9W
+        oZj/d7T//5vJ//+Rwv//b7H//22t//9vsf//b6///2+v//9wsP//cbD//3Gw//9ysf//crH//2+v//+B
+        uaf/ocsN/5TClv+Ku+H/i7zq/4m86v+JvOr/ibzq/4m86v+JvOr/irvq/4q76v+Ku+r/irvq/4y84/+b
+        xJ//rdETAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAA==
+</value>
+  </data>
 </root>
