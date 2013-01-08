@@ -51,12 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CryWin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CryWin.Designer.cs">
-      <DependentUpon>CryWin.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,9 +74,6 @@
     <Compile Include="UserConfig.Designer.cs">
       <DependentUpon>UserConfig.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CryWin.resx">
-      <DependentUpon>CryWin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>

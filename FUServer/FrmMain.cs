@@ -23,19 +23,37 @@ namespace FUServer
         {
             InitializeComponent();
           //  SetAutoRun(true);
-            StartService();
+            if (ServerInfo.CheckConfigOK())
+            {
+                started = true;
+                StartService();
+               
+            }
+            else {
+                started = false;
+                Log("尚未配置,服务未启动");
+               
+            }
+            SetUIStatus();
         }
-        private void SetButtonStatus()
+       
+        private void SetUIStatus()
         {
             btnStart.Enabled = !started;
             btnStop.Enabled = started;
             if (started)
             {
+                lblServerState.ForeColor = Color.ForestGreen;
+                lblServerState.Text = "服务已启动";
+                tbMain.SelectedIndex = 0;
                 btnStart.Text = "已启动";
                 btnStop.Text = "停止";
             }
             else
             {
+                lblServerState.ForeColor = Color.Red;
+                lblServerState.Text = "尚未配置,服务未启动";
+                tbMain.SelectedIndex = 1;
                 btnStart.Text = "启动";
                 btnStop.Text = "已停止";
             }
@@ -50,10 +68,8 @@ namespace FUServer
         private void StartService()
         {
             new SocketAction().StartServer(msgHandler);
-            started = true;
-            SetButtonStatus();
-            Log("服务启动");
-
+            Log("服务已启动");
+           
             
         }
         void msgHandler(string msg)
@@ -66,15 +82,16 @@ namespace FUServer
         private void btnStop_Click(object sender, EventArgs e)
         {
             started = false;
-         
+            new FuLib.FuSocket().StopServer();
 
-            SetButtonStatus();
+            SetUIStatus();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             StartService();
-
+            started = false;
+            SetUIStatus();
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -103,12 +120,15 @@ namespace FUServer
             if (userConfig1.Save())
             {
                 MessageBox.Show("保存成功");
+                Log("已保存配置");
+                if (!started)
+                {
+                    
+                    StartService();
+                    started = true;
+                    SetUIStatus();
+                }
             }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            userConfig1.Reset();
         }
 
         private void tbxLog_TextChanged(object sender, EventArgs e)
@@ -120,6 +140,11 @@ namespace FUServer
                 MessageBox.Show(midlineposition.ToString());
                 tbxLog.Text = tbxLog.Text.Remove(midlineposition);
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            userConfig1.Reset();
         }       
     }
 }

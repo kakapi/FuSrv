@@ -19,14 +19,11 @@ namespace FUServer
 
         private void LoadData()
         {
-            string encrypted = ServerInfo.GetDecryptedInfo();
-            if (string.IsNullOrEmpty(encrypted))
+            string decrypted = ServerInfo.GetDecryptedInfo();
+            if (string.IsNullOrEmpty(decrypted))
             {
                 return;
             }
-          
-            string decrypted = FuLib.Crypto.DecryptStringAES(encrypted,"P@ssw0rd");
-
             string[] dbconfig = decrypted.Split(';')[0].Split('|');
             string[] ftpconfig = decrypted.Split(';')[1].Split('|');
  tbxServer.Text = dbconfig[0];
