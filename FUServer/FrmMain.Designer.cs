@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.pnlAction = new System.Windows.Forms.Panel();
             this.lblServerState = new System.Windows.Forms.Label();
@@ -37,13 +38,17 @@
             this.tbMain = new System.Windows.Forms.TabControl();
             this.tpStatus = new System.Windows.Forms.TabPage();
             this.tpConfig = new System.Windows.Forms.TabPage();
-            this.userConfig1 = new FUServer.UserConfig();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.systrayicon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cmsExit = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.userConfig1 = new FUServer.UserConfig();
             this.pnlAction.SuspendLayout();
             this.tbMain.SuspendLayout();
             this.tpStatus.SuspendLayout();
             this.tpConfig.SuspendLayout();
+            this.cmsExit.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAction
@@ -136,13 +141,6 @@
             this.tpConfig.Text = "相关配置";
             this.tpConfig.UseVisualStyleBackColor = true;
             // 
-            // userConfig1
-            // 
-            this.userConfig1.Location = new System.Drawing.Point(10, 10);
-            this.userConfig1.Name = "userConfig1";
-            this.userConfig1.Size = new System.Drawing.Size(408, 182);
-            this.userConfig1.TabIndex = 15;
-            // 
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(8, 199);
@@ -163,6 +161,37 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // systrayicon
+            // 
+            this.systrayicon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.systrayicon.ContextMenuStrip = this.cmsExit;
+            this.systrayicon.Icon = ((System.Drawing.Icon)(resources.GetObject("systrayicon.Icon")));
+            this.systrayicon.Text = "呼叫中心";
+            this.systrayicon.Visible = true;
+            this.systrayicon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.systrayicon_MouseDoubleClick);
+            // 
+            // cmsExit
+            // 
+            this.cmsExit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmExit});
+            this.cmsExit.Name = "cmsExit";
+            this.cmsExit.Size = new System.Drawing.Size(101, 26);
+            this.cmsExit.Click += new System.EventHandler(this.cmsExit_Click);
+            // 
+            // tsmExit
+            // 
+            this.tsmExit.Name = "tsmExit";
+            this.tsmExit.Size = new System.Drawing.Size(100, 22);
+            this.tsmExit.Text = "退出";
+            this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
+            // 
+            // userConfig1
+            // 
+            this.userConfig1.Location = new System.Drawing.Point(10, 10);
+            this.userConfig1.Name = "userConfig1";
+            this.userConfig1.Size = new System.Drawing.Size(408, 182);
+            this.userConfig1.TabIndex = 15;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -170,15 +199,19 @@
             this.ClientSize = new System.Drawing.Size(438, 268);
             this.Controls.Add(this.tbMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "呼叫中心 - 服务";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.pnlAction.ResumeLayout(false);
             this.pnlAction.PerformLayout();
             this.tbMain.ResumeLayout(false);
             this.tpStatus.ResumeLayout(false);
             this.tpConfig.ResumeLayout(false);
+            this.cmsExit.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -196,6 +229,9 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnSave;
         private UserConfig userConfig1;
+        private System.Windows.Forms.NotifyIcon systrayicon;
+        private System.Windows.Forms.ContextMenuStrip cmsExit;
+        private System.Windows.Forms.ToolStripMenuItem tsmExit;
     }
 }
 

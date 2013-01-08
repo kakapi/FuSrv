@@ -94,11 +94,15 @@ namespace FUServer
             SetUIStatus();
         }
 
-        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void Exit()
         {
             new FuLib.FuSocket().StopServer();
-            
+
             Application.Exit();
+        }
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+          
 
         }
 
@@ -145,6 +149,29 @@ namespace FUServer
         private void btnReset_Click(object sender, EventArgs e)
         {
             userConfig1.Reset();
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+        }
+
+        private void tsmExit_Click(object sender, EventArgs e)
+        {
+            Exit();
+        }
+
+        private void cmsExit_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void systrayicon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.ShowInTaskbar = true;
+            WindowState = FormWindowState.Normal;
         }       
     }
 }
