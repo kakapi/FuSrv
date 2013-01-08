@@ -153,25 +153,25 @@ namespace FUServer
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            this.WindowState = FormWindowState.Minimized;
-            this.ShowInTaskbar = false;
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.WindowState = FormWindowState.Minimized;
+                this.ShowInTaskbar = false;
+            }
         }
 
-        private void tsmExit_Click(object sender, EventArgs e)
-        {
-            Exit();
-        }
-
-        private void cmsExit_Click(object sender, EventArgs e)
-        {
-         
-        }
+       
 
         private void systrayicon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.ShowInTaskbar = true;
             WindowState = FormWindowState.Normal;
+        }
+
+        private void tsmExit_Click(object sender, EventArgs e)
+        {
+            Exit();
         }       
     }
 }

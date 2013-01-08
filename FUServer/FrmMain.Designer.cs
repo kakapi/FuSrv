@@ -38,12 +38,12 @@
             this.tbMain = new System.Windows.Forms.TabControl();
             this.tpStatus = new System.Windows.Forms.TabPage();
             this.tpConfig = new System.Windows.Forms.TabPage();
+            this.userConfig1 = new FUServer.UserConfig();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.systrayicon = new System.Windows.Forms.NotifyIcon(this.components);
             this.cmsExit = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.userConfig1 = new FUServer.UserConfig();
             this.pnlAction.SuspendLayout();
             this.tbMain.SuspendLayout();
             this.tpStatus.SuspendLayout();
@@ -141,6 +141,13 @@
             this.tpConfig.Text = "相关配置";
             this.tpConfig.UseVisualStyleBackColor = true;
             // 
+            // userConfig1
+            // 
+            this.userConfig1.Location = new System.Drawing.Point(10, 10);
+            this.userConfig1.Name = "userConfig1";
+            this.userConfig1.Size = new System.Drawing.Size(408, 182);
+            this.userConfig1.TabIndex = 15;
+            // 
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(8, 199);
@@ -175,22 +182,14 @@
             this.cmsExit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmExit});
             this.cmsExit.Name = "cmsExit";
-            this.cmsExit.Size = new System.Drawing.Size(101, 26);
-            this.cmsExit.Click += new System.EventHandler(this.cmsExit_Click);
+            this.cmsExit.Size = new System.Drawing.Size(153, 48);
             // 
             // tsmExit
             // 
             this.tsmExit.Name = "tsmExit";
-            this.tsmExit.Size = new System.Drawing.Size(100, 22);
+            this.tsmExit.Size = new System.Drawing.Size(152, 22);
             this.tsmExit.Text = "退出";
             this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
-            // 
-            // userConfig1
-            // 
-            this.userConfig1.Location = new System.Drawing.Point(10, 10);
-            this.userConfig1.Name = "userConfig1";
-            this.userConfig1.Size = new System.Drawing.Size(408, 182);
-            this.userConfig1.TabIndex = 15;
             // 
             // FrmMain
             // 
