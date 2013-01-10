@@ -173,6 +173,14 @@ namespace FUServer
         private void tsmExit_Click(object sender, EventArgs e)
         {
             Exit();
+        }
+
+        private void tsmConfig_Click(object sender, EventArgs e)
+        {
+            this.ShowInTaskbar = true;
+            this.Activate();
+            WindowState = FormWindowState.Normal;
+            tbMain.SelectedIndex = 1;
         }       
     }
 }

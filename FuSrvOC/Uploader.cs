@@ -28,6 +28,7 @@ namespace FuSrvOC
                 foreach (LocalCallRec call in  records)
                 {
                     currentUploadFile = call.FileSavePath;
+                    currentDeviceNo = call.DeviceNo;
                     FuSocket fusocket = new FuSocket();
                     fusocket.ClientActions(SiteVariables.ServerIP, SendUploadMsg);
                   bool result = UploadSingleFile(call);
@@ -39,6 +40,7 @@ namespace FuSrvOC
             }
             Logger.MyLogger.Debug("操作结束" + operationId);
         }
+        static string currentDeviceNo;
         static string currentUploadFile;
         private static void SendUploadMsg(StreamReader sr,StreamWriter sw)
         {
@@ -47,7 +49,7 @@ namespace FuSrvOC
             {
                 sw.WriteLine("uploadmsg");
                 sw.Flush();
-                sw.WriteLine("上传文件:"+currentUploadFile);
+                sw.WriteLine(string.Format("设备{0}上传文件{1}:",currentDeviceNo, currentUploadFile));
             }
         }
 

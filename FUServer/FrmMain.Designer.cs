@@ -44,6 +44,7 @@
             this.systrayicon = new System.Windows.Forms.NotifyIcon(this.components);
             this.cmsExit = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlAction.SuspendLayout();
             this.tbMain.SuspendLayout();
             this.tpStatus.SuspendLayout();
@@ -180,9 +181,10 @@
             // cmsExit
             // 
             this.cmsExit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmConfig,
             this.tsmExit});
             this.cmsExit.Name = "cmsExit";
-            this.cmsExit.Size = new System.Drawing.Size(153, 48);
+            this.cmsExit.Size = new System.Drawing.Size(153, 70);
             // 
             // tsmExit
             // 
@@ -190,6 +192,13 @@
             this.tsmExit.Size = new System.Drawing.Size(152, 22);
             this.tsmExit.Text = "退出";
             this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
+            // 
+            // tsmConfig
+            // 
+            this.tsmConfig.Name = "tsmConfig";
+            this.tsmConfig.Size = new System.Drawing.Size(152, 22);
+            this.tsmConfig.Text = "配置";
+            this.tsmConfig.Click += new System.EventHandler(this.tsmConfig_Click);
             // 
             // FrmMain
             // 
@@ -231,6 +240,7 @@
         private System.Windows.Forms.NotifyIcon systrayicon;
         private System.Windows.Forms.ContextMenuStrip cmsExit;
         private System.Windows.Forms.ToolStripMenuItem tsmExit;
+        private System.Windows.Forms.ToolStripMenuItem tsmConfig;
     }
 }
 
