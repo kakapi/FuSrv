@@ -166,6 +166,7 @@ namespace FUServer
         private void systrayicon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.ShowInTaskbar = true;
+            this.Activate();
             WindowState = FormWindowState.Normal;
         }
 

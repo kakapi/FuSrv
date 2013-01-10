@@ -9,6 +9,7 @@ namespace FuSrvOC
    {  //设备号(等同于用户名)
 
        public int Id { get; set; }
+       public string DeviceNo { get; set; }
         public string UserId { get; set; }
        //被叫号码
         public string RemotePhoneNo { get; set; }

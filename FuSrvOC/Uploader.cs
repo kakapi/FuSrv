@@ -55,16 +55,57 @@ namespace FuSrvOC
 
         public static bool UploadSingleFile(LocalCallRec call)
         {
-            return UploadSingleFile(call.FileSavePath,call.Id, SiteVariables.FtpServerPath
-                , SiteVariables.FtpUserId, SiteVariables.FtpPassword);
+            string deviceNo = call.DeviceNo;
+            string targetPath;
+            if(EnsureRemotePath(deviceNo,SiteVariables.FtpServerPath
+                , SiteVariables.FtpUserId, SiteVariables.FtpPassword,out targetPath))
+            {
+                return UploadSingleFile(call.FileSavePath, call.Id,deviceNo,targetPath
+               , SiteVariables.FtpUserId, SiteVariables.FtpPassword);
+            }
+            return false;
+           
         }
-
+        /// <summary>
+        /// 确保远程路径存在
+        /// </summary>
+        private static bool EnsureRemotePath(string deviceNo,string ftpServer,string uid,string pwd,out string targetPath )
+        {
+            string errMsg;
+            targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer);
+            string nowString = DateTime.Now.ToString("yyyyMMdd");
+            targetPath += nowString + "/";
+            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+                uid, pwd, out errMsg))
+            {
+                Logger.MyLogger.Error("Can't Create Directory " + targetPath + ",ErrorCode:" + errMsg);
+                return false;
+            }
+            if (string.IsNullOrEmpty(deviceNo))
+            {
+                Logger.MyLogger.Info("DeviceNo为空,文件将被保存在日期文件夹下.");
+            }
+            else
+            {
+                targetPath += deviceNo + "/";
+                if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+                   uid, pwd, out errMsg))
+                {
+                    Logger.MyLogger.Error("Can't Create Directory " + deviceNo + ",ErrorCode:" + errMsg);
+                    return false;
+                }
+            }
+          
+           
+         
+            return true;
+        }
         #region Services
 
        
 
-        public static bool UploadSingleFile(string fileNametouploaded,int id
-            , string ftpServer
+        public static bool UploadSingleFile(string fileNametouploaded,int id,string deviceNo
+            , string targetPath
             , string uid, string pwd)
         {
             if (!File.Exists(fileNametouploaded))
@@ -77,29 +118,12 @@ namespace FuSrvOC
             {
                 Logger.MyLogger.Info("文件正在被占用,跳过:" + fileNametouploaded);
             }
-            string deviceNo = string.Empty, duration = string.Empty,errMsg;
-            if (!ExtractInfo(fileNametouploaded, out deviceNo, out duration))
-            {
-                return false;
-            }
+            string duration = string.Empty;
+           
+
             string fileName = Path.GetFileName(fileNametouploaded);
 
-            string targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer) + deviceNo + "/";
-            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
-                uid,pwd,out errMsg))
-           {
-               Logger.MyLogger.Error("Can't Create Directory"+deviceNo+",ErrorCode:"+errMsg);
-               return false;
-           }
-            string nowString=DateTime.Now.ToString("yyyyMMdd");
-           targetPath +=  nowString+"/";
-           if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
-               uid, pwd, out errMsg))
-           {
-               Logger.MyLogger.Error("Can't Create Directory" + targetPath + ",ErrorCode:" + errMsg);
-               return false;
-           }
-
+           
            string remoteFileName = targetPath + fileName;
             string msg;
             Logger.MyLogger.Info("Begin Upload:" + fileNametouploaded);
@@ -109,9 +133,8 @@ namespace FuSrvOC
             {
                 Logger.MyLogger.Info(msg);
                 new UploadLogger().WriteLastUploadFileIndex(id);
-           
-
-                DbUnit.UpdateRemote(deviceNo, duration,deviceNo+"/"+nowString+"/"+fileName);
+                string nowString = DateTime.Now.ToString("yyyyMMdd HH:mm:ss");
+                DbUnit.UpdateRemote(deviceNo, duration, nowString + "/" + deviceNo + "/" + fileName);
             }
             else
             {

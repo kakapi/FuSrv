@@ -86,6 +86,7 @@ namespace FuSrvOC
             {
                 LocalCallRec lcr = new LocalCallRec();
                 lcr.Id = (int)reader["ID"];
+                lcr.DeviceNo = reader["序列号"].ToString();
                 lcr.CallType = reader["类型"].ToString();
                 lcr.Duration = reader["通话时间"].ToString();
                 lcr.LocalBeginTIme = reader["开始时间"].ToString();
