@@ -10,8 +10,10 @@ namespace FuLib
         {
            
             string end = @"\\";
+            
             if (path.EndsWith("/") || path.EndsWith(@"\") || path.EndsWith(@"\\"))
             { return path; }
+
             if (path.Contains("/")) { end = "/"; }
             if (path.Contains(@"\\")) { end = @"\\"; }
             if (path.Contains(@"\")) { end = @"\"; }

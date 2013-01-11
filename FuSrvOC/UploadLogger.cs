@@ -6,7 +6,7 @@ using FuLib;
 namespace FuSrvOC
 {
     /// <summary>
-    /// 管理上传日志
+    /// 记录已处理记录的最大Index值.
     /// </summary>
     public class UploadLogger
     {

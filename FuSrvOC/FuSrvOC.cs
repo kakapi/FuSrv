@@ -26,7 +26,7 @@ namespace FuSrvOC
                 interal = 5;
             }
 
-            System.Timers.Timer t = new System.Timers.Timer(1000*10*interal);
+            System.Timers.Timer t = new System.Timers.Timer(1000*60*interal);
             t.Elapsed += new System.Timers.ElapsedEventHandler(t_Elapsed);
             
             t.Start();

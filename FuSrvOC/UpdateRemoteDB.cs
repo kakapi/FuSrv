@@ -101,11 +101,13 @@ namespace FuSrvOC
             return rl;
 
         }
-        public static void UpdateRemote(string deviceno
+        public static bool UpdateRemote(string deviceno
             , string duration
             , string recordfilelocation, string remotePhoneNo
-            , string callType)
+            , string callType,out string errMsg)
         {
+            bool result = false;
+            errMsg = string.Empty;
             string sql = string.Format(@"insert into {0}({1},{2},{3},{4},{5},{6})
                         values('{7}','{8}','{9}','{10}','{11}','{12}')",
                 SiteVariables.TableName
@@ -124,13 +126,19 @@ namespace FuSrvOC
                 , recordfilelocation
                 
                 );
-            Logger.MyLogger.Info(sql);
-            ExecuteSql(RemoteConn, new SqlCommand(sql));
+            Logger.MyLogger.Debug(sql);
+            try
+            {
+                ExecuteSql(RemoteConn, new SqlCommand(sql));
+                result = true;
+            }
+            catch(Exception ex)
+            {
+                errMsg = ex.Message;
+            }
+            return result;
         }
-        public static void UpdateRemote(string deviceno, string duration, string savePath)
-        {
-            UpdateRemote(deviceno, duration, savePath,string.Empty, string.Empty);
-        }
+       
 
 
         public static void ExecuteSql(IDbConnection conn, IDbCommand comm)
@@ -146,7 +154,7 @@ namespace FuSrvOC
             }
             catch (Exception ex)
             {
-                Logger.MyLogger.Error(ex.Message);
+                throw ex;
             }
             finally
             {

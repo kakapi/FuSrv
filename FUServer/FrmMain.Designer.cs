@@ -38,13 +38,16 @@
             this.tbMain = new System.Windows.Forms.TabControl();
             this.tpStatus = new System.Windows.Forms.TabPage();
             this.tpConfig = new System.Windows.Forms.TabPage();
-            this.userConfig1 = new FUServer.UserConfig();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.systrayicon = new System.Windows.Forms.NotifyIcon(this.components);
             this.cmsExit = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblCheckProgress = new System.Windows.Forms.Label();
+            this.btnClearLog = new System.Windows.Forms.Button();
+            this.userConfig1 = new FUServer.UserConfig();
+            this.tsmServerStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlAction.SuspendLayout();
             this.tbMain.SuspendLayout();
             this.tpStatus.SuspendLayout();
@@ -56,6 +59,7 @@
             // 
             this.pnlAction.Controls.Add(this.lblServerState);
             this.pnlAction.Controls.Add(this.btnStop);
+            this.pnlAction.Controls.Add(this.btnClearLog);
             this.pnlAction.Controls.Add(this.btnStart);
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAction.Location = new System.Drawing.Point(3, 3);
@@ -76,7 +80,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(313, 10);
+            this.btnStop.Location = new System.Drawing.Point(199, 10);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 1;
@@ -87,7 +91,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(232, 10);
+            this.btnStart.Location = new System.Drawing.Point(118, 10);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 0;
@@ -101,6 +105,7 @@
             this.tbxLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxLog.Location = new System.Drawing.Point(3, 47);
             this.tbxLog.Name = "tbxLog";
+            this.tbxLog.ReadOnly = true;
             this.tbxLog.Size = new System.Drawing.Size(424, 192);
             this.tbxLog.TabIndex = 1;
             this.tbxLog.Text = "";
@@ -131,9 +136,10 @@
             // 
             // tpConfig
             // 
-            this.tpConfig.Controls.Add(this.userConfig1);
+            this.tpConfig.Controls.Add(this.lblCheckProgress);
             this.tpConfig.Controls.Add(this.btnReset);
             this.tpConfig.Controls.Add(this.btnSave);
+            this.tpConfig.Controls.Add(this.userConfig1);
             this.tpConfig.Location = new System.Drawing.Point(4, 22);
             this.tpConfig.Name = "tpConfig";
             this.tpConfig.Padding = new System.Windows.Forms.Padding(3);
@@ -141,13 +147,6 @@
             this.tpConfig.TabIndex = 1;
             this.tpConfig.Text = "相关配置";
             this.tpConfig.UseVisualStyleBackColor = true;
-            // 
-            // userConfig1
-            // 
-            this.userConfig1.Location = new System.Drawing.Point(10, 10);
-            this.userConfig1.Name = "userConfig1";
-            this.userConfig1.Size = new System.Drawing.Size(408, 182);
-            this.userConfig1.TabIndex = 15;
             // 
             // btnReset
             // 
@@ -181,10 +180,18 @@
             // cmsExit
             // 
             this.cmsExit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmServerStatus,
             this.tsmConfig,
             this.tsmExit});
             this.cmsExit.Name = "cmsExit";
-            this.cmsExit.Size = new System.Drawing.Size(153, 70);
+            this.cmsExit.Size = new System.Drawing.Size(153, 92);
+            // 
+            // tsmConfig
+            // 
+            this.tsmConfig.Name = "tsmConfig";
+            this.tsmConfig.Size = new System.Drawing.Size(152, 22);
+            this.tsmConfig.Text = "配置";
+            this.tsmConfig.Click += new System.EventHandler(this.tsmConfig_Click);
             // 
             // tsmExit
             // 
@@ -193,12 +200,40 @@
             this.tsmExit.Text = "退出";
             this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
             // 
-            // tsmConfig
+            // lblCheckProgress
             // 
-            this.tsmConfig.Name = "tsmConfig";
-            this.tsmConfig.Size = new System.Drawing.Size(152, 22);
-            this.tsmConfig.Text = "配置";
-            this.tsmConfig.Click += new System.EventHandler(this.tsmConfig_Click);
+            this.lblCheckProgress.AutoSize = true;
+            this.lblCheckProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblCheckProgress.Location = new System.Drawing.Point(125, 204);
+            this.lblCheckProgress.Name = "lblCheckProgress";
+            this.lblCheckProgress.Size = new System.Drawing.Size(179, 12);
+            this.lblCheckProgress.TabIndex = 16;
+            this.lblCheckProgress.Text = "正在检查服务器配置,请稍候....";
+            this.lblCheckProgress.Visible = false;
+            // 
+            // btnClearLog
+            // 
+            this.btnClearLog.Location = new System.Drawing.Point(344, 11);
+            this.btnClearLog.Name = "btnClearLog";
+            this.btnClearLog.Size = new System.Drawing.Size(75, 23);
+            this.btnClearLog.TabIndex = 0;
+            this.btnClearLog.Text = "清空日志";
+            this.btnClearLog.UseVisualStyleBackColor = true;
+            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
+            // 
+            // userConfig1
+            // 
+            this.userConfig1.Location = new System.Drawing.Point(10, 10);
+            this.userConfig1.Name = "userConfig1";
+            this.userConfig1.Size = new System.Drawing.Size(408, 182);
+            this.userConfig1.TabIndex = 15;
+            // 
+            // tsmServerStatus
+            // 
+            this.tsmServerStatus.Name = "tsmServerStatus";
+            this.tsmServerStatus.Size = new System.Drawing.Size(152, 22);
+            this.tsmServerStatus.Text = "服务状态";
+            this.tsmServerStatus.Click += new System.EventHandler(this.tsmServerStatus_Click);
             // 
             // FrmMain
             // 
@@ -219,6 +254,7 @@
             this.tbMain.ResumeLayout(false);
             this.tpStatus.ResumeLayout(false);
             this.tpConfig.ResumeLayout(false);
+            this.tpConfig.PerformLayout();
             this.cmsExit.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -241,6 +277,9 @@
         private System.Windows.Forms.ContextMenuStrip cmsExit;
         private System.Windows.Forms.ToolStripMenuItem tsmExit;
         private System.Windows.Forms.ToolStripMenuItem tsmConfig;
+        private System.Windows.Forms.Label lblCheckProgress;
+        private System.Windows.Forms.Button btnClearLog;
+        private System.Windows.Forms.ToolStripMenuItem tsmServerStatus;
     }
 }
 

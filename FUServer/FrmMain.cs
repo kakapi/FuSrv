@@ -121,19 +121,47 @@ namespace FUServer
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (userConfig1.Save())
+
+            lblCheckProgress.Visible = true;
+            Thread tCheckProgress = new Thread(new ThreadStart(ShowChecking));
+            tCheckProgress.Start();
+
+            Thread tConfigSave = new Thread(new ThreadStart(ConfigSave));
+            tConfigSave.Start();
+          
+        
+            
+        }
+        public void ConfigSave()
+        {
+            string errMsg;
+            bool serverValid = userConfig1.Save(out errMsg);
+
+            lblCheckProgress.Visible = false;
+            if (serverValid)
             {
                 MessageBox.Show("保存成功");
                 Log("已保存配置");
                 if (!started)
                 {
-                    
+
                     StartService();
                     started = true;
                     SetUIStatus();
                 }
             }
+            else
+            {
+                MessageBox.Show(errMsg);
+            }
+            
         }
+
+        public void ShowChecking()
+        {
+            lblCheckProgress.Visible = true;
+        }
+       
 
         private void tbxLog_TextChanged(object sender, EventArgs e)
         {
@@ -181,6 +209,20 @@ namespace FUServer
             this.Activate();
             WindowState = FormWindowState.Normal;
             tbMain.SelectedIndex = 1;
-        }       
+        }
+
+
+        private void btnClearLog_Click(object sender, EventArgs e)
+        {
+            tbxLog.Text = string.Empty;
+        }
+
+        private void tsmServerStatus_Click(object sender, EventArgs e)
+        {
+            this.ShowInTaskbar = true;
+            this.Activate();
+            WindowState = FormWindowState.Normal;
+            tbMain.SelectedIndex = 0;
+        }
     }
 }

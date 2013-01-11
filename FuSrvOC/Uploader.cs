@@ -14,66 +14,84 @@ namespace FuSrvOC
     /// </summary>
     public class Uploader
     {
-       
+
         public static void UploadFiles()
         {
             new SiteVariables().Init();
 
-               Guid operationId = Guid.NewGuid();
-            Logger.MyLogger.Debug("开始扫描"+operationId);
+            Guid operationId = Guid.NewGuid();
+            Logger.MyLogger.Info("###开始扫描" + operationId);
+            FuSocket fusocket = new FuSocket();
             try
             {
-                IList<LocalCallRec> records=DbUnit.GetRecordsToBeUpload(
+                 
+                IList<LocalCallRec> records =DbUnit.GetRecordsToBeUpload(
                     new UploadLogger().GetLastUploadedFileIndex());
-                foreach (LocalCallRec call in  records)
+                Logger.MyLogger.Info("需要处理的通话记录数量:" + records.Count);
+                foreach (LocalCallRec call in records)
                 {
                     currentUploadFile = call.FileSavePath;
                     currentDeviceNo = call.DeviceNo;
-                    FuSocket fusocket = new FuSocket();
+                    Logger.MyLogger.Info("开始处理:" + currentUploadFile);
+                    bool result = UploadSingleFile(call);
                     fusocket.ClientActions(SiteVariables.ServerIP, SendUploadMsg);
-                  bool result = UploadSingleFile(call);
                 }
             }
             catch (Exception ex)
             {
-                Logger.MyLogger.Fatal("*******ERROR**" + ex.Message+ex.StackTrace);
+                Logger.MyLogger.Error("###" + ex.Message + ex.StackTrace);
+                fusocket.ClientActions(SiteVariables.ServerIP, SendUploadError);
             }
-            Logger.MyLogger.Debug("操作结束" + operationId);
+            Logger.MyLogger.Info("###操作结束" + operationId);
         }
         static string currentDeviceNo;
         static string currentUploadFile;
-        private static void SendUploadMsg(StreamReader sr,StreamWriter sw)
+        private static void SendUploadMsg(StreamReader sr, StreamWriter sw)
         {
             string status = sr.ReadLine();
             if (status == "OK")
             {
                 sw.WriteLine("uploadmsg");
                 sw.Flush();
-                sw.WriteLine(string.Format("设备{0}上传文件{1}:",currentDeviceNo, currentUploadFile));
+                sw.WriteLine(string.Format("设备:{0}已上传文件-{1}:", currentDeviceNo, currentUploadFile));
             }
         }
 
-       
+        private static void SendUploadError(StreamReader sr, StreamWriter sw)
+        {
+            string status = sr.ReadLine();
+            if (status == "OK")
+            {
+                sw.WriteLine("uploadmsg");
+                sw.Flush();
+                sw.WriteLine(string.Format("设备:{0}上传失败-{1}", currentDeviceNo, currentUploadFile));
+            }
+        }
+
 
         public static bool UploadSingleFile(LocalCallRec call)
         {
             string deviceNo = call.DeviceNo;
             string targetPath;
-            if(EnsureRemotePath(deviceNo,SiteVariables.FtpServerPath
-                , SiteVariables.FtpUserId, SiteVariables.FtpPassword,out targetPath))
+            if (EnsureRemotePath(deviceNo, SiteVariables.FtpServerPath
+                , SiteVariables.FtpUserId, SiteVariables.FtpPassword, out targetPath))
             {
-                return UploadSingleFile(call.FileSavePath, call.Id,deviceNo,targetPath
+                return UploadSingleFile(call.FileSavePath, call.Id, deviceNo, targetPath
                , SiteVariables.FtpUserId, SiteVariables.FtpPassword);
             }
             return false;
-           
+
         }
         /// <summary>
         /// 确保远程路径存在
         /// </summary>
-        private static bool EnsureRemotePath(string deviceNo,string ftpServer,string uid,string pwd,out string targetPath )
+        private static bool EnsureRemotePath(string deviceNo, string ftpServer, string uid, string pwd, out string targetPath)
         {
             string errMsg;
+            if (!ftpServer.EndsWith("/"))
+            {
+                ftpServer = ftpServer + "/";
+            }
             targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer);
             string nowString = DateTime.Now.ToString("yyyyMMdd");
             targetPath += nowString + "/";
@@ -97,22 +115,22 @@ namespace FuSrvOC
                     return false;
                 }
             }
-          
-           
-         
+
+
+
             return true;
         }
         #region Services
 
-       
 
-        public static bool UploadSingleFile(string fileNametouploaded,int id,string deviceNo
+
+        public static bool UploadSingleFile(string fileNametouploaded, int id, string deviceNo
             , string targetPath
             , string uid, string pwd)
         {
             if (!File.Exists(fileNametouploaded))
             {
-                Logger.MyLogger.Error("录音文件不存在:"+fileNametouploaded);
+                Logger.MyLogger.Error("录音文件不存在:" + fileNametouploaded);
                 return false;
 
             }
@@ -121,27 +139,25 @@ namespace FuSrvOC
                 Logger.MyLogger.Info("文件正在被占用,跳过:" + fileNametouploaded);
             }
             string duration = string.Empty;
-           
+
 
             string fileName = Path.GetFileName(fileNametouploaded);
 
-           
-           string remoteFileName = targetPath + fileName;
+
+            string remoteFileName = targetPath + fileName;
             string msg;
-            Logger.MyLogger.Info("Begin Upload:" + fileNametouploaded);
+            Logger.MyLogger.Info("Ftp Begin Upload:" + fileNametouploaded);
             bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, remoteFileName, uid, pwd, out msg);
-            Logger.MyLogger.Info("Upload Result:" + uploadResult);
+            Logger.MyLogger.Info("Ftp Upload Result:" + uploadResult + "," + msg);
             if (uploadResult == true)
             {
-                Logger.MyLogger.Info(msg);
+
                 new UploadLogger().WriteLastUploadFileIndex(id);
                 string nowString = DateTime.Now.ToString("yyyyMMdd HH:mm:ss");
-                DbUnit.UpdateRemote(deviceNo, duration, nowString + "/" + deviceNo + "/" + fileName);
+                uploadResult = DbUnit.UpdateRemote(deviceNo, duration, nowString + "/" + deviceNo + "/" + fileName, "", "", out msg);
             }
-            else
-            {
-                Logger.MyLogger.Error(msg);
-            }
+           
+            
             return uploadResult;
         }
         public static bool ExtractInfo(string fileFullName, out string deviceno, out string duration)
@@ -159,13 +175,15 @@ namespace FuSrvOC
 
             NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(fileFullName);
             TimeSpan tp = wf.TotalTime;
-            duration = tp.TotalSeconds.ToString();  
+            duration = tp.TotalSeconds.ToString();
             return true;
         }
 
         /// <summary>
         /// 
         /// </summary>
+
+
 
     }
         #endregion

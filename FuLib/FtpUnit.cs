@@ -7,12 +7,22 @@ namespace FuLib
 {
     public class FtpUnit
     {
-
+        private static string EnsureServerFormat(string server)
+        {
+            if (server.StartsWith("ftp://"))
+            {
+                return server;
+            }
+            else {
+                return "ftp://" + server;
+            }
+        }
         public static bool Upload(string fileNametouploaded, string targetFile, string uid, string pwd, out string msg)
         {
 
             bool result = false;
             msg = string.Empty;
+             targetFile=  EnsureServerFormat(targetFile);
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(targetFile);
             request.Method = WebRequestMethods.Ftp.UploadFile;
             if (!string.IsNullOrEmpty(uid))
@@ -43,6 +53,7 @@ namespace FuLib
         public static string DownloadAndRead(string remoteFile, string uid, string pwd, out string errmsg)
         {
             errmsg = string.Empty;
+            remoteFile = EnsureServerFormat(remoteFile);
             string result = string.Empty;
             try
             {
@@ -73,6 +84,7 @@ namespace FuLib
 
         private  static FtpWebRequest CreateRequest(string path, string uid, string pwd)
         {
+            path = EnsureServerFormat(path);
             var request = (FtpWebRequest)WebRequest.Create(path);
             if (!string.IsNullOrEmpty(uid))
             {
@@ -115,6 +127,21 @@ namespace FuLib
             return true;
 
 
+        }
+        public static bool CheckFtpServer(string directory, string username, string password, out string errMsg)
+        {
+            bool result = false;
+            errMsg = string.Empty;
+            var request = CreateRequest(directory, username, password);
+            request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
+            try {
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                result = true;
+            }
+            catch(Exception ex) {
+                errMsg = ex.Message;
+            }
+            return result;
         }
     }
 }

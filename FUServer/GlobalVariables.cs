@@ -8,6 +8,7 @@ namespace FUServer
 {
     public class GlobalVariables
     {
+        public const string CallLogTableName = "calllog";
        public const int Port = 13092;
        const string logFileName = "log/FuServer.log";
        public static bool IsRegisted = false;

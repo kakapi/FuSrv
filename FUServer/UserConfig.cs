@@ -26,9 +26,9 @@ namespace FUServer
             }
             string[] dbconfig = decrypted.Split(';')[0].Split('|');
             string[] ftpconfig = decrypted.Split(';')[1].Split('|');
- tbxServer.Text = dbconfig[0];
-            tbxDatabase.Text =dbconfig[1];
-           //Properties.Settings.Default.DbServer;
+            tbxServer.Text = dbconfig[0];
+            tbxDatabase.Text = dbconfig[1];
+            //Properties.Settings.Default.DbServer;
             tbxUID.Text = dbconfig[2];
             tbxPwd.Text = dbconfig[3];
 
@@ -36,7 +36,7 @@ namespace FUServer
             ftpPort.Text = ftpconfig[1];
             ftpUser.Text = ftpconfig[2];
             ftpPwd.Text = ftpconfig[3];
-           
+
         }
         private string CreateCode()
         {
@@ -53,10 +53,34 @@ namespace FUServer
             return crypted;
         }
 
-
-
-        public bool Save()
+        private bool CheckServer(out string errMsg)
         {
+            bool result = false;
+
+            result = FuLib.FtpUnit.CheckFtpServer(ftpIP.Text, ftpUser.Text, ftpPwd.Text, out errMsg);
+            if (result == false)
+            {
+                errMsg = "无法连接Ftp:" + errMsg;
+               
+            }
+            else
+            {
+                result = ServerInfo.CheckSqlServer(tbxServer.Text, tbxDatabase.Text, tbxUID.Text, tbxPwd.Text, out errMsg);
+                if (result == false)
+                {
+                    errMsg="无法连接SqlServer:" + errMsg;
+                }
+            } GlobalVariables.Logger.Error(errMsg);
+            return result;
+        }
+
+        public bool Save(out string errMsg)
+        {
+
+            if (!CheckServer(out errMsg))
+            {
+                return false;
+            }
             if (string.IsNullOrEmpty(tbxServer.Text))
             {
                 MessageBox.Show("请填写数据库服务器地址.");
@@ -89,7 +113,7 @@ namespace FUServer
 
             SaveData();
             return true;
-          
+
 
         }
 
@@ -99,7 +123,7 @@ namespace FUServer
         }
         private void SaveData()
         {
-            
+
             string server = tbxServer.Text.Trim();
             string database = tbxDatabase.Text.Trim();
             string uid = tbxUID.Text.Trim();
@@ -117,7 +141,7 @@ namespace FUServer
 
             string crypted = FuLib.Crypto.EncryptStringAES(original, sharedsecret);
             ServerInfo.SaveEncryptedInfo(crypted);
-           
+
         }
         private IEnumerable<Control> GetAllTextBoxControls(Control container)
         {
