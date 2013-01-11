@@ -78,6 +78,8 @@ namespace FuSrvOC
                 FtpPort = ss[1].Split('|')[1];
                 FtpUserId = ss[1].Split('|')[2];
                 FtpPassword = ss[1].Split('|')[3];
+                Logger.MyLogger.Info("服务器信息已获取");
+                Logger.MyLogger.Debug(serverInfo);
             }
             // 
         }
