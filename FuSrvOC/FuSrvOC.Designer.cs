@@ -1,6 +1,6 @@
 ﻿namespace FuSrvOC
 {
-    partial class FuSrvOC
+    partial class yuntelservice
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            // 
+            // yuntelservice
+            // 
+            this.ServiceName = "yuntelservice";
+
         }
 
         #endregion
