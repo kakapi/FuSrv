@@ -16,7 +16,7 @@ namespace FuSrvOC
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 
-				new FuSrvOC() 
+				new yuntelservice() 
 			};
             ServiceBase.Run(ServicesToRun);
         }

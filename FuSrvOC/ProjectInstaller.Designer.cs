@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
-            this.FuSrvOCService = new System.ServiceProcess.ServiceInstaller();
+            this.yuntelserviceInstaller = new System.ServiceProcess.ServiceInstaller();
             // 
             // serviceProcessInstaller1
             // 
-            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalService;
+            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
             // 
-            // FuSrvOCService
+            // yuntelserviceInstaller
             // 
-            this.FuSrvOCService.Description = "录音同步服务";
-            this.FuSrvOCService.DisplayName = "FuSrvOCService";
-            this.FuSrvOCService.ServiceName = "FuSrvOCService";
-            this.FuSrvOCService.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+            this.yuntelserviceInstaller.Description = "录音文件上传服务";
+            this.yuntelserviceInstaller.DisplayName = "yuntelservice";
+            this.yuntelserviceInstaller.ServiceName = "yuntelservice";
+            this.yuntelserviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
             this.serviceProcessInstaller1,
-            this.FuSrvOCService});
+            this.yuntelserviceInstaller});
 
         }
 
         #endregion
 
         private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
-        private System.ServiceProcess.ServiceInstaller FuSrvOCService;
+        private System.ServiceProcess.ServiceInstaller yuntelserviceInstaller;
     }
 }

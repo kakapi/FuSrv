@@ -9,9 +9,9 @@ using System.Text;
 
 namespace FuSrvOC
 {
-    public partial class FuSrvOC : ServiceBase
+    public partial class yuntelservice : ServiceBase
     {
-        public FuSrvOC()
+        public yuntelservice()
         {
             InitializeComponent();
         }
