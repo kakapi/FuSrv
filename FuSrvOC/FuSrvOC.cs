@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 using System.ServiceProcess;
 using System.Text;
-
+using FuLib;
 namespace FuSrvOC
 {
     public partial class yuntelservice : ServiceBase
@@ -21,15 +21,21 @@ namespace FuSrvOC
             //初始化全局变量
             string strInteral = SiteVariables.InteralDuration;
             int interal;
+           
+
             if(!int.TryParse(strInteral,out interal))
             {
                 interal = 5;
             }
+            Logger.MyLogger.Info("开始验证客户端有效性");
+            FuSocket fusocket = new FuSocket();
 
-            System.Timers.Timer t = new System.Timers.Timer(1000*60*interal);
-            t.Elapsed += new System.Timers.ElapsedEventHandler(t_Elapsed);
-            
-            t.Start();
+
+        
+           SiteVariables.ServiceTimer= new System.Timers.Timer(1000*60*interal);
+           SiteVariables.ServiceTimer.Elapsed += new System.Timers.ElapsedEventHandler(t_Elapsed);
+
+           SiteVariables.ServiceTimer.Start();
             
         }
 

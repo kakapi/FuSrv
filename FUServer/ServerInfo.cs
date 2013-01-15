@@ -10,9 +10,25 @@ namespace FUServer
     {
         public static string configFileName = AppDomain.CurrentDomain.BaseDirectory + "conf.ig";
 
+        
         public static bool CheckConfigOK()
         {
-            return !string.IsNullOrEmpty(GetDecryptedInfo());
+            bool result = true;
+           string configInfo=GetDecryptedInfo();
+           if (string.IsNullOrEmpty(configInfo))
+           { result = false; }
+           else
+           {
+               if (configInfo.Split(';').Length != 4)
+               {
+                   result = false;
+               }
+               else {
+                   result = true;
+               }
+           }
+            return result;
+          
         }
         public static string GetDecryptedInfo()
         {
@@ -39,31 +55,7 @@ namespace FUServer
             File.WriteAllText(configFileName, encryptedInfo);
         }
 
-        public static bool CheckSqlServer(string server, string database, string userid, string pwd, out string errMsg)
-        { 
-            bool result=false;
-            errMsg = string.Empty;
-            SqlConnection sqlConn = new SqlConnection(string.Format("server={0};database={1};uid={2};pwd={3}"
-                ,server,database,userid,pwd));
-            SqlCommand sqlComm = new SqlCommand("select top 1 * from "+GlobalVariables.CallLogTableName);
-            result = CheckDbServer(sqlConn, sqlComm, out errMsg);
-                return result;
-        }
-        private static bool CheckDbServer(DbConnection conn,DbCommand comm,out string errMsg)
-        {
-            errMsg = string.Empty;
-            bool result = false;
-            comm.Connection = conn;
-            try {
-                conn.Open();
-                comm.ExecuteNonQuery();
-                conn.Close();
-                result = true;
-            }
-            catch (Exception ex){
-                errMsg = ex.Message;
-            }
-            return result;
-        }
+      
+      
     }
 }

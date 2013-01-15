@@ -13,7 +13,8 @@ namespace FuLib
             {
                 return server;
             }
-            else {
+            else
+            {
                 return "ftp://" + server;
             }
         }
@@ -22,8 +23,8 @@ namespace FuLib
 
             bool result = false;
             msg = string.Empty;
-             targetFile=  EnsureServerFormat(targetFile);
-             FtpWebRequest request = CreateRequest(targetFile, uid, pwd);
+            targetFile = EnsureServerFormat(targetFile);
+            FtpWebRequest request = CreateRequest(targetFile, uid, pwd);
             request.Method = WebRequestMethods.Ftp.UploadFile;
 
             try
@@ -56,7 +57,7 @@ namespace FuLib
             {
                 FtpWebRequest request = CreateRequest(remoteFile, uid, pwd);
                 request.Method = WebRequestMethods.Ftp.DownloadFile;
- 
+
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
 
                 Stream responseStream = response.GetResponseStream();
@@ -73,24 +74,34 @@ namespace FuLib
             return result;
         }
 
-        private  static FtpWebRequest CreateRequest(string path, string uid, string pwd)
+        static string ErrMsg;
+        private static FtpWebRequest CreateRequest(string path, string uid, string pwd)
         {
             path = EnsureServerFormat(path);
-            var request = (FtpWebRequest)WebRequest.Create(path);
-            if (!string.IsNullOrEmpty(uid))
-            {
-                request.Credentials = new NetworkCredential(uid, pwd);
-            }
-            return request;
-        }
-        public static bool EnsureFtpPath(string directory, string username, string password,out string errMsg)
-        {
-
-            errMsg = string.Empty;
-            var request = CreateRequest(directory, username, password);
-            request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory; 
             try
             {
+                var request = (FtpWebRequest)WebRequest.Create(path);
+                if (!string.IsNullOrEmpty(uid))
+                {
+                    request.Credentials = new NetworkCredential(uid, pwd);
+                }
+                return request;
+            }
+            catch (Exception ex)
+            {
+                ErrMsg = ex.Message;
+                return null;
+            }
+
+        }
+        public static bool EnsureFtpPath(string directory, string username, string password, out string errMsg)
+        {
+
+            errMsg = ErrMsg;
+            try
+            {
+                var request = CreateRequest(directory, username, password);
+                request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
             }
             catch (WebException ex)
@@ -107,8 +118,8 @@ namespace FuLib
                     }
                     catch (WebException exx)
                     {
-                       FtpWebResponse exxResp = (FtpWebResponse)exx.Response;
-                       errMsg = exxResp.StatusCode.ToString();
+                        FtpWebResponse exxResp = (FtpWebResponse)exx.Response;
+                        errMsg = exxResp.StatusCode.ToString();
                         return false;
                     }
 
@@ -125,11 +136,13 @@ namespace FuLib
             errMsg = string.Empty;
             var request = CreateRequest(directory, username, password);
             request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
-            try {
+            try
+            {
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
                 result = true;
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 errMsg = ex.Message;
             }
             return result;

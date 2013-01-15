@@ -368,7 +368,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:yuntelserver"
         "ProductCode" = "8:{C4684FE0-A0F0-4423-AF87-0D723B8C2309}"
-        "PackageCode" = "8:{E2964749-E2EF-488D-8916-E240E1D21C2E}"
+        "PackageCode" = "8:{42EBF3E0-F34A-46DA-9267-A12DD92A9DE7}"
         "UpgradeCode" = "8:{844FE65E-1FF7-444D-A6AF-435AE0E92510}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

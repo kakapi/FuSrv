@@ -38,6 +38,8 @@
             this.ftpIP = new System.Windows.Forms.TextBox();
             this.ftpUser = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbxAccessPwd = new System.Windows.Forms.TextBox();
             this.tbxDatabase = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,15 +48,17 @@
             this.tbxPwd = new System.Windows.Forms.TextBox();
             this.tbxServer = new System.Windows.Forms.TextBox();
             this.tbxUID = new System.Windows.Forms.TextBox();
-            this.tbxAccessPwd = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tbxClientValidationURL = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.ftpPort);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
@@ -65,22 +69,22 @@
             this.groupBox2.Controls.Add(this.ftpUser);
             this.groupBox2.Location = new System.Drawing.Point(217, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(194, 216);
+            this.groupBox2.Size = new System.Drawing.Size(281, 222);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "FTP配置";
             // 
             // ftpPort
             // 
-            this.ftpPort.Location = new System.Drawing.Point(72, 74);
+            this.ftpPort.Location = new System.Drawing.Point(72, 52);
             this.ftpPort.Name = "ftpPort";
-            this.ftpPort.Size = new System.Drawing.Size(100, 21);
-            this.ftpPort.TabIndex = 6;
+            this.ftpPort.Size = new System.Drawing.Size(193, 21);
+            this.ftpPort.TabIndex = 7;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 26);
+            this.label6.Location = new System.Drawing.Point(11, 20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 0;
@@ -89,7 +93,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 132);
+            this.label7.Location = new System.Drawing.Point(23, 92);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 0;
@@ -98,7 +102,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 185);
+            this.label8.Location = new System.Drawing.Point(35, 128);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 12);
             this.label8.TabIndex = 0;
@@ -107,7 +111,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 79);
+            this.label9.Location = new System.Drawing.Point(23, 56);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 12);
             this.label9.TabIndex = 0;
@@ -115,25 +119,25 @@
             // 
             // ftpPwd
             // 
-            this.ftpPwd.Location = new System.Drawing.Point(72, 180);
+            this.ftpPwd.Location = new System.Drawing.Point(72, 124);
             this.ftpPwd.Name = "ftpPwd";
             this.ftpPwd.PasswordChar = '*';
-            this.ftpPwd.Size = new System.Drawing.Size(100, 21);
-            this.ftpPwd.TabIndex = 8;
+            this.ftpPwd.Size = new System.Drawing.Size(193, 21);
+            this.ftpPwd.TabIndex = 9;
             // 
             // ftpIP
             // 
-            this.ftpIP.Location = new System.Drawing.Point(72, 21);
+            this.ftpIP.Location = new System.Drawing.Point(72, 16);
             this.ftpIP.Name = "ftpIP";
-            this.ftpIP.Size = new System.Drawing.Size(100, 21);
-            this.ftpIP.TabIndex = 5;
+            this.ftpIP.Size = new System.Drawing.Size(193, 21);
+            this.ftpIP.TabIndex = 6;
             // 
             // ftpUser
             // 
-            this.ftpUser.Location = new System.Drawing.Point(72, 127);
+            this.ftpUser.Location = new System.Drawing.Point(72, 88);
             this.ftpUser.Name = "ftpUser";
-            this.ftpUser.Size = new System.Drawing.Size(100, 21);
-            this.ftpUser.TabIndex = 7;
+            this.ftpUser.Size = new System.Drawing.Size(193, 21);
+            this.ftpUser.TabIndex = 8;
             // 
             // groupBox1
             // 
@@ -152,6 +156,25 @@
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据库配置";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbxAccessPwd);
+            this.groupBox3.Location = new System.Drawing.Point(6, 157);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(179, 59);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "客户端Access密码";
+            // 
+            // tbxAccessPwd
+            // 
+            this.tbxAccessPwd.Location = new System.Drawing.Point(36, 25);
+            this.tbxAccessPwd.Name = "tbxAccessPwd";
+            this.tbxAccessPwd.PasswordChar = '*';
+            this.tbxAccessPwd.Size = new System.Drawing.Size(133, 21);
+            this.tbxAccessPwd.TabIndex = 5;
+            this.tbxAccessPwd.Text = "quanjiu";
             // 
             // tbxDatabase
             // 
@@ -218,24 +241,22 @@
             this.tbxUID.Size = new System.Drawing.Size(100, 21);
             this.tbxUID.TabIndex = 3;
             // 
-            // tbxAccessPwd
+            // groupBox4
             // 
-            this.tbxAccessPwd.Location = new System.Drawing.Point(36, 25);
-            this.tbxAccessPwd.Name = "tbxAccessPwd";
-            this.tbxAccessPwd.PasswordChar = '*';
-            this.tbxAccessPwd.Size = new System.Drawing.Size(133, 21);
-            this.tbxAccessPwd.TabIndex = 4;
-            this.tbxAccessPwd.Text = "quanjiu";
+            this.groupBox4.Controls.Add(this.tbxClientValidationURL);
+            this.groupBox4.Location = new System.Drawing.Point(6, 157);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(269, 59);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "客户端有效性检查URL";
             // 
-            // groupBox3
+            // tbxClientValidationURL
             // 
-            this.groupBox3.Controls.Add(this.tbxAccessPwd);
-            this.groupBox3.Location = new System.Drawing.Point(6, 157);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(179, 59);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "客户端Access密码";
+            this.tbxClientValidationURL.Location = new System.Drawing.Point(6, 25);
+            this.tbxClientValidationURL.Name = "tbxClientValidationURL";
+            this.tbxClientValidationURL.Size = new System.Drawing.Size(246, 21);
+            this.tbxClientValidationURL.TabIndex = 10;
             // 
             // UserConfig
             // 
@@ -244,13 +265,15 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "UserConfig";
-            this.Size = new System.Drawing.Size(424, 228);
+            this.Size = new System.Drawing.Size(501, 228);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -277,5 +300,7 @@
         private System.Windows.Forms.TextBox tbxUID;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tbxAccessPwd;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox tbxClientValidationURL;
     }
 }

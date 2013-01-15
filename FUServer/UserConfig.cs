@@ -20,13 +20,18 @@ namespace FUServer
         private void LoadData()
         {
             string decrypted = ServerInfo.GetDecryptedInfo();
+            string[] splitedInfo = decrypted.Split(';');
+            if (splitedInfo.Length != 4)
+            {
+                return;
+            }
             if (string.IsNullOrEmpty(decrypted))
             {
                 return;
             }
-            string[] dbconfig = decrypted.Split(';')[0].Split('|');
-            string[] ftpconfig = decrypted.Split(';')[1].Split('|');
-          
+            string[] dbconfig = splitedInfo[0].Split('|');
+            string[] ftpconfig = splitedInfo[1].Split('|');
+
             tbxServer.Text = dbconfig[0];
             tbxDatabase.Text = dbconfig[1];
             //Properties.Settings.Default.DbServer;
@@ -38,57 +43,45 @@ namespace FUServer
             ftpUser.Text = ftpconfig[2];
             ftpPwd.Text = ftpconfig[3];
 
-            string accessPwd = decrypted.Split(';')[2];
+            string accessPwd = splitedInfo[2]; 
+            string clientValidationUrl = splitedInfo[3];
+
+            tbxAccessPwd.Text = accessPwd;
+           
+            tbxClientValidationURL.Text = clientValidationUrl;
 
 
         }
-        private bool CheckServer(out string errMsg)
-        {
-            bool result = false;
-
-            result = FuLib.FtpUnit.CheckFtpServer(ftpIP.Text, ftpUser.Text, ftpPwd.Text, out errMsg);
-            if (result == false)
-            {
-                errMsg = "无法连接Ftp:" + errMsg;
-               
-            }
-            else
-            {
-                result = ServerInfo.CheckSqlServer(tbxServer.Text, tbxDatabase.Text, tbxUID.Text, tbxPwd.Text, out errMsg);
-                if (result == false)
-                {
-                    errMsg="无法连接SqlServer:" + errMsg;
-                }
-            } GlobalVariables.Logger.Error(errMsg);
-            return result;
-        }
+     
 
         public bool Save(out string errMsg)
         {
 
-            if (!CheckServer(out errMsg))
-            {
-                return false;
-            }
+            errMsg = string.Empty;
             if (string.IsNullOrEmpty(tbxServer.Text))
             {
-                MessageBox.Show("请填写数据库服务器地址.");
+              errMsg="请填写数据库服务器地址.";
                 return false;
             }
             if (string.IsNullOrEmpty(tbxDatabase.Text))
             {
-                MessageBox.Show("请填写数据库名称.");
+                 errMsg="请填写数据库名称.";
                 return false;
             }
 
             if (string.IsNullOrEmpty(ftpIP.Text))
             {
-                MessageBox.Show("请填写ftp服务器路径.");
+                 errMsg="请填写ftp服务器路径.";
                 return false;
             }
             if (string.IsNullOrEmpty(ftpPort.Text))
             {
-                MessageBox.Show("请填写ftp端口号.");
+                errMsg = "请填写ftp端口号.";
+                return false;
+            }
+            if (! FuLib.ServerInfo.CheckServer(ftpIP.Text, ftpUser.Text, ftpPwd.Text, tbxServer.Text,
+                tbxDatabase.Text,GlobalVariables.CallLogTableName, tbxUID.Text, tbxPwd.Text, tbxClientValidationURL.Text, out errMsg))
+            {
                 return false;
             }
             //    | 
@@ -123,12 +116,15 @@ namespace FUServer
             string _ftpUid = ftpUser.Text;
             string _ftpPassword = ftpPwd.Text;
 
+            string clientValidationUrl = tbxClientValidationURL.Text;
             string accessPwd = tbxAccessPwd.Text;
             string sharedsecret = "P@ssw0rd";
 
+
             string original = server + "|" + database + "|" + uid + "|" + pwd + ";"
-                + _ftpPath + "|" + _ftpPort + "|" + _ftpUid + "|" + _ftpPassword+";"
-                +accessPwd;
+                + _ftpPath + "|" + _ftpPort + "|" + _ftpUid + "|" + _ftpPassword + ";"
+                + accessPwd + ";"
+                + clientValidationUrl;
 
             string crypted = FuLib.Crypto.EncryptStringAES(original, sharedsecret);
             ServerInfo.SaveEncryptedInfo(crypted);

@@ -31,5 +31,11 @@ namespace FuLib
             string result = System.Text.RegularExpressions.Regex.Match(str, regex).Value;
             return result;
         }
+
+        public static string EnsureUrl(string url)
+        {
+          return  url = url.StartsWith("http://") ? url : "http://" + url;
+        }
+        
     }
 }

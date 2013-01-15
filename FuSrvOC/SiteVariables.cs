@@ -31,9 +31,10 @@ namespace FuSrvOC
         public static string DBPwd = "";
         public static string DBDataBase = "";
         //本地通话数据库(access)密码
-        public static string AccessPwd ;//= ConfigurationManager.AppSettings["AccessPwd"];
+        public static string AccessPwd;//= ConfigurationManager.AppSettings["AccessPwd"];
         //记录本地通话数据的表名
 
+        public const string RemoteCallLogTableName = "calllog";
         public const string LocalTableName = "TmCallRecTable";
         //序列号列名-->过滤已上传的数据
         public const string LocalTableNameIndexCol = "id";
@@ -44,6 +45,9 @@ namespace FuSrvOC
         public const string callRecordTime = "jh13";//文件创建时间(客户端本地时间)
         public const string remotePhoneNo = "jh2";//被叫号码
         public const string callType = "jh3";//被叫号码
+        public static string ServiceForValidationClient;
+
+        public static System.Timers.Timer ServiceTimer;
 
         public void Init()
         {
@@ -63,9 +67,14 @@ namespace FuSrvOC
             if (!string.IsNullOrEmpty(fusocket.ErrMsg))
             {
                 Logger.MyLogger.Error(fusocket.ErrMsg);
+                if (ServiceTimer != null)
+                {
+                    ServiceTimer.Stop();
+                }
             }
-            else {
-                
+            else
+            {
+
                 string[] ss = serverInfo.Split(';');
                 DBServiceIP = ss[0].Split('|')[0];
                 DBDataBase = ss[0].Split('|')[1];
@@ -79,9 +88,22 @@ namespace FuSrvOC
                 FtpPassword = ss[1].Split('|')[3];
 
                 AccessPwd = ss[2];
-
-                Logger.MyLogger.Info("服务器信息已获取");
+                ServiceForValidationClient = ss[3];
+                string errMsg;
                 Logger.MyLogger.Debug(serverInfo);
+                bool serverOK = FuLib.ServerInfo.CheckServer(FtpServerPath, FtpUserId, FtpPassword, DBServiceIP, DBDataBase, remotePhoneNo, DBUser, DBPwd, ServiceForValidationClient, out errMsg);
+                if (!serverOK)
+                {
+                    Logger.MyLogger.Info(errMsg);
+                    if (ServiceTimer != null)
+                    {
+                        ServiceTimer.Stop();
+                    }
+                }
+                else
+                {
+                    Logger.MyLogger.Info("服务器信息已获取");
+                }
             }
             // 
         }
@@ -95,6 +117,6 @@ namespace FuSrvOC
             }
         }
 
-     
+
     }
 }
