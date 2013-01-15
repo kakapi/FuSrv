@@ -15,8 +15,15 @@ namespace FuLib
         private TcpClient tcpClient;
         int maxConnection = 5;//同时连接的最大数量
         public string ErrMsg { get; internal set; }
+        /// <summary>
+        /// 通信行为委托
+        /// </summary>
+        /// <param name="sr"></param>
+        /// <param name="sw"></param>
         public delegate void delCommunicationAction(StreamReader sr, StreamWriter sw);
         private delCommunicationAction ServerAction;
+
+        private static bool started = true;//是否启动监听
 
         public void StartServer(delCommunicationAction serverAction)
         {
@@ -42,21 +49,8 @@ namespace FuLib
                     t.Start();
                 }
             }
-        }
-      static  bool started = true;
-        public void StopServer()
-        {
-            started = false;
-            if (listener != null)
-            {
-                try
-                {
-                    listener.Stop();
-                }
-                catch { }
-            }
+        }  
 
-        }
         private void Service()
         {
             while (started)
@@ -70,7 +64,8 @@ namespace FuLib
                         Stream s = new NetworkStream(soc);
                         StreamReader sr = new StreamReader(s);
                         StreamWriter sw = new StreamWriter(s);
-                        sw.AutoFlush = true; // enable automatic flushing
+                        sw.AutoFlush = true;
+                        //开始监听时服务器的行为,要保证客户端和服务端的读写行为是互补的,如果同时read会死锁.
                         ServerAction.Invoke(sr, sw);
                         s.Close();
                     }
@@ -87,6 +82,22 @@ namespace FuLib
                 {}
             }
         }
+   
+        public void StopServer()
+        {
+            started = false;
+            if (listener != null)
+            {
+                try
+                {
+                    listener.Stop();
+                    
+                }
+                catch { }
+            }
+
+        }
+     
         public void ClientActions(string serverIp, delCommunicationAction clientAction)
         {
             if (tcpClient == null)
@@ -109,10 +120,7 @@ namespace FuLib
             }
             finally
             {
-                // code in finally block is guranteed 
-                // to execute irrespective of 
-                // whether any exception occurs or does 
-                // not occur in the try block
+               
                 tcpClient.Close();
             }
 

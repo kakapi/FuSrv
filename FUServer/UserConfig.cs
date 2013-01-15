@@ -26,6 +26,7 @@ namespace FUServer
             }
             string[] dbconfig = decrypted.Split(';')[0].Split('|');
             string[] ftpconfig = decrypted.Split(';')[1].Split('|');
+          
             tbxServer.Text = dbconfig[0];
             tbxDatabase.Text = dbconfig[1];
             //Properties.Settings.Default.DbServer;
@@ -37,22 +38,10 @@ namespace FUServer
             ftpUser.Text = ftpconfig[2];
             ftpPwd.Text = ftpconfig[3];
 
+            string accessPwd = decrypted.Split(';')[2];
+
+
         }
-        private string CreateCode()
-        {
-            string server = tbxServer.Text.Trim();
-            string database = tbxDatabase.Text.Trim();
-            string uid = tbxUID.Text.Trim();
-            string pwd = tbxPwd.Text.Trim();
-
-            string sharedsecret = "P@ssw0rd";
-
-            string original = server + "|" + database + "|" + uid + "|" + pwd + ";" + ftpIP.Text + "|" + ftpPort.Text + "|" + ftpUser.Text + "|" + ftpPwd.Text;
-
-            string crypted = FuLib.Crypto.EncryptStringAES(original, sharedsecret);
-            return crypted;
-        }
-
         private bool CheckServer(out string errMsg)
         {
             bool result = false;
@@ -134,10 +123,12 @@ namespace FUServer
             string _ftpUid = ftpUser.Text;
             string _ftpPassword = ftpPwd.Text;
 
+            string accessPwd = tbxAccessPwd.Text;
             string sharedsecret = "P@ssw0rd";
 
             string original = server + "|" + database + "|" + uid + "|" + pwd + ";"
-                + _ftpPath + "|" + _ftpPort + "|" + _ftpUid + "|" + _ftpPassword;
+                + _ftpPath + "|" + _ftpPort + "|" + _ftpUid + "|" + _ftpPassword+";"
+                +accessPwd;
 
             string crypted = FuLib.Crypto.EncryptStringAES(original, sharedsecret);
             ServerInfo.SaveEncryptedInfo(crypted);

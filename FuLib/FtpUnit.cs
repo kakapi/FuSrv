@@ -23,12 +23,9 @@ namespace FuLib
             bool result = false;
             msg = string.Empty;
              targetFile=  EnsureServerFormat(targetFile);
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(targetFile);
+             FtpWebRequest request = CreateRequest(targetFile, uid, pwd);
             request.Method = WebRequestMethods.Ftp.UploadFile;
-            if (!string.IsNullOrEmpty(uid))
-            {
-                request.Credentials = new NetworkCredential(uid, pwd);
-            }
+
             try
             {
                 StreamReader sourceStream = new StreamReader(fileNametouploaded);
@@ -57,15 +54,9 @@ namespace FuLib
             string result = string.Empty;
             try
             {
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFile);
+                FtpWebRequest request = CreateRequest(remoteFile, uid, pwd);
                 request.Method = WebRequestMethods.Ftp.DownloadFile;
-
-                // This example assumes the FTP site uses anonymous logon.
-                if (!string.IsNullOrEmpty(uid))
-                {
-                    request.Credentials = new NetworkCredential(uid, pwd);
-                }
-
+ 
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
 
                 Stream responseStream = response.GetResponseStream();

@@ -15,33 +15,9 @@ namespace FuSrvOC
         {
             get
             {
-                if (log == null)
-                {
-                    string logfileName = GlobalHelper.EnsurePathEndWithSlash(AppDomain.CurrentDomain.BaseDirectory) + "fusrvlogs/" +
-                        SiteVariables.LoggerFileName;
-                    Config(logfileName);
-                  
-                    log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-                }
-                return log;
+                return new FuLib.Logger().GetLoggerInstance(AppDomain.CurrentDomain.BaseDirectory+ SiteVariables.LoggerFileName);
             }
         }
-        public static void Config(string logFileName)
-        {
-            Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
-            hierarchy.Root.RemoveAllAppenders(); /*Remove any other appenders*/
-            RollingFileAppender fileAppender = new RollingFileAppender();
-            fileAppender.AppendToFile = true;
-            fileAppender.LockingModel = new FileAppender.MinimalLock();
-            fileAppender.RollingStyle = RollingFileAppender.RollingMode.Date;
-            fileAppender.File = logFileName;
-            PatternLayout pl = new PatternLayout();
-            pl.ConversionPattern = "%d [%2%t] %-5p [%-10c] %m%n%n";
-            pl.ActivateOptions();
-            fileAppender.Layout = pl;
-            fileAppender.ActivateOptions();
-            log4net.Config.BasicConfigurator.Configure(fileAppender);
-
-        }
+       
     }
 }

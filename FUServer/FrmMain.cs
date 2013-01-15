@@ -17,29 +17,30 @@ namespace FUServer
 {
     public partial class FrmMain : Form
     {
-       
+
         bool started = true;
         public FrmMain()
         {
             InitializeComponent();
-          //  SetAutoRun(true);
+            //  SetAutoRun(true);
             if (ServerInfo.CheckConfigOK())
             {
                 started = true;
                 StartService();
-               
+
             }
-            else {
+            else
+            {
                 started = false;
                 Log("尚未配置,服务未启动");
-               
+
             }
             SetUIStatus();
         }
-       
+
         private void SetUIStatus()
         {
-            btnStart.Enabled = !started;
+            btnStart.Enabled = btnSave.Enabled = btnReset.Enabled = userConfig1.Enabled = !started;
             btnStop.Enabled = started;
             if (started)
             {
@@ -48,6 +49,7 @@ namespace FUServer
                 tbMain.SelectedIndex = 0;
                 btnStart.Text = "已启动";
                 btnStop.Text = "停止";
+
             }
             else
             {
@@ -56,41 +58,44 @@ namespace FUServer
                 tbMain.SelectedIndex = 1;
                 btnStart.Text = "启动";
                 btnStop.Text = "已停止";
+
             }
         }
         private void Log(string message)
         {
             GlobalVariables.Logger.Info(message);
             tbxLog.Text = DateTime.Now + "  " + message + Environment.NewLine + tbxLog.Text;
-          //  tbxLog.AppendText(DateTime.Now + "  " + message + Environment.NewLine);
+            //  tbxLog.AppendText(DateTime.Now + "  " + message + Environment.NewLine);
         }
 
         private void StartService()
         {
+            started = true;
             new SocketAction().StartServer(msgHandler);
             Log("服务已启动");
-           
-            
+
+
         }
         void msgHandler(string msg)
         {
             Log(msg);
         }
 
-    
+
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             started = false;
-            new FuLib.FuSocket().StopServer();
-
+            Log("服务已停止");
+            new SocketAction().StopServer();
             SetUIStatus();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            StartService();
             started = false;
+            StartService();
+          
             SetUIStatus();
         }
 
@@ -100,12 +105,7 @@ namespace FUServer
 
             Application.Exit();
         }
-        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-          
-
-        }
-
+       
         private void SetAutoRun(bool enable)
         {
             string appName = "FuService";
@@ -128,9 +128,9 @@ namespace FUServer
 
             Thread tConfigSave = new Thread(new ThreadStart(ConfigSave));
             tConfigSave.Start();
-          
-        
-            
+
+
+
         }
         public void ConfigSave()
         {
@@ -147,27 +147,28 @@ namespace FUServer
 
                     StartService();
                     started = true;
-                    SetUIStatus();
+
                 }
             }
             else
             {
+                started = false;
                 MessageBox.Show(errMsg);
             }
-            
+            SetUIStatus();
         }
 
         public void ShowChecking()
         {
             lblCheckProgress.Visible = true;
         }
-       
+
 
         private void tbxLog_TextChanged(object sender, EventArgs e)
         {
             if (tbxLog.Lines.Length > 1000)
             {
-               
+
                 int midlineposition = tbxLog.Text.IndexOf(tbxLog.Lines[500]);
                 MessageBox.Show(midlineposition.ToString());
                 tbxLog.Text = tbxLog.Text.Remove(midlineposition);
@@ -189,7 +190,7 @@ namespace FUServer
             }
         }
 
-       
+
 
         private void systrayicon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -224,5 +225,7 @@ namespace FUServer
             WindowState = FormWindowState.Normal;
             tbMain.SelectedIndex = 0;
         }
+
+        
     }
 }

@@ -67,6 +67,7 @@
       <DependentUpon>FrmRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="ServerInfo.cs" />
+    <Compile Include="ServiceStatusChangedEvent.cs" />
     <Compile Include="SocketAction.cs" />
     <Compile Include="UserConfig.cs">
       <SubType>UserControl</SubType>
@@ -93,7 +94,6 @@
     <EmbeddedResource Include="UserConfig.resx">
       <DependentUpon>UserConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

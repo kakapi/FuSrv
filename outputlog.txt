@@ -1,2 +1,0 @@
-2013-01-06 23:44:28,633 [TestRunnerThread] INFO  [FuLib.Logger] ·şÎñÆô¶¯
-

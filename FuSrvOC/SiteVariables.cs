@@ -14,10 +14,9 @@ namespace FuSrvOC
         public static string DbFilePath = ConfigurationManager.AppSettings["DbFilePath"];
         public static string InteralDuration = ConfigurationManager.AppSettings["InteralDuration"];
 
-        public static string LogFilePath = AppDomain.CurrentDomain.BaseDirectory;// ConfigurationManager.AppSettings["LogFilePath"];
         //OC means Original Client from factory
-        public const string LastUploadFileName = "uploadOC.log";
-        public const string LoggerFileName = "fusrvOC.log";
+        public const string LastUploadFileName = "/uploadOC.log";
+        public const string LoggerFileName = "/log/fusrvOC.log";
 
         public static string ServerIP = ConfigurationManager.AppSettings["ServerIP"];
         public const int Port = 13092;
@@ -32,7 +31,7 @@ namespace FuSrvOC
         public static string DBPwd = "";
         public static string DBDataBase = "";
         //本地通话数据库(access)密码
-        public static string AccessPwd = ConfigurationManager.AppSettings["AccessPwd"];
+        public static string AccessPwd ;//= ConfigurationManager.AppSettings["AccessPwd"];
         //记录本地通话数据的表名
 
         public const string LocalTableName = "TmCallRecTable";
@@ -78,6 +77,9 @@ namespace FuSrvOC
                 FtpPort = ss[1].Split('|')[1];
                 FtpUserId = ss[1].Split('|')[2];
                 FtpPassword = ss[1].Split('|')[3];
+
+                AccessPwd = ss[2];
+
                 Logger.MyLogger.Info("服务器信息已获取");
                 Logger.MyLogger.Debug(serverInfo);
             }

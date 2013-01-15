@@ -10,13 +10,13 @@ namespace FUServer
     {
         public const string CallLogTableName = "calllog";
        public const int Port = 13092;
-       const string logFileName = "log/FuServer.log";
+       static string logFileName =AppDomain.CurrentDomain.BaseDirectory+ "log/FuServer.log";
        public static bool IsRegisted = false;
        public static string SerialFileFullName = AppDomain.CurrentDomain.BaseDirectory + "serial.no";
        public static string MachineCode =FuLib.ServerInfo.GetMacAddress()+ FuLib.ServerInfo.GetCPUId();
        public static ILog Logger {
            get {
-               return new FuLib.Logger().GetLoggerInstance(logFileName);
+               return new FuLib.Logger().GetLoggerInstance( logFileName);
            }
        }
 

@@ -28,10 +28,7 @@ namespace FUServer
             }
             catch { return string.Empty; }
         }
-        public static void EnsureFileExists()
-        {
-
-        }
+     
         public static void SaveEncryptedInfo(string encryptedInfo)
         {
             if (!File.Exists(configFileName))

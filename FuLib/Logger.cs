@@ -55,9 +55,9 @@ namespace FuLib
             fileAppender.AppendToFile = true;
             fileAppender.LockingModel = new FileAppender.MinimalLock();
 
-            fileAppender.File = AppDomain.CurrentDomain.BaseDirectory +logFile;
+            fileAppender.File = logFile;
             PatternLayout pl = new PatternLayout();
-            pl.ConversionPattern = "%d [%2%t] %-5p [%-10c] %m%n%n";
+            pl.ConversionPattern = "%d %-5p %m [%2%t] %n%n";
             pl.ActivateOptions();
             fileAppender.Layout = pl;
             fileAppender.ActivateOptions();
