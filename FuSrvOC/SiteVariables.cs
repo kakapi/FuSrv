@@ -19,7 +19,7 @@ namespace FuSrvOC
         public const string LoggerFileName = "/log/fusrvOC.log";
 
         public static string ServerIP = ConfigurationManager.AppSettings["ServerIP"];
-        public const int Port = 13092;
+        public static int SocketPort =Convert.ToInt32(ConfigurationManager.AppSettings["SocketPort"]);
         //ftp服务器
         public static string FtpServerPath = "";
         public static string FtpPort = "";
@@ -34,7 +34,7 @@ namespace FuSrvOC
         public static string AccessPwd;//= ConfigurationManager.AppSettings["AccessPwd"];
         //记录本地通话数据的表名
 
-        public const string RemoteCallLogTableName = "calllog";
+        public static string RemoteCallLogTableName = "calllog";
         public const string LocalTableName = "TmCallRecTable";
         //序列号列名-->过滤已上传的数据
         public const string LocalTableNameIndexCol = "id";
@@ -46,7 +46,7 @@ namespace FuSrvOC
         public const string remotePhoneNo = "jh2";//被叫号码
         public const string callType = "jh3";//被叫号码
         public static string ServiceForValidationClient;
-
+    
         public static System.Timers.Timer ServiceTimer;
 
         public void Init()
@@ -62,7 +62,7 @@ namespace FuSrvOC
         {
             Logger.MyLogger.Info("开始获取服务器信息");
 
-            FuLib.FuSocket fusocket = new FuLib.FuSocket();
+            FuLib.FuSocket fusocket = new FuLib.FuSocket(SocketPort);
             fusocket.ClientActions(ServerIP, FetchServerInfo);
             if (!string.IsNullOrEmpty(fusocket.ErrMsg))
             {
@@ -80,7 +80,7 @@ namespace FuSrvOC
                 DBDataBase = ss[0].Split('|')[1];
                 DBUser = ss[0].Split('|')[2];
                 DBPwd = ss[0].Split('|')[3];
-
+                RemoteCallLogTableName = ss[0].Split('|')[4];
                 //ftp配置
                 FtpServerPath = ss[1].Split('|')[0];
                 FtpPort = ss[1].Split('|')[1];
@@ -89,9 +89,10 @@ namespace FuSrvOC
 
                 AccessPwd = ss[2];
                 ServiceForValidationClient = ss[3];
+
                 string errMsg;
                 Logger.MyLogger.Debug(serverInfo);
-                bool serverOK = FuLib.ServerInfo.CheckServer(FtpServerPath, FtpUserId, FtpPassword, DBServiceIP, DBDataBase, remotePhoneNo, DBUser, DBPwd, ServiceForValidationClient, out errMsg);
+                bool serverOK = FuLib.ServerInfo.CheckServer(FtpServerPath,FtpPort, FtpUserId, FtpPassword, DBServiceIP, DBDataBase, RemoteCallLogTableName, DBUser, DBPwd, ServiceForValidationClient, out errMsg);
                 if (!serverOK)
                 {
                     Logger.MyLogger.Info(errMsg);

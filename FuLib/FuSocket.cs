@@ -24,7 +24,11 @@ namespace FuLib
         private delCommunicationAction ServerAction;
 
         private static bool started = true;//是否启动监听
-
+        public FuSocket() { }
+        public FuSocket(int socketPort)
+        {
+            port = socketPort;
+        }
         public void StartServer(delCommunicationAction serverAction)
         {
             ServerAction = serverAction;
@@ -42,13 +46,14 @@ namespace FuLib
                 }
                 IPEndPoint endpoint = new IPEndPoint(interNetworkIp, port);
                 listener = new TcpListener(endpoint);
+            }
                 listener.Start();
                 for (int i = 0; i < maxConnection; i++)
                 {
                     Thread t = new Thread(new ThreadStart(Service));
                     t.Start();
                 }
-            }
+            
         }  
 
         private void Service()

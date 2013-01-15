@@ -79,7 +79,7 @@ namespace FuSrvOC
         public static IList<LocalCallRec> GetRecordsToBeUpload(int lastUploadIndex)
         {
             IList<LocalCallRec> rl = new List<LocalCallRec>();
-            string sql = string.Format("select * from {0} where {1}>{2}"
+            string sql = string.Format("select * from {0} where {1}>{2} order by Id desc"
                 , SiteVariables.LocalTableName, SiteVariables.LocalTableNameIndexCol, new UploadLogger().GetLastUploadedFileIndex());
             IDataReader reader = ExecuteReader(LocalConn, new OleDbCommand(sql));
             while (reader.Read())

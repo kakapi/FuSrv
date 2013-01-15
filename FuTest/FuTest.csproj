@@ -58,6 +58,7 @@
     <Compile Include="FuLibTest\FTPUnitTest.cs" />
     <Compile Include="FuLibTest\FuSocketTest.cs" />
     <Compile Include="FuLibTest\ServerInfoTest.cs" />
+    <Compile Include="FuLibTest\GlobalHelperTest.cs" />
     <Compile Include="FuSrvOCTest\FuSrvUploaderTest.cs" />
     <Compile Include="FuSrvUploaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

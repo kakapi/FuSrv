@@ -52,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_80362FBA8CED199B1813D10E534F2A36"
+        "OwnerKey" = "8:_69BE037DD94CDF57822793D458212123"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_69BE037DD94CDF57822793D458212123"
+        "OwnerKey" = "8:_80362FBA8CED199B1813D10E534F2A36"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -179,7 +179,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_9663BF68_AE1E_4A51_AB28_BED7BC756B98"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/DbFilePath=[EDITB1] /ServerIP=[EDITB2]"
+            "CustomActionData" = "8:/DbFilePath=[EDITB1] /ServerIP=[EDITB2] /SocketPort=[EDITB3]"
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DE22CB57CE4E4D80BBBD2F548BABCEE1"
             {
@@ -225,11 +225,6 @@
             "AssemblyAsmDisplayName" = "8:FuLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2EAC0372AF207B44E160CB978AE23546"
-                    {
-                    "Name" = "8:FuLib.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:FuLib.dll"
             "TargetName" = "8:"
@@ -256,11 +251,6 @@
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_69BE037DD94CDF57822793D458212123"
-                    {
-                    "Name" = "8:log4net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -287,11 +277,6 @@
             "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_80362FBA8CED199B1813D10E534F2A36"
-                    {
-                    "Name" = "8:NAudio.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:NAudio.dll"
             "TargetName" = "8:"
@@ -967,8 +952,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1248"
+                            "Setting" = "3:2"
+                            "Value" = "8:Socket端口"
                             "DefaultValue" = "8:#1248"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -1007,7 +992,7 @@
                             "ContextData" = "8:1;True=1;False=0"
                             "Attributes" = "3:0"
                             "Setting" = "3:0"
-                            "Value" = "3:0"
+                            "Value" = "3:1"
                             "DefaultValue" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }

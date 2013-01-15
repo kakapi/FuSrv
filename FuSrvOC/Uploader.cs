@@ -21,15 +21,30 @@ namespace FuSrvOC
 
             Guid operationId = Guid.NewGuid();
             Logger.MyLogger.Info("###开始扫描" + operationId);
-            FuSocket fusocket = new FuSocket();
+            FuSocket fusocket = new FuSocket(SiteVariables.SocketPort);
             try
             {
                  
                 IList<LocalCallRec> records =DbUnit.GetRecordsToBeUpload(
                     new UploadLogger().GetLastUploadedFileIndex());
                 Logger.MyLogger.Info("需要处理的通话记录数量:" + records.Count);
+                
                 foreach (LocalCallRec call in records)
                 {
+                    if (records.IndexOf(call) == 0)
+                    { 
+                     //检验客户端合法性.
+                        fusocket.ClientActions(SiteVariables.ServerIP, ValidClient);
+
+                        if (!isClientValid)
+                        {
+                            Logger.MyLogger.Info("不是有效的设备号,服务停止.");
+                            fusocket.ClientActions(SiteVariables.ServerIP, ValidError);
+                            if (SiteVariables.ServiceTimer != null) { SiteVariables.ServiceTimer.Stop(); }
+                            break;
+                        }
+                    }
+
                     currentUploadFile = call.FileSavePath;
                     currentDeviceNo = call.DeviceNo;
                     Logger.MyLogger.Info("开始处理:" + currentUploadFile);
@@ -56,6 +71,25 @@ namespace FuSrvOC
                 sw.WriteLine(string.Format("设备:{0}已上传文件-{1}:", currentDeviceNo, currentUploadFile));
             }
         }
+        static bool isClientValid = false;
+        private static void ValidClient(StreamReader sr, StreamWriter sw)
+        {
+            string status = sr.ReadLine();
+            if (status == "OK")
+            {
+                sw.WriteLine("validclient");
+                sw.Flush();
+              string result=  sr.ReadLine();
+              if (result.ToLower() == "true")
+              {
+                  isClientValid = true;
+              }
+              else
+              {
+                  isClientValid = false;
+              }
+            }
+        }
 
         private static void SendUploadError(StreamReader sr, StreamWriter sw)
         {
@@ -67,16 +101,25 @@ namespace FuSrvOC
                 sw.WriteLine(string.Format("设备:{0}上传失败-{1}", currentDeviceNo, currentUploadFile));
             }
         }
-
+        private static void ValidError(StreamReader sr, StreamWriter sw)
+        {
+            string status = sr.ReadLine();
+            if (status == "OK")
+            {
+                sw.WriteLine("uploadmsg");
+                sw.Flush();
+                sw.WriteLine(string.Format("设备:{0}不是合法客户端,上传被拒绝", currentDeviceNo, currentUploadFile));
+            }
+        }
 
         public static bool UploadSingleFile(LocalCallRec call)
         {
             string deviceNo = call.DeviceNo;
             string targetPath;
-            if (EnsureRemotePath(deviceNo, SiteVariables.FtpServerPath
+            if (EnsureRemotePath(deviceNo, SiteVariables.FtpServerPath,SiteVariables.FtpPort
                 , SiteVariables.FtpUserId, SiteVariables.FtpPassword, out targetPath))
             {
-                return UploadSingleFile(call.FileSavePath, call.Id, deviceNo, targetPath
+                return UploadSingleFile(call.FileSavePath,SiteVariables.FtpPort, call.Id, deviceNo, targetPath
                , SiteVariables.FtpUserId, SiteVariables.FtpPassword);
             }
             return false;
@@ -85,7 +128,7 @@ namespace FuSrvOC
         /// <summary>
         /// 确保远程路径存在
         /// </summary>
-        private static bool EnsureRemotePath(string deviceNo, string ftpServer, string uid, string pwd, out string targetPath)
+        private static bool EnsureRemotePath(string deviceNo, string ftpServer,string port, string uid, string pwd, out string targetPath)
         {
             string errMsg;
             if (!ftpServer.EndsWith("/"))
@@ -95,7 +138,7 @@ namespace FuSrvOC
             targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer);
             string nowString = DateTime.Now.ToString("yyyyMMdd");
             targetPath += nowString + "/";
-            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,port,
                 uid, pwd, out errMsg))
             {
                 Logger.MyLogger.Error("Can't Create Directory " + targetPath + ",ErrorCode:" + errMsg);
@@ -108,7 +151,7 @@ namespace FuSrvOC
             else
             {
                 targetPath += deviceNo + "/";
-                if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+                if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,port,
                    uid, pwd, out errMsg))
                 {
                     Logger.MyLogger.Error("Can't Create Directory " + deviceNo + ",ErrorCode:" + errMsg);
@@ -124,7 +167,7 @@ namespace FuSrvOC
 
 
 
-        public static bool UploadSingleFile(string fileNametouploaded, int id, string deviceNo
+        public static bool UploadSingleFile(string fileNametouploaded,string port, int id, string deviceNo
             , string targetPath
             , string uid, string pwd)
         {
@@ -147,7 +190,7 @@ namespace FuSrvOC
             string remoteFileName = targetPath + fileName;
             string msg;
             Logger.MyLogger.Info("Ftp Begin Upload:" + fileNametouploaded);
-            bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, remoteFileName, uid, pwd, out msg);
+            bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded,port, remoteFileName,uid, pwd, out msg);
             Logger.MyLogger.Info("Ftp Upload Result:" + uploadResult + "," + msg);
             if (uploadResult == true)
             {

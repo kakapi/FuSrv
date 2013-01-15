@@ -49,10 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigUnit.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="FtpUnit.cs" />
     <Compile Include="FuSocket.cs" />
     <Compile Include="GlobalHelper.cs" />
+    <Compile Include="GlobalVariables.cs" />
     <Compile Include="IOHelper.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -28,10 +28,7 @@ namespace FuSrvOC
                 interal = 5;
             }
             Logger.MyLogger.Info("开始验证客户端有效性");
-            FuSocket fusocket = new FuSocket();
-
-
-        
+          
            SiteVariables.ServiceTimer= new System.Timers.Timer(1000*60*interal);
            SiteVariables.ServiceTimer.Elapsed += new System.Timers.ElapsedEventHandler(t_Elapsed);
 

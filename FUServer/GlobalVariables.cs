@@ -8,8 +8,9 @@ namespace FUServer
 {
     public class GlobalVariables
     {
+        public static int SocketPort;
+
         public const string CallLogTableName = "calllog";
-       public const int Port = 13092;
        static string logFileName =AppDomain.CurrentDomain.BaseDirectory+ "log/FuServer.log";
        public static bool IsRegisted = false;
        public static string SerialFileFullName = AppDomain.CurrentDomain.BaseDirectory + "serial.no";

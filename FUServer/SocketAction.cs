@@ -25,8 +25,9 @@ namespace FUServer
             {
                 msgHandler = handler;
                 fuSocket = new FuSocket();
-                fuSocket.StartServer(ServerAction);
+               
             }
+            fuSocket.StartServer(ServerAction);
         }
        
         private void ServerAction(StreamReader sr, StreamWriter sw)
@@ -48,6 +49,10 @@ namespace FUServer
                     string msg = sr.ReadLine();
                     msgHandler.Invoke(msg);
                     break;
+                case "validclient":
+                   
+                    break;
+              
                 default: break;
             }
         }

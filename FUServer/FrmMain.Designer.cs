@@ -62,7 +62,7 @@
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAction.Location = new System.Drawing.Point(3, 3);
             this.pnlAction.Name = "pnlAction";
-            this.pnlAction.Size = new System.Drawing.Size(509, 44);
+            this.pnlAction.Size = new System.Drawing.Size(515, 44);
             this.pnlAction.TabIndex = 0;
             // 
             // lblServerState
@@ -92,7 +92,7 @@
             this.tbxLog.Location = new System.Drawing.Point(3, 47);
             this.tbxLog.Name = "tbxLog";
             this.tbxLog.ReadOnly = true;
-            this.tbxLog.Size = new System.Drawing.Size(509, 258);
+            this.tbxLog.Size = new System.Drawing.Size(515, 305);
             this.tbxLog.TabIndex = 1;
             this.tbxLog.Text = "";
             this.tbxLog.TextChanged += new System.EventHandler(this.tbxLog_TextChanged);
@@ -105,7 +105,7 @@
             this.tbMain.Location = new System.Drawing.Point(0, 0);
             this.tbMain.Name = "tbMain";
             this.tbMain.SelectedIndex = 0;
-            this.tbMain.Size = new System.Drawing.Size(523, 334);
+            this.tbMain.Size = new System.Drawing.Size(529, 381);
             this.tbMain.TabIndex = 2;
             // 
             // tpStatus
@@ -115,7 +115,7 @@
             this.tpStatus.Location = new System.Drawing.Point(4, 22);
             this.tpStatus.Name = "tpStatus";
             this.tpStatus.Padding = new System.Windows.Forms.Padding(3);
-            this.tpStatus.Size = new System.Drawing.Size(515, 308);
+            this.tpStatus.Size = new System.Drawing.Size(521, 355);
             this.tpStatus.TabIndex = 0;
             this.tpStatus.Text = "服务状态";
             this.tpStatus.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             this.tpConfig.Location = new System.Drawing.Point(4, 22);
             this.tpConfig.Name = "tpConfig";
             this.tpConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tpConfig.Size = new System.Drawing.Size(515, 308);
+            this.tpConfig.Size = new System.Drawing.Size(521, 355);
             this.tpConfig.TabIndex = 1;
             this.tpConfig.Text = "相关配置";
             this.tpConfig.UseVisualStyleBackColor = true;
@@ -140,10 +140,10 @@
             // 
             this.btnStop.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStop.ForeColor = System.Drawing.Color.Crimson;
-            this.btnStop.Location = new System.Drawing.Point(106, 267);
+            this.btnStop.Location = new System.Drawing.Point(109, 323);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 18;
+            this.btnStop.TabIndex = 180;
             this.btnStop.Text = "停止";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -152,10 +152,10 @@
             // 
             this.btnStart.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStart.ForeColor = System.Drawing.Color.Green;
-            this.btnStart.Location = new System.Drawing.Point(18, 267);
+            this.btnStart.Location = new System.Drawing.Point(21, 323);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 17;
+            this.btnStart.TabIndex = 170;
             this.btnStart.Text = "启动";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -164,7 +164,7 @@
             // 
             this.lblCheckProgress.AutoSize = true;
             this.lblCheckProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblCheckProgress.Location = new System.Drawing.Point(315, 246);
+            this.lblCheckProgress.Location = new System.Drawing.Point(318, 304);
             this.lblCheckProgress.Name = "lblCheckProgress";
             this.lblCheckProgress.Size = new System.Drawing.Size(179, 12);
             this.lblCheckProgress.TabIndex = 16;
@@ -173,20 +173,20 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(327, 267);
+            this.btnReset.Location = new System.Drawing.Point(330, 323);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 14;
+            this.btnReset.TabIndex = 140;
             this.btnReset.Text = "还原";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(419, 267);
+            this.btnSave.Location = new System.Drawing.Point(422, 323);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 13;
+            this.btnSave.TabIndex = 130;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -232,16 +232,16 @@
             // 
             // userConfig1
             // 
-            this.userConfig1.Location = new System.Drawing.Point(10, 10);
+            this.userConfig1.Location = new System.Drawing.Point(12, 10);
             this.userConfig1.Name = "userConfig1";
-            this.userConfig1.Size = new System.Drawing.Size(507, 232);
+            this.userConfig1.Size = new System.Drawing.Size(507, 296);
             this.userConfig1.TabIndex = 15;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 334);
+            this.ClientSize = new System.Drawing.Size(529, 381);
             this.Controls.Add(this.tbMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

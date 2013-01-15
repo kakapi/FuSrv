@@ -67,12 +67,12 @@ namespace FuLib
             return result;
         }
 
-        public static bool CheckServer(string ftpServer, string ftpUser, string ftpPwd,
+        public static bool CheckServer(string ftpServer,string ftpPort, string ftpUser, string ftpPwd,
         string sqlServer, string sqlDbName,string tableName, string sqlUid, string sqlPwd, string clientValidationUrl, out string errMsg)
         {
             bool result = false;
 
-            result = FuLib.FtpUnit.CheckFtpServer(ftpServer, ftpUser, ftpPwd, out errMsg);
+            result = FuLib.FtpUnit.CheckFtpServer(ftpServer,ftpPort, ftpUser, ftpPwd, out errMsg);
             if (result == false)
             {
                 errMsg = "无法连接Ftp:" + errMsg;

@@ -80,7 +80,7 @@ namespace FuSrv
             string fileName = Path.GetFileName(fileNametouploaded);
 
             string targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer) + deviceNo + "/";
-            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,SiteVariables.FtpPort,
                 uid, pwd, out errMsg))
             {
                 Logger.MyLogger.Error("Can't Create Directory" + deviceNo + ",ErrorCode:" + errMsg);
@@ -88,7 +88,7 @@ namespace FuSrv
             }
             string nowString = DateTime.Now.ToString("yyyyMMdd");
             targetPath += nowString + "/";
-            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,
+            if (!FuLib.FtpUnit.EnsureFtpPath(targetPath, SiteVariables.FtpPort,
                 uid, pwd, out errMsg))
             {
                 Logger.MyLogger.Error("Can't Create Directory" + targetPath + ",ErrorCode:" + errMsg);
@@ -98,7 +98,7 @@ namespace FuSrv
             string remoteFileName = targetPath + fileName;
             string msg;
             Logger.MyLogger.Info("Begin Upload:" + fileNametouploaded);
-            bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, remoteFileName, uid, pwd, out msg);
+            bool uploadResult = FuLib.FtpUnit.Upload(fileNametouploaded, SiteVariables.FtpPort, remoteFileName, uid, pwd, out msg);
             Logger.MyLogger.Info("Upload Result:" + uploadResult);
             if (uploadResult == true)
             {

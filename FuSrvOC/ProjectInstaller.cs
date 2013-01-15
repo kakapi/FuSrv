@@ -33,6 +33,7 @@ namespace FuSrvOC
                 appSettings.Settings["DbFilePath"].Value = Context.Parameters["DbFilePath"];
                 
                 appSettings.Settings["ServerIP"].Value = Context.Parameters["ServerIP"];
+                appSettings.Settings["SocketPort"].Value = Context.Parameters["SocketPort"];
                 //save app.config
                 config.Save();
             }

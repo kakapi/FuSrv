@@ -12,7 +12,7 @@ namespace FuTest.FuLibTest
         {
             string errMsg;
         
-         bool resut= FtpUnit.EnsureFtpPath("ftp://127.0.0.1/sdfdsafdasf/dd/", "", "",out errMsg);
+         bool resut= FtpUnit.EnsureFtpPath("ftp://127.0.0.1/sdfdsafdasf/dd/","21", "", "",out errMsg);
          Assert.True(resut);
             
         }

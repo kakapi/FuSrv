@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Text.RegularExpressions;
 namespace FuLib
 {
     public class GlobalHelper
@@ -36,6 +36,21 @@ namespace FuLib
         {
           return  url = url.StartsWith("http://") ? url : "http://" + url;
         }
-        
+
+        public static string BuildFtpPath(string path, string port)
+        { 
+            
+           string portPatern=@"ftp://.*?:\d+";
+           if (Regex.IsMatch(path, portPatern)) { return path; }
+            //ftp://127.0.0.1/callservice
+            string patern = "ftp://.*?/";
+          
+            string server=Regex.Match(path, patern).Value;
+            string serverWithPort=server.Substring(0,server.Length-1)+":"+port+"/";
+            string target = Regex.Replace(path, patern, serverWithPort);
+            return target;
+            
+
+        }
     }
 }

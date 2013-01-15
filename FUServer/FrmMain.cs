@@ -19,6 +19,7 @@ namespace FUServer
     {
 
         bool started = true;
+                                                     
         public FrmMain()
         {
             InitializeComponent();

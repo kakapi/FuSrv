@@ -3,28 +3,37 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.IO;
+using System.Text.RegularExpressions;
 namespace FuLib
 {
     public class FtpUnit
     {
-        private static string EnsureServerFormat(string server)
+        private static string EnsureServerFormat(string server,string port)
         {
-            if (server.StartsWith("ftp://"))
+            if (!server.StartsWith("ftp://"))
             {
-                return server;
+                server = "ftp://" + server;
             }
-            else
-            {
-                return "ftp://" + server;
-            }
+            
+           string portPatern=@"ftp://.*?:\d+";
+           if (Regex.IsMatch(server, portPatern)) { return server; }
+            //ftp://127.0.0.1/callservice
+            string patern = "ftp://.*?/";
+            int intPort;
+            if (!int.TryParse(port,out intPort))
+            { intPort = 21; }
+            string serverPart = Regex.Match(server, patern).Value;
+            string serverWithPort = serverPart.Substring(0, serverPart.Length - 1) + ":" + intPort + "/";
+            string target = Regex.Replace(server, patern, serverWithPort);
+            return target;
         }
-        public static bool Upload(string fileNametouploaded, string targetFile, string uid, string pwd, out string msg)
+        public static bool Upload(string fileNametouploaded,string port, string targetFile, string uid, string pwd, out string msg)
         {
 
             bool result = false;
             msg = string.Empty;
-            targetFile = EnsureServerFormat(targetFile);
-            FtpWebRequest request = CreateRequest(targetFile, uid, pwd);
+           
+            FtpWebRequest request = CreateRequest(targetFile,port,uid, pwd);
             request.Method = WebRequestMethods.Ftp.UploadFile;
 
             try
@@ -48,14 +57,14 @@ namespace FuLib
             }
             return result;
         }
-        public static string DownloadAndRead(string remoteFile, string uid, string pwd, out string errmsg)
+        public static string DownloadAndRead(string remoteFile,string port, string uid, string pwd, out string errmsg)
         {
             errmsg = string.Empty;
-            remoteFile = EnsureServerFormat(remoteFile);
+         
             string result = string.Empty;
             try
             {
-                FtpWebRequest request = CreateRequest(remoteFile, uid, pwd);
+                FtpWebRequest request = CreateRequest(remoteFile,port, uid, pwd);
                 request.Method = WebRequestMethods.Ftp.DownloadFile;
 
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
@@ -75,9 +84,9 @@ namespace FuLib
         }
 
         static string ErrMsg;
-        private static FtpWebRequest CreateRequest(string path, string uid, string pwd)
+        private static FtpWebRequest CreateRequest(string path,string port, string uid, string pwd)
         {
-            path = EnsureServerFormat(path);
+            path = EnsureServerFormat(path,port);
             try
             {
                 var request = (FtpWebRequest)WebRequest.Create(path);
@@ -94,13 +103,13 @@ namespace FuLib
             }
 
         }
-        public static bool EnsureFtpPath(string directory, string username, string password, out string errMsg)
+        public static bool EnsureFtpPath(string directory,string port, string username, string password, out string errMsg)
         {
 
             errMsg = ErrMsg;
             try
             {
-                var request = CreateRequest(directory, username, password);
+                var request = CreateRequest(directory,port, username, password);
                 request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
             }
@@ -109,7 +118,7 @@ namespace FuLib
                 FtpWebResponse response = (FtpWebResponse)ex.Response;
                 if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
                 {
-                    var request2 = CreateRequest(directory, username, password);
+                    var request2 = CreateRequest(directory,port, username, password);
                     request2.Method = WebRequestMethods.Ftp.MakeDirectory;
 
                     try
@@ -130,14 +139,15 @@ namespace FuLib
 
 
         }
-        public static bool CheckFtpServer(string directory, string username, string password, out string errMsg)
+        public static bool CheckFtpServer(string directory, string port,string username, string password, out string errMsg)
         {
             bool result = false;
             errMsg = string.Empty;
-            var request = CreateRequest(directory, username, password);
-            request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
+            var request = CreateRequest(directory,port, username, password);
+          
             try
             {
+                request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
                 result = true;
             }
