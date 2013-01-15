@@ -105,10 +105,11 @@ namespace FuLib
      
         public void ClientActions(string serverIp, delCommunicationAction clientAction)
         {
-            if (tcpClient == null)
+            if (tcpClient == null||tcpClient.Connected==false)
             {
                 tcpClient = new TcpClient(serverIp, port);
             }
+            
             try
             {
                 Stream s = tcpClient.GetStream();
@@ -125,7 +126,6 @@ namespace FuLib
             }
             finally
             {
-               
                 tcpClient.Close();
             }
 

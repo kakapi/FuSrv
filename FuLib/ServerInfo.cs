@@ -66,6 +66,11 @@ namespace FuLib
             }
             return result;
         }
+        public static bool CheckServer(string ftpServer, string ftpPort, string ftpUser, string ftpPwd,
+        string sqlServer, string sqlDbName, string tableName, string sqlUid, string sqlPwd, out string errMsg) {
+            return CheckServer(ftpServer, ftpPort, ftpUser, ftpPwd, sqlServer, sqlDbName, tableName, sqlUid, sqlPwd, string.Empty, out errMsg);
+
+        }
 
         public static bool CheckServer(string ftpServer,string ftpPort, string ftpUser, string ftpPwd,
         string sqlServer, string sqlDbName,string tableName, string sqlUid, string sqlPwd, string clientValidationUrl, out string errMsg)
@@ -87,10 +92,13 @@ namespace FuLib
                 }
                 else
                 {
-                    result = FuLib.WebRequestUnit.CheckWebServer(clientValidationUrl, out errMsg);
-                    if (result == false)
+                    if (!string.IsNullOrEmpty(clientValidationUrl))
                     {
-                        errMsg = "无法连接客户端验证URL:" + errMsg;
+                        result = FuLib.WebRequestUnit.CheckWebServer(clientValidationUrl, out errMsg);
+                        if (result == false)
+                        {
+                            errMsg = "无法连接客户端验证URL:" + errMsg;
+                        }
                     }
                 }
 
@@ -98,6 +106,6 @@ namespace FuLib
             return result;
         }
 
-        
+    
     }
 }

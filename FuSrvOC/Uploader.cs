@@ -108,7 +108,7 @@ namespace FuSrvOC
             {
                 sw.WriteLine("uploadmsg");
                 sw.Flush();
-                sw.WriteLine(string.Format("设备:{0}不是合法客户端,上传被拒绝", currentDeviceNo, currentUploadFile));
+                sw.WriteLine(string.Format("设备:{0}不是合法客户端,上传被拒绝", currentDeviceNo));
             }
         }
 

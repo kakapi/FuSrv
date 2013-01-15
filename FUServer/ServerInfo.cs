@@ -42,12 +42,14 @@ namespace FUServer
                    string ftpPwd = ftpconfig[3];
 
                    string accessPwd = splitedInfo[2];
-                   string clientValidationUrl = splitedInfo[3];
+                   GlobalVariables.ClientValidationUrl = splitedInfo[3];
                    string errMsg;
                    GlobalVariables.SocketPort = Convert.ToInt32(splitedInfo[4]);
+                  
+
                  result=  FuLib.ServerInfo.CheckServer(ftpPath, ftpPort, ftpUser, ftpPwd,
                        dbserver, dbDatabase, dbCallLogTable, dbUser, dbPwd,
-                       clientValidationUrl,
+                       GlobalVariables.ClientValidationUrl,
                        out errMsg);
                }
            }

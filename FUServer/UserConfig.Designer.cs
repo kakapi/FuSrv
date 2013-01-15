@@ -232,7 +232,7 @@
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 0;
             this.label4.Text = "密码";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+          
             // 
             // label5
             // 

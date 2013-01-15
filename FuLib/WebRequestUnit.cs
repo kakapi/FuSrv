@@ -7,24 +7,27 @@ namespace FuLib
 {
     public class WebRequestUnit
     {
-        public static bool CheckWebServer(string url, out string errMsg)
+        public static bool CheckWebServer(string url, out string outMsg)
         {
-            errMsg = string.Empty;
+            outMsg = string.Empty;
             bool result = false;
-
-           
-
            try
            {
                var request = WebRequest.Create(GlobalHelper.EnsureUrl( url));
                 WebResponse response = request.GetResponse();
                 result = true;
+                System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream());
+
+                outMsg = sr.ReadToEnd();
+                sr.Close();
             }
             catch (Exception ex)
             {
-                errMsg = ex.Message;
+                outMsg = ex.Message;
             }
             return result;
         }
+        
+      
     }
 }

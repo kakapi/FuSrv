@@ -24,7 +24,7 @@ namespace FUServer
             if (fuSocket == null)
             {
                 msgHandler = handler;
-                fuSocket = new FuSocket();
+                fuSocket = new FuSocket(GlobalVariables.SocketPort);
                
             }
             fuSocket.StartServer(ServerAction);
@@ -44,13 +44,20 @@ namespace FUServer
                         GlobalVariables.Logger.Error("配置信息为空,请检查");
                     }
                     sw.WriteLine(serverInfo);
+                    sw.Flush();
                     break;
                 case "uploadmsg":
                     string msg = sr.ReadLine();
                     msgHandler.Invoke(msg);
                     break;
                 case "validclient":
-                   
+                   //验证客户端有效性
+                    string validResult;
+                    bool isValid = FuLib.WebRequestUnit.CheckWebServer(GlobalVariables.ClientValidationUrl, out validResult);
+                    
+                    sw.Write(validResult);
+                    sw.Flush();
+                    msgHandler("客户端验证状态:"+validResult);
                     break;
               
                 default: break;
@@ -61,5 +68,6 @@ namespace FUServer
         {
             new FuSocket().StopServer();
         }
+
     }
 }

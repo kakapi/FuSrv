@@ -149,10 +149,7 @@ namespace FUServer
             return controlList;
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 

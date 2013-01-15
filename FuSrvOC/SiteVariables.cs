@@ -45,8 +45,7 @@ namespace FuSrvOC
         public const string callRecordTime = "jh13";//文件创建时间(客户端本地时间)
         public const string remotePhoneNo = "jh2";//被叫号码
         public const string callType = "jh3";//被叫号码
-        public static string ServiceForValidationClient;
-    
+      
         public static System.Timers.Timer ServiceTimer;
 
         public void Init()
@@ -88,11 +87,12 @@ namespace FuSrvOC
                 FtpPassword = ss[1].Split('|')[3];
 
                 AccessPwd = ss[2];
-                ServiceForValidationClient = ss[3];
-
+            
                 string errMsg;
                 Logger.MyLogger.Debug(serverInfo);
-                bool serverOK = FuLib.ServerInfo.CheckServer(FtpServerPath,FtpPort, FtpUserId, FtpPassword, DBServiceIP, DBDataBase, RemoteCallLogTableName, DBUser, DBPwd, ServiceForValidationClient, out errMsg);
+                bool serverOK = FuLib.ServerInfo.CheckServer(FtpServerPath,FtpPort, FtpUserId
+                    , FtpPassword, DBServiceIP, DBDataBase, RemoteCallLogTableName, DBUser, DBPwd
+                    , out errMsg);
                 if (!serverOK)
                 {
                     Logger.MyLogger.Info(errMsg);

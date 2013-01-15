@@ -9,6 +9,7 @@ namespace FUServer
     public class GlobalVariables
     {
         public static int SocketPort;
+        public static string ClientValidationUrl;
 
         public const string CallLogTableName = "calllog";
        static string logFileName =AppDomain.CurrentDomain.BaseDirectory+ "log/FuServer.log";
