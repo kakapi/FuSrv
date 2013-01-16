@@ -83,7 +83,7 @@ namespace FUServer
                 return false;
             }
             if (! FuLib.ServerInfo.CheckServer(ftpIP.Text,ftpPort.Text, ftpUser.Text, ftpPwd.Text, tbxServer.Text,
-                tbxDatabase.Text,GlobalVariables.CallLogTableName, tbxUID.Text, tbxPwd.Text, tbxClientValidationURL.Text, out errMsg))
+                tbxDatabase.Text,tbxTableCallLog.Text, tbxUID.Text, tbxPwd.Text, tbxClientValidationURL.Text, out errMsg))
             {
                 return false;
             }
@@ -126,7 +126,7 @@ namespace FUServer
             string sharedsecret = "P@ssw0rd";
             string socketPort = tbxSocketPort.Text;
 
-            string original = server + "|" + database + "|" + uid + "|" + pwd + "|" + tableName + ";"
+            string original = server + "|" + database + "|" + tableName + "|"  + uid + "|" + pwd + ";"
                 + _ftpPath + "|" + _ftpPort + "|" + _ftpUid + "|" + _ftpPassword + ";"
                 + accessPwd + ";"
                 + clientValidationUrl+";"

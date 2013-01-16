@@ -16,13 +16,13 @@ namespace FuTest.FuLibTest
 
       }
 
-      private void ServerAction(StreamReader sr,StreamWriter sw)
+      private void ServerAction(StreamReader sr, StreamWriter sw, System.Net.EndPoint endPoint)
       {
           sw.WriteLine("OK");
          string requestType= sr.ReadLine();
          sw.WriteLine("your request is:"+ requestType);
       }
-      private void ClientAction(StreamReader sr, StreamWriter sw)
+      private void ClientAction(StreamReader sr, StreamWriter sw,System.Net.EndPoint endPoint)
       {
           string status = sr.ReadLine();
           sw.WriteLine("FetchServerInfo");

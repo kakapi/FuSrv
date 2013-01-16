@@ -77,9 +77,9 @@ namespace FuSrvOC
                 string[] ss = serverInfo.Split(';');
                 DBServiceIP = ss[0].Split('|')[0];
                 DBDataBase = ss[0].Split('|')[1];
-                DBUser = ss[0].Split('|')[2];
-                DBPwd = ss[0].Split('|')[3];
-                RemoteCallLogTableName = ss[0].Split('|')[4];
+                DBUser = ss[0].Split('|')[3];
+                DBPwd = ss[0].Split('|')[4];
+                RemoteCallLogTableName = ss[0].Split('|')[2];
                 //ftp配置
                 FtpServerPath = ss[1].Split('|')[0];
                 FtpPort = ss[1].Split('|')[1];
@@ -108,7 +108,7 @@ namespace FuSrvOC
             }
             // 
         }
-        private void FetchServerInfo(StreamReader sr, StreamWriter sw)
+        private void FetchServerInfo(StreamReader sr, StreamWriter sw, EndPoint endPoint)
         {
             string status = sr.ReadLine();
             if (status == "OK")

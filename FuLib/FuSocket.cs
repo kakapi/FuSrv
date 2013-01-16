@@ -11,7 +11,7 @@ namespace FuLib
     public class FuSocket
     {
         int port = 13009;
-        static private TcpListener listener;
+          static   private TcpListener listener;
         private TcpClient tcpClient;
         int maxConnection = 5;//同时连接的最大数量
         public string ErrMsg { get; internal set; }
@@ -20,8 +20,8 @@ namespace FuLib
         /// </summary>
         /// <param name="sr"></param>
         /// <param name="sw"></param>
-        public delegate void delCommunicationAction(StreamReader sr, StreamWriter sw);
-        private delCommunicationAction ServerAction;
+        public delegate void delCommunicationAction(StreamReader sr, StreamWriter sw,EndPoint endpoint);
+        private delCommunicationAction CommunicationAction;
 
         private static bool started = true;//是否启动监听
         public FuSocket() { }
@@ -31,7 +31,7 @@ namespace FuLib
         }
         public void StartServer(delCommunicationAction serverAction)
         {
-            ServerAction = serverAction;
+            CommunicationAction = serverAction;
             if (listener == null)
             {
                 IPHostEntry host;
@@ -64,6 +64,8 @@ namespace FuLib
                 {
                     bool list = listener.Server.Connected;
                     Socket soc = listener.AcceptSocket();
+                    soc.ReceiveTimeout = 10*1000;
+                    soc.SendTimeout = 10*1000;
                     try
                     {
                         Stream s = new NetworkStream(soc);
@@ -71,7 +73,7 @@ namespace FuLib
                         StreamWriter sw = new StreamWriter(s);
                         sw.AutoFlush = true;
                         //开始监听时服务器的行为,要保证客户端和服务端的读写行为是互补的,如果同时read会死锁.
-                        ServerAction.Invoke(sr, sw);
+                        CommunicationAction.Invoke(sr, sw,soc.RemoteEndPoint);
                         s.Close();
                     }
                     catch (Exception ex)
@@ -95,6 +97,7 @@ namespace FuLib
             {
                 try
                 {
+                    listener.Server.Close();
                     listener.Stop();
                     
                 }
@@ -116,7 +119,7 @@ namespace FuLib
                 StreamReader sr = new StreamReader(s);
                 StreamWriter sw = new StreamWriter(s);
                 sw.AutoFlush = true;
-                clientAction.Invoke(sr, sw);
+                clientAction.Invoke(sr, sw,tcpClient.Client.LocalEndPoint);
                 s.Close();
 
             }

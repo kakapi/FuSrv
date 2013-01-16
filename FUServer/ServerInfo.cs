@@ -11,18 +11,23 @@ namespace FUServer
         public static string configFileName = AppDomain.CurrentDomain.BaseDirectory + "conf.ig";
 
         
-        public static bool CheckConfigOK()
+        public static bool CheckConfigOK(out string errMsg)
         {
+            errMsg = string.Empty;
             bool result = true;
            string configInfo=GetDecryptedInfo();
-           string[] splitedInfo = configInfo.Split(';');
+        
          
            if (string.IsNullOrEmpty(configInfo))
-           { result = false; }
+           {
+               errMsg = "尚未配置";
+               result = false; }
            else
            {
+               string[] splitedInfo = configInfo.Split(';');
                if (splitedInfo.Length != 5)
                {
+                   errMsg = "配置数据有误,must 5 but" + splitedInfo.Length;
                    result = false;
                }
                else {
@@ -32,9 +37,9 @@ namespace FUServer
                    string dbserver = dbconfig[0];
                    string dbDatabase = dbconfig[1];
                    //Properties.Settings.Default.DbServer;
-                   string dbUser = dbconfig[2];
-                   string dbPwd = dbconfig[3];
-                   string dbCallLogTable = dbconfig[4];
+                   string dbCallLogTable = dbconfig[2];
+                   string dbUser = dbconfig[3];
+                   string dbPwd = dbconfig[4];
 
                    string ftpPath = ftpconfig[0];
                    string ftpPort = ftpconfig[1];
@@ -43,7 +48,7 @@ namespace FUServer
 
                    string accessPwd = splitedInfo[2];
                    GlobalVariables.ClientValidationUrl = splitedInfo[3];
-                   string errMsg;
+                 
                    GlobalVariables.SocketPort = Convert.ToInt32(splitedInfo[4]);
                   
 

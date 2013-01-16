@@ -61,24 +61,26 @@ namespace FuSrvOC
         }
         static string currentDeviceNo;
         static string currentUploadFile;
-        private static void SendUploadMsg(StreamReader sr, StreamWriter sw)
+        private static void SendUploadMsg(StreamReader sr, StreamWriter sw,EndPoint endPoint)
         {
             string status = sr.ReadLine();
             if (status == "OK")
             {
                 sw.WriteLine("uploadmsg");
                 sw.Flush();
-                sw.WriteLine(string.Format("设备:{0}已上传文件-{1}:", currentDeviceNo, currentUploadFile));
+                sw.WriteLine(string.Format("设备:{0}已上传文件-{1}:", currentDeviceNo, currentUploadFile)); sw.Flush();
             }
         }
         static bool isClientValid = false;
-        private static void ValidClient(StreamReader sr, StreamWriter sw)
+        private static void ValidClient(StreamReader sr, StreamWriter sw, EndPoint endPoint)
         {
             string status = sr.ReadLine();
             if (status == "OK")
             {
                 sw.WriteLine("validclient");
                 sw.Flush();
+                sw.WriteLine(currentDeviceNo); sw.Flush();
+              
               string result=  sr.ReadLine();
               if (result.ToLower() == "true")
               {
@@ -91,24 +93,24 @@ namespace FuSrvOC
             }
         }
 
-        private static void SendUploadError(StreamReader sr, StreamWriter sw)
+        private static void SendUploadError(StreamReader sr, StreamWriter sw, EndPoint endPoint)
         {
             string status = sr.ReadLine();
             if (status == "OK")
             {
                 sw.WriteLine("uploadmsg");
                 sw.Flush();
-                sw.WriteLine(string.Format("设备:{0}上传失败-{1}", currentDeviceNo, currentUploadFile));
+                sw.WriteLine(string.Format("设备:{0}上传失败-{1}", currentDeviceNo, currentUploadFile)); sw.Flush();
             }
         }
-        private static void ValidError(StreamReader sr, StreamWriter sw)
+        private static void ValidError(StreamReader sr, StreamWriter sw, EndPoint endPoint)
         {
             string status = sr.ReadLine();
             if (status == "OK")
             {
                 sw.WriteLine("uploadmsg");
                 sw.Flush();
-                sw.WriteLine(string.Format("设备:{0}不是合法客户端,上传被拒绝", currentDeviceNo));
+                sw.WriteLine(string.Format("设备:{0}不是合法客户端,上传被拒绝", currentDeviceNo)); sw.Flush();
             }
         }
 
