@@ -24,7 +24,8 @@ namespace FUServer
         {
             InitializeComponent();
             //  SetAutoRun(true);
-            if (ServerInfo.CheckConfigOK())
+            string checkMsg;
+            if (ServerInfo.CheckConfigOK(out checkMsg))
             {
                 started = true;
                 StartService();
@@ -33,7 +34,7 @@ namespace FUServer
             else
             {
                 started = false;
-                Log("尚未配置,服务未启动");
+                Log("服务未启动:"+checkMsg);
 
             }
             SetUIStatus();
