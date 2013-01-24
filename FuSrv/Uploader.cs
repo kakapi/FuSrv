@@ -78,16 +78,16 @@ namespace FuSrv
                 return false;
             }
             string fileName = Path.GetFileName(fileNametouploaded);
-
-            string targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer) + deviceNo + "/";
+            string nowString = DateTime.Now.ToString("yyyyMMdd");
+            string targetPath = GlobalHelper.EnsurePathEndWithSlash(ftpServer) + nowString + "/";
             if (!FuLib.FtpUnit.EnsureFtpPath(targetPath,SiteVariables.FtpPort,
                 uid, pwd, out errMsg))
             {
-                Logger.MyLogger.Error("Can't Create Directory" + deviceNo + ",ErrorCode:" + errMsg);
+                Logger.MyLogger.Error("Can't Create Directory" + nowString + ",ErrorCode:" + errMsg);
                 return false;
             }
-            string nowString = DateTime.Now.ToString("yyyyMMdd");
-            targetPath += nowString + "/";
+         
+            targetPath += deviceNo + "/";
             if (!FuLib.FtpUnit.EnsureFtpPath(targetPath, SiteVariables.FtpPort,
                 uid, pwd, out errMsg))
             {

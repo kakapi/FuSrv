@@ -10,9 +10,10 @@ namespace FuLib
    
     public class FuSocket
     {
-        int port = 13009;
-          static   private TcpListener listener;
-        private TcpClient tcpClient;
+        public static FuSocket fuSocket;
+        static int port;
+        static   private TcpListener listener;//监听对象
+     
         int maxConnection = 5;//同时连接的最大数量
         public string ErrMsg { get; internal set; }
         /// <summary>
@@ -21,17 +22,24 @@ namespace FuLib
         /// <param name="sr"></param>
         /// <param name="sw"></param>
         public delegate void delCommunicationAction(StreamReader sr, StreamWriter sw,EndPoint endpoint);
-        private delCommunicationAction CommunicationAction;
+        private delCommunicationAction serverAction;
 
         private static bool started = true;//是否启动监听
-        public FuSocket() { }
-        public FuSocket(int socketPort)
+    
+        public FuSocket CreateInstance(int socketport)
         {
-            port = socketPort;
+            if (fuSocket == null)
+            {
+                port = socketport;
+                fuSocket = new FuSocket();
+            }
+            return fuSocket;
         }
-        public void StartServer(delCommunicationAction serverAction)
+       
+        public void StartServer(delCommunicationAction _serverAction)
         {
-            CommunicationAction = serverAction;
+
+            this.serverAction = _serverAction;
             if (listener == null)
             {
                 IPHostEntry host;
@@ -46,26 +54,32 @@ namespace FuLib
                 }
                 IPEndPoint endpoint = new IPEndPoint(interNetworkIp, port);
                 listener = new TcpListener(endpoint);
+
+               
             }
+            started = true;
                 listener.Start();
                 for (int i = 0; i < maxConnection; i++)
                 {
                     Thread t = new Thread(new ThreadStart(Service));
+                    clientThreadList.Add(t);
                     t.Start();
                 }
+               
             
-        }  
+        }
+       static  List<Thread> clientThreadList = new List<Thread>();
 
         private void Service()
         {
+         
             while (started)
             {
                 try
                 {
-                    bool list = listener.Server.Connected;
+                
                     Socket soc = listener.AcceptSocket();
-                    soc.ReceiveTimeout = 10*1000;
-                    soc.SendTimeout = 10*1000;
+                  
                     try
                     {
                         Stream s = new NetworkStream(soc);
@@ -73,7 +87,7 @@ namespace FuLib
                         StreamWriter sw = new StreamWriter(s);
                         sw.AutoFlush = true;
                         //开始监听时服务器的行为,要保证客户端和服务端的读写行为是互补的,如果同时read会死锁.
-                        CommunicationAction.Invoke(sr, sw,soc.RemoteEndPoint);
+                        serverAction.Invoke(sr, sw,soc.RemoteEndPoint);
                         s.Close();
                     }
                     catch (Exception ex)
@@ -85,8 +99,10 @@ namespace FuLib
                         soc.Close();
                     }
                 }
-                catch
-                {}
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
    
@@ -97,6 +113,11 @@ namespace FuLib
             {
                 try
                 {
+                    foreach (Thread tt in clientThreadList)
+                    {
+                        tt.Abort();
+                    }
+                    clientThreadList.Clear();
                     listener.Server.Close();
                     listener.Stop();
                     
@@ -108,10 +129,10 @@ namespace FuLib
      
         public void ClientActions(string serverIp, delCommunicationAction clientAction)
         {
-            if (tcpClient == null||tcpClient.Connected==false)
-            {
-                tcpClient = new TcpClient(serverIp, port);
-            }
+            //if (tcpClient == null||tcpClient.Connected==false)
+            //{
+              TcpClient  tcpClient = new TcpClient(serverIp, port);
+            //}
             
             try
             {

@@ -29,7 +29,7 @@ namespace FUServer
             {
                 started = true;
                 StartService();
-
+              //  StartListen();
             }
             else
             {
@@ -228,6 +228,80 @@ namespace FUServer
             tbMain.SelectedIndex = 0;
         }
 
+
+#region Socket RawCode
+        public  void StartListen()
+        {
+            TcpListener serverSocket = new TcpListener(GlobalVariables.SocketPort);
+
+            int requestCount = 0;
+
+            TcpClient clientSocket = default(TcpClient);
+
+            serverSocket.Start();
+
+            Log(" >> Server Started");
+
+            clientSocket = serverSocket.AcceptTcpClient();
+
+            Log(" >> Accept connection from client");
+
+            requestCount = 0;
+
+
+
+            while ((true))
+            {
+
+                try
+                {
+
+                    requestCount = requestCount + 1;
+
+                    NetworkStream networkStream = clientSocket.GetStream();
+
+                    byte[] bytesFrom = new byte[10025];
+
+                    networkStream.Read(bytesFrom, 0, (int)clientSocket.ReceiveBufferSize);
+
+                    string dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
+
+                    dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
+
+                    Log(" >> Data from client - " + dataFromClient);
+
+                    string serverResponse = "Server response " + Convert.ToString(requestCount);
+
+                    Byte[] sendBytes = Encoding.ASCII.GetBytes(serverResponse);
+
+                    networkStream.Write(sendBytes, 0, sendBytes.Length);
+
+                    networkStream.Flush();
+
+                    Log(" >> " + serverResponse);
+
+                }
+
+                catch (Exception ex)
+                {
+
+                    Log(ex.ToString());
+
+                }
+
+            }
+
+
+
+            clientSocket.Close();
+
+            serverSocket.Stop();
+
+            Console.WriteLine(" >> exit");
+
+            Console.ReadLine();
+        }
+#endregion
         
     }
 }

@@ -61,7 +61,7 @@ namespace FuSrvOC
         {
             Logger.MyLogger.Info("开始获取服务器信息");
 
-            FuLib.FuSocket fusocket = new FuLib.FuSocket(SocketPort);
+            FuLib.FuSocket fusocket = new FuLib.FuSocket().CreateInstance(SocketPort);
             fusocket.ClientActions(ServerIP, FetchServerInfo);
             if (!string.IsNullOrEmpty(fusocket.ErrMsg))
             {

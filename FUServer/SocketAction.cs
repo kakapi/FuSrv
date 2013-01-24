@@ -22,12 +22,9 @@ namespace FUServer
         public void StartServer(delReceivedMessageHandler handler)
         {
            
-             
-                if (fuSocket == null)
-                {
-                    msgHandler = handler;
-                    fuSocket = new FuSocket(GlobalVariables.SocketPort);
-                }
+         msgHandler = handler;
+         fuSocket = new FuSocket().CreateInstance(GlobalVariables.SocketPort);
+                
          
             fuSocket.StartServer(ServerAction);
         }

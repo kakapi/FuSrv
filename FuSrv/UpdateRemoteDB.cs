@@ -45,6 +45,16 @@ namespace FuSrv
 
         public static void Update(string deviceno, string duration,string savePath)
         {
+            ///精确到秒
+            decimal decDuration;
+            if (decimal.TryParse(duration, out decDuration))
+            {
+                duration = decDuration.ToString("0");
+            }
+            else {
+                duration = "0";
+            }
+
             string sql = string.Format("insert into {0}({1},{2},{3},{4}) values('{5}','{6}','{7}','{8}')",
                 SiteVariables.TableName
                 , SiteVariables.deviceno
@@ -55,9 +65,9 @@ namespace FuSrv
                     , deviceno
                 , duration
                 ,savePath
-                ,DateTime.Now.ToString("yyyy-MM-dd:HH:mm:ss")
+                ,DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 );
-            Logger.MyLogger.Info(sql);
+            Logger.MyLogger.Debug(sql);
             ExcuteSql(sql);
         }
         public static void ExcuteSql(string sql)

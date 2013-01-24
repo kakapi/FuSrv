@@ -21,7 +21,7 @@ namespace FuSrvOC
 
             Guid operationId = Guid.NewGuid();
             Logger.MyLogger.Info("###开始扫描" + operationId);
-            FuSocket fusocket = new FuSocket(SiteVariables.SocketPort);
+            FuSocket fusocket = new FuSocket().CreateInstance(SiteVariables.SocketPort);
             try
             {
                  
