@@ -30,19 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CryWin));
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbxServer = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbxUID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbxPwd = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbxDatabase = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnClose = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ftpPort = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,81 +44,19 @@
             this.ftpIP = new System.Windows.Forms.TextBox();
             this.ftpUser = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox1.SuspendLayout();
+            this.tbxUpdateDataUrl = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "服务器";
-            // 
-            // tbxServer
-            // 
-            this.tbxServer.Location = new System.Drawing.Point(75, 16);
-            this.tbxServer.Name = "tbxServer";
-            this.tbxServer.Size = new System.Drawing.Size(100, 21);
-            this.tbxServer.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "用户名";
-            // 
-            // tbxUID
-            // 
-            this.tbxUID.Location = new System.Drawing.Point(75, 90);
-            this.tbxUID.Name = "tbxUID";
-            this.tbxUID.Size = new System.Drawing.Size(100, 21);
-            this.tbxUID.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 128);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "密码";
-            // 
-            // tbxPwd
-            // 
-            this.tbxPwd.Location = new System.Drawing.Point(75, 124);
-            this.tbxPwd.Name = "tbxPwd";
-            this.tbxPwd.PasswordChar = '*';
-            this.tbxPwd.Size = new System.Drawing.Size(100, 21);
-            this.tbxPwd.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "数据库";
-            // 
-            // tbxDatabase
-            // 
-            this.tbxDatabase.Location = new System.Drawing.Point(75, 52);
-            this.tbxDatabase.Name = "tbxDatabase";
-            this.tbxDatabase.Size = new System.Drawing.Size(100, 21);
-            this.tbxDatabase.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(20, 199);
+            this.label5.Location = new System.Drawing.Point(20, 254);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 12);
             this.label5.TabIndex = 2;
@@ -135,7 +64,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(342, 230);
+            this.btnSave.Location = new System.Drawing.Point(16, 285);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 9;
@@ -150,30 +79,13 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(12, 230);
+            this.btnClose.Location = new System.Drawing.Point(274, 285);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 10;
             this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tbxDatabase);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.tbxPwd);
-            this.groupBox1.Controls.Add(this.tbxServer);
-            this.groupBox1.Controls.Add(this.tbxUID);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 172);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "数据库配置";
             // 
             // groupBox2
             // 
@@ -185,7 +97,7 @@
             this.groupBox2.Controls.Add(this.ftpPwd);
             this.groupBox2.Controls.Add(this.ftpIP);
             this.groupBox2.Controls.Add(this.ftpUser);
-            this.groupBox2.Location = new System.Drawing.Point(226, 12);
+            this.groupBox2.Location = new System.Drawing.Point(22, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(191, 172);
             this.groupBox2.TabIndex = 5;
@@ -261,11 +173,37 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // tbxUpdateDataUrl
+            // 
+            this.tbxUpdateDataUrl.Location = new System.Drawing.Point(91, 18);
+            this.tbxUpdateDataUrl.Name = "tbxUpdateDataUrl";
+            this.tbxUpdateDataUrl.Size = new System.Drawing.Size(223, 21);
+            this.tbxUpdateDataUrl.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "数据更新Url";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.tbxUpdateDataUrl);
+            this.groupBox1.Location = new System.Drawing.Point(22, 190);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(327, 52);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            // 
             // CryWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 285);
+            this.ClientSize = new System.Drawing.Size(359, 331);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
@@ -276,11 +214,11 @@
             this.Name = "CryWin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "配置加密";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,19 +226,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbxServer;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbxUID;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbxPwd;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbxDatabase;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox ftpPort;
         private System.Windows.Forms.Label label6;
@@ -311,5 +240,8 @@
         private System.Windows.Forms.TextBox ftpIP;
         private System.Windows.Forms.TextBox ftpUser;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbxUpdateDataUrl;
     }
 }

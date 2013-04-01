@@ -12,7 +12,7 @@ namespace FuTest
         public void GetParamsTest()
         {
             new SiteVariables().GetServiceParam();
-            Assert.Equal(".\\sqlexpress",SiteVariables.DBServiceIP);
+            Assert.Equal(".\\sqlexpress",SiteVariables.UpdateDataUrl);
             Console.Write(SiteVariables.FtpServerPath);
           
             Assert.Equal("ftp://127.0.0.1",SiteVariables.FtpServerPath);

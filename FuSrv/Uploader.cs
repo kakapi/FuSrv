@@ -107,13 +107,8 @@ namespace FuSrv
 
                 int durationSeconds;
                 int.TryParse(duration, out durationSeconds);
-                Dictionary<string, string> columnNameValues = new Dictionary<string, string>();
-                columnNameValues.Add(SiteVariables.deviceno, deviceNo);
-                columnNameValues.Add(SiteVariables.callRecordTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                columnNameValues.Add(SiteVariables.duration, durationSeconds.ToString());
-                columnNameValues.Add(SiteVariables.recordFilePath, deviceNo + "/" + nowString + "/" + fileName);
-
-                idal.UpdateRemoteDb(SiteVariables.TableName,columnNameValues);
+               
+                idal.UpdateRemoteDb(deviceNo, durationSeconds.ToString(), deviceNo + "/" + nowString + "/" + fileName);
             }
             else
             {

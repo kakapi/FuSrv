@@ -18,14 +18,13 @@ namespace CCEncryptor
 
         private string CreateCode()
         {
-            string server = tbxServer.Text.Trim();
-            string database = tbxDatabase.Text.Trim();
-            string uid = tbxUID.Text.Trim();
-            string pwd = tbxPwd.Text.Trim();
+            string server = tbxUpdateDataUrl.Text.Trim();
+            string urlUpdateData = tbxUpdateDataUrl.Text.Trim();
+          
 
             string sharedsecret = "P@ssw0rd";
 
-            string original = server + "|" + database + "|" + uid + "|" + pwd + ";" + ftpIP.Text + "|" + ftpPort.Text + "|" + ftpUser.Text + "|" + ftpPwd.Text;
+            string original = urlUpdateData + ";" + ftpIP.Text + "|" + ftpPort.Text + "|" + ftpUser.Text + "|" + ftpPwd.Text;
 
             string crypted =FuLib.Crypto.EncryptStringAES(original, sharedsecret);
             return crypted;
@@ -38,14 +37,14 @@ namespace CCEncryptor
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbxServer.Text))
+            if (string.IsNullOrEmpty(tbxUpdateDataUrl.Text))
             {
                 MessageBox.Show("请填写数据库服务器地址.");
                 return;
             }
-            if (string.IsNullOrEmpty( tbxDatabase.Text))
+            if (string.IsNullOrEmpty(tbxUpdateDataUrl.Text))
             {
-            MessageBox.Show("请填写数据库名称.");
+            MessageBox.Show("请填写数据更新Url");
                 return;
             }
            
