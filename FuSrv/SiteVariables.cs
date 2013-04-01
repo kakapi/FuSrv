@@ -31,12 +31,11 @@ namespace FuSrv
         public static string DBUser = "";
         public static string DBPwd = "";
         public static string DBDataBase = "";
-
         public const string TableName = "calllog";
         public const string deviceno = "jh1";//设备编号
         public const string duration = "jh8";//通话时长
         public const string recordFilePath = "jh9";//保存路径(相对于ftp根目录)
-        public const string callRecordTime = "jh13";//文件创建时间(客户端本地时间)
+        public const string callRecordTime = "jh13";//文件创建时间(客户端本地时间
         static SiteVariables()
         {
     

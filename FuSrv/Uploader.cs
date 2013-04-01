@@ -66,7 +66,7 @@ namespace FuSrv
             return tobeUploaded.ToArray();
         }
 
-
+        static IDal idal = new DalWithHttp();
         public static bool UploadSingleFile(string fileNametouploaded
             , string ftpServer
             , string uid, string pwd)
@@ -105,8 +105,15 @@ namespace FuSrv
                 Logger.MyLogger.Info(msg);
                 new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded).Ticks);
 
+                int durationSeconds;
+                int.TryParse(duration, out durationSeconds);
+                Dictionary<string, string> columnNameValues = new Dictionary<string, string>();
+                columnNameValues.Add(SiteVariables.deviceno, deviceNo);
+                columnNameValues.Add(SiteVariables.callRecordTime, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                columnNameValues.Add(SiteVariables.duration, durationSeconds.ToString());
+                columnNameValues.Add(SiteVariables.recordFilePath, deviceNo + "/" + nowString + "/" + fileName);
 
-                UpdateRemoteDB.Update(deviceNo, duration, deviceNo + "/" + nowString + "/" + fileName);
+                idal.UpdateRemoteDb(SiteVariables.TableName,columnNameValues);
             }
             else
             {

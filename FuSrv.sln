@@ -21,7 +21,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCEncryptorServer", "CCEncr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FUServer", "FUServer\FUServer.csproj", "{761262A4-6D8B-4ABE-A930-B35C43DC5BA8}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "FuClient", "FuClient\FuClient.wixproj", "{9605DA62-30EC-4518-B64C-0DEE390F62D1}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CallLogService", "CallLogService\", "{F216A79F-BEE2-4A56-B939-01EB2661D533}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/CallLogService"
+		Debug.AspNetCompiler.PhysicalPath = "CallLogService\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\CallLogService\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/CallLogService"
+		Release.AspNetCompiler.PhysicalPath = "CallLogService\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\CallLogService\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "20416"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{25E8FE7F-EAB2-43DF-8EA8-6EF307DB0D27}"
+	ProjectSection(SolutionItems) = preProject
+		..\EmlExtractor\EEWeb\Bin\log4net.dll = ..\EmlExtractor\EEWeb\Bin\log4net.dll
+		lib\NAudio-Release\NAudio.dll = lib\NAudio-Release\NAudio.dll
+		lib\xunit.dll = lib\xunit.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,16 +152,16 @@ Global
 		{761262A4-6D8B-4ABE-A930-B35C43DC5BA8}.Release|Mixed Platforms.Build.0 = Release|x86
 		{761262A4-6D8B-4ABE-A930-B35C43DC5BA8}.Release|x86.ActiveCfg = Release|x86
 		{761262A4-6D8B-4ABE-A930-B35C43DC5BA8}.Release|x86.Build.0 = Release|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Debug|x86.ActiveCfg = Debug|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Debug|x86.Build.0 = Debug|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Release|Any CPU.ActiveCfg = Release|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Release|Mixed Platforms.Build.0 = Release|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Release|x86.ActiveCfg = Release|x86
-		{9605DA62-30EC-4518-B64C-0DEE390F62D1}.Release|x86.Build.0 = Release|x86
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F216A79F-BEE2-4A56-B939-01EB2661D533}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

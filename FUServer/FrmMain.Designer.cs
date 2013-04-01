@@ -42,12 +42,12 @@
             this.lblCheckProgress = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.userConfig1 = new FUServer.UserConfig();
             this.systrayicon = new System.Windows.Forms.NotifyIcon(this.components);
             this.cmsExit = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmServerStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.userConfig1 = new FUServer.UserConfig();
             this.pnlAction.SuspendLayout();
             this.tbMain.SuspendLayout();
             this.tpStatus.SuspendLayout();
@@ -92,7 +92,7 @@
             this.tbxLog.Location = new System.Drawing.Point(3, 47);
             this.tbxLog.Name = "tbxLog";
             this.tbxLog.ReadOnly = true;
-            this.tbxLog.Size = new System.Drawing.Size(515, 305);
+            this.tbxLog.Size = new System.Drawing.Size(515, 306);
             this.tbxLog.TabIndex = 1;
             this.tbxLog.Text = "";
             this.tbxLog.TextChanged += new System.EventHandler(this.tbxLog_TextChanged);
@@ -112,10 +112,10 @@
             // 
             this.tpStatus.Controls.Add(this.tbxLog);
             this.tpStatus.Controls.Add(this.pnlAction);
-            this.tpStatus.Location = new System.Drawing.Point(4, 22);
+            this.tpStatus.Location = new System.Drawing.Point(4, 21);
             this.tpStatus.Name = "tpStatus";
             this.tpStatus.Padding = new System.Windows.Forms.Padding(3);
-            this.tpStatus.Size = new System.Drawing.Size(521, 355);
+            this.tpStatus.Size = new System.Drawing.Size(521, 356);
             this.tpStatus.TabIndex = 0;
             this.tpStatus.Text = "服务状态";
             this.tpStatus.UseVisualStyleBackColor = true;
@@ -128,10 +128,10 @@
             this.tpConfig.Controls.Add(this.btnReset);
             this.tpConfig.Controls.Add(this.btnSave);
             this.tpConfig.Controls.Add(this.userConfig1);
-            this.tpConfig.Location = new System.Drawing.Point(4, 22);
+            this.tpConfig.Location = new System.Drawing.Point(4, 21);
             this.tpConfig.Name = "tpConfig";
             this.tpConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tpConfig.Size = new System.Drawing.Size(521, 355);
+            this.tpConfig.Size = new System.Drawing.Size(521, 356);
             this.tpConfig.TabIndex = 1;
             this.tpConfig.Text = "相关配置";
             this.tpConfig.UseVisualStyleBackColor = true;
@@ -191,6 +191,13 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // userConfig1
+            // 
+            this.userConfig1.Location = new System.Drawing.Point(12, 10);
+            this.userConfig1.Name = "userConfig1";
+            this.userConfig1.Size = new System.Drawing.Size(507, 296);
+            this.userConfig1.TabIndex = 15;
+            // 
             // systrayicon
             // 
             this.systrayicon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
@@ -229,13 +236,6 @@
             this.tsmExit.Size = new System.Drawing.Size(124, 22);
             this.tsmExit.Text = "退出";
             this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
-            // 
-            // userConfig1
-            // 
-            this.userConfig1.Location = new System.Drawing.Point(12, 10);
-            this.userConfig1.Name = "userConfig1";
-            this.userConfig1.Size = new System.Drawing.Size(507, 296);
-            this.userConfig1.TabIndex = 15;
             // 
             // FrmMain
             // 
