@@ -16,7 +16,7 @@ namespace FuSrv
         public void UpdateRemoteDb(string deviceno, string duration, string savePath)
         {
             string msg;
-            string urlParams=string.Format("?deviceno={0}&duration={1}&savepath={2}",deviceno,duration,savePath);
+            string urlParams = string.Format("?deviceno={0}&duration={1}&savepath={2}", deviceno, duration, System.Web.HttpUtility.UrlEncode(savePath));
             FuLib.WebRequestUnit.CheckWebServer(SiteVariables.UpdateDataUrl+urlParams, out msg);
             Logger.MyLogger.Info("执行结果:" + msg);
         }

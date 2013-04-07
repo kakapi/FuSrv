@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_08B99DDB62C4DD4A452DD5088158981B"
-        "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2CF96A4AAA745059D98C8D073B8477AC"
         "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
         "MsmSig" = "8:_UNDEFINED"
@@ -45,14 +39,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_D22FB58C9CC46ED8B43E0A284BC7394A"
         "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_08B99DDB62C4DD4A452DD5088158981B"
+        "OwnerKey" = "8:_599E3AA94F41426D87583EFBAFFFE9B0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -65,6 +59,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_A21B6FD0D723A44F3570B1C56BAB4786"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D22FB58C9CC46ED8B43E0A284BC7394A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -228,37 +228,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_08B99DDB62C4DD4A452DD5088158981B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_08B99DDB62C4DD4A452DD5088158981B"
-                    {
-                    "Name" = "8:NAudio.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:NAudio.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CAA92D8C5ABC45538D1F9A2354D7BAEC"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2CF96A4AAA745059D98C8D073B8477AC"
             {
             "AssemblyRegister" = "3:1"
@@ -304,6 +273,37 @@
                     }
                 }
             "SourcePath" = "8:log4net.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CAA92D8C5ABC45538D1F9A2354D7BAEC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D22FB58C9CC46ED8B43E0A284BC7394A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D22FB58C9CC46ED8B43E0A284BC7394A"
+                    {
+                    "Name" = "8:NAudio.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NAudio.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CAA92D8C5ABC45538D1F9A2354D7BAEC"
@@ -378,7 +378,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FuSrvSetup"
         "ProductCode" = "8:{56ADDE22-534A-4FFF-906E-7CE7BF913AB5}"
-        "PackageCode" = "8:{D78D0AD1-4869-42AF-AFDD-4681DEC8E155}"
+        "PackageCode" = "8:{9444829D-0825-471F-8020-32EAA061081D}"
         "UpgradeCode" = "8:{DBF2B580-C0DB-4258-9587-5B356ED09ED7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
