@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class UpdateDbService : IHttpHandler
 {
     //数据库连接 请根据实际的连接来进行参数配置！
-    string connectionString = @"server=127.0.0.1;database=calldb;uid=sa;pwd=sa";
+    string connectionString = @"server=127.0.0.1;database=.\sqlexpress;Trusted_Connection=true;";
 
     public void ProcessRequest(HttpContext context)
     {

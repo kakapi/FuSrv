@@ -45,6 +45,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NAudio-Release\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -57,6 +61,7 @@
     <Compile Include="FuLibTest\CryptoTest.cs" />
     <Compile Include="FuLibTest\FTPUnitTest.cs" />
     <Compile Include="FuLibTest\FuSocketTest.cs" />
+    <Compile Include="FuLibTest\NAudioTest.cs" />
     <Compile Include="FuLibTest\ServerInfoTest.cs" />
     <Compile Include="FuLibTest\GlobalHelperTest.cs" />
     <Compile Include="FuSrvOCTest\FuSrvUploaderTest.cs" />
@@ -83,6 +88,11 @@
       <Project>{985FF692-96D8-4178-8D52-6302FFAFBE71}</Project>
       <Name>FuSrv</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="testfiles\GAudio_Receive4.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

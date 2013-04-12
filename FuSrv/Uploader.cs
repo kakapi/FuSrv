@@ -106,9 +106,8 @@ namespace FuSrv
                 Logger.MyLogger.Info(msg);
                 new UploadLogger().WriteLastUploadFileTime(File.GetCreationTime(fileNametouploaded).Ticks);
 
-                int durationSeconds;
-                int.TryParse(duration, out durationSeconds);
                
+               int durationSeconds = (int)Math.Floor(decimal.Parse(duration));
                 idal.UpdateRemoteDb(deviceNo, durationSeconds.ToString(), deviceNo + "/" + nowString + "/" + fileName);
             }
             else
