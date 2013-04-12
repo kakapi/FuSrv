@@ -109,7 +109,7 @@ namespace FuLib
             errMsg = ErrMsg;
             try
             {
-                var request = CreateRequest(directory,port, username, password);
+                var request = CreateRequest(directory, port, username, password);
                 request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
             }
@@ -118,7 +118,7 @@ namespace FuLib
                 FtpWebResponse response = (FtpWebResponse)ex.Response;
                 if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
                 {
-                    var request2 = CreateRequest(directory,port, username, password);
+                    var request2 = CreateRequest(directory, port, username, password);
                     request2.Method = WebRequestMethods.Ftp.MakeDirectory;
 
                     try
@@ -131,9 +131,19 @@ namespace FuLib
                         errMsg = exxResp.StatusCode.ToString();
                         return false;
                     }
+                    catch (Exception excreate)
+                    {
+                        errMsg = excreate.Message+excreate.StackTrace;
+                        return false;
+                    }
 
                 }
 
+            }
+            catch (Exception ex)
+            {
+                errMsg = ex.Message + ex.StackTrace;
+                return false;
             }
             return true;
 
